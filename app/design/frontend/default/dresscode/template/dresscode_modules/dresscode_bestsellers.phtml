@@ -1,0 +1,104 @@
+<?php
+
+$config = Mage::getStoreConfig('dresscodeconfig/dresscodeconfig_mainfront');
+if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+	<div id="bestsellers_slider">
+	<div id="carousel_bestsellers" class="es-carousel-wrapper">
+        <div class="es-carousel container">
+
+
+
+        <ul>
+	
+		<?php $i=0; foreach ($_products->getItems() as $_product): ?>
+		
+		<?php if ($i>100): continue; endif; ?>
+			
+			<li class="four columns product" >
+				<div class="product-image-wrapper"   id="productImageWrapID_<?php echo $_product->getId()?>"   onclick="location.href='<?php echo $_product->getProductUrl() ?>'">
+
+
+                    <?php echo $this->helper('dresscodeconfig')->outputProductLabel($_product);  ?>
+							
+					<a href="<?php echo $_product->getProductUrl() ?>"   title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+
+						 <?php if($config['imagehover'])
+                                    {
+                                        $_image = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages()->getItemByColumnValue('position',2);
+                                        $_images_c = Mage::getModel('catalog/product')->load($_product->getId())->getMediaGalleryImages()->count();
+                                        if($_images_c>=1 && !empty($_image)){ ?>
+                                            <img class="scale-with-grid" src="<?=$this->helper('catalog/image')->init($_product, 'thumbnail', $_image->getFile())->resize(329, 418); ?>" alt="" />
+                                            <img class="roll_over_img" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(329, 418); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                        <?php
+                                        }
+                                        else
+                                        {
+                                            ?>
+                                                <img class="scale-with-grid" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(329, 418); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                                            <?php
+                                        }
+
+                                    }
+                                    else
+                                    { ?>
+                                     <img class="scale-with-grid" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(329, 418); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" />
+                               <?php } ?>
+						
+						<div class="product-image-wrapper-hover"></div>
+					</a>
+				</div>
+				<div class="wrapper-hover">
+					<div class="product-price"><?php echo $this->getPriceHtml($_product, true) ?></div>
+					<div class="product-name">
+
+
+                        <div class="clearfix">
+                            <a class="icon_cart_title" href="<?php echo $_product->getProductUrl() ?>"  onclick="location.href='<?php echo $_product->getProductUrl() ?>'" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><?php echo $_product->getName() ?></a>
+
+                            <div class="icon_cart_rollover">
+                                 <?php  if($_product->isSaleable()): ?>
+
+                                    <?php if($config['ajax_buttons']) { ?>
+                                        <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+                                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>"  onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>',true)"></button>
+                                        <span class='ajax_loader<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/dresscode_images/ajax-loader.gif')?>'/></span>
+                                        <?php } else { ?>
+                                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>"  onclick="showOptions('<?php echo $_product->getId()?>')"></button>
+                                        <a href='<?php echo $this->getUrl('checkout/cart/options',array('product_id'=>$_product->getId(),'home'=>'1'));?>' class='fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+                                        <?php }  ?>
+                                    <?php } else {  ?>
+                                    <button type="button" title="<?php echo $this->__('Add to Cart') ?>"  onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"></button>
+                                    <?php }  ?>
+
+                                <?php else: ?>
+                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                                <?php endif; ?>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+				</div>
+			</li>
+			
+		<?php $i++; endforeach; ?>
+	
+		<?php for($i;$i%10!=0;$i++): ?>
+	
+		<?php endfor ?>
+		
+	</ul>
+	
+	</div>
+	
+	 </div>
+    </div>
+
+<?php endif;  ?>
+
+
+

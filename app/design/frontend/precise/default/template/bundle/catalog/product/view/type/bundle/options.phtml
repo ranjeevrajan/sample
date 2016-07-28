@@ -1,0 +1,25 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+
+<?php $_product = $this->getProduct(); ?>
+<?php $_options = Mage::helper('core')->decorateArray($this->getOptions()); ?>
+<?php if ($_product->isSaleable()):?>
+    <?php if (count($_options)): ?>
+        <?php foreach ($_options as $_option): ?>
+            <?php if (!$_option->getSelections()): ?>
+                <?php continue; ?>
+            <?php endif; ?>
+            <?php echo $this->getOptionHtml($_option) ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p><?php echo $this->__('No options of this product are available.') ?></p>
+    <?php endif; ?>
+<?php endif;?>

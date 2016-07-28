@@ -1,0 +1,24 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php $_product = $this->getProduct(); ?>
+<?php $buttonTitle = $this->__('Add to Cart'); ?>
+<?php if($_product->isSaleable()): ?>
+    <div class="add-to-cart">
+        <button type="button" title="<?php echo $buttonTitle ?>" class="button btn-cart btn btn-primary pull-right" onclick="productAddToCartForm.submit(this)"><span><span><?php echo $buttonTitle ?></span></span></button>
+        <?php if(!$_product->isGrouped()): ?>
+        <label for="qty" class="product-qty pull-right">
+            <?php echo $this->__('Qty:') ?>
+            <input type="text" name="qty" id="qty" maxlength="12" value="<?php echo $this->getProductDefaultQty() * 1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+        </label>
+        <?php endif; ?>
+        <?php echo $this->getChildHtml('', true, true) ?>
+    </div>
+<?php endif; ?>

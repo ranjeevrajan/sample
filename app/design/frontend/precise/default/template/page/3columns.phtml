@@ -1,0 +1,50 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->getLang() ?>" lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+</head>
+<?php $layout =  Mage::getStoreConfig('ib_theme_design/general/store_layout'); ?>
+<body class="<?php echo $this->getBodyClass()? $this->getBodyClass() :''; echo " " . $layout;?>">
+<?php echo $this->getChildHtml('after_body_start') ?>
+<div class="wrapper">
+    <?php echo $this->getChildHtml('global_notices') ?>
+    <div class="page">
+        <?php echo $this->getChildHtml('header') ?>
+        <?php //echo $this->getChildHtml('breadcrumbs') 
+        echo $this->getLayout()->getBlock("breadcrumbs")->toHtml(); ?>
+        <div class="site-container <?php echo Mage::getStoreConfig('ib_theme_design/general/store_layout'); ?>">
+            <div class="main-container col2-left-layout container entry-content">
+                <div class="main row">
+                    <div class="col-left sidebar span3">
+                        <?php echo $this->getChildHtml('left') ?>
+                        <?php echo $this->getChildHtml('right') ?>
+                    </div>
+                    <div class="col-main span9 content">
+                        <?php echo $this->getChildHtml('global_messages') ?>
+                        <?php echo $this->getChildHtml('content') ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+    </div>
+</div>
+<?php echo $this->getAbsoluteFooter() ?>
+</body>
+</html>

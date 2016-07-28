@@ -1,0 +1,318 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product view template
+ *
+ * @see Mage_Catalog_Block_Product_View
+ * @see Mage_Review_Block_Product_View
+ */
+?>
+<?php
+      $config = Mage::getStoreConfig('dresscodeconfig/dresscodeconfig_mainfront');
+      $_helper = $this->helper('catalog/output');
+?>
+
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="product-view">
+    <div class="product-essential">
+        <form action="<?php echo $this->getSubmitUrl($_product) ?>" method="post" id="product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>
+            <div class="no-display">
+                <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+                <input type="hidden" name="related_product" id="related-products-field" value="" />
+            </div>
+
+
+            <div class="product-img-box">
+                <?php echo $this->getChildHtml('media') ?>
+            </div>
+            <div class="product-shop">
+
+
+                 <div class="clearfix" style="overflow: hidden;">
+                <div class="left_info">
+                    <div class="product-name">
+                        <h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+                    </div>
+
+
+                    <?php echo $this->getChildHtml('product_type_data') ?>
+
+                    <?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+
+
+                    <?php if ($_product->getShortDescription()):?>
+                    <div class="short-description">
+                        <div class="std"><?php echo $_helper->productAttribute($_product, nl2br($_product->getShortDescription()), 'short_description') ?></div>
+                    </div>
+                    <?php endif;?>
+
+                    <?php echo $this->getChildHtml('addto') ?>
+                    <div class="email_size_links">
+                        <?php if ($this->canEmailToFriend()): ?>
+                        <p><a class="email-friend" href="<?php echo $this->helper('catalog/product')->getEmailToFriendUrl($_product) ?>"><?php echo $this->__('Email to a Friend') ?></a></p>
+                        <?php endif; ?>
+                    </div>
+
+
+
+
+                <div class="right_info">
+
+                    <?php echo $this->getPriceHtml($_product) ?>
+
+                    <?php echo $this->getChildHtml('alert_urls') ?>
+
+                    <?php echo $this->getChildHtml('extrahint') ?>
+
+
+                    <?php echo $this->getTierPriceHtml() ?>
+
+                    <?php if (!$this->hasOptions()):?>
+                    <div class="add-to-box">
+                        <?php if($_product->isSaleable()): ?>
+                        <?php echo $this->getChildHtml('addtocart') ?>
+                        <?php endif; ?>
+                    </div>
+                    <?php echo $this->getChildHtml('extra_buttons') ?>
+                    <?php elseif (!$_product->isSaleable()): ?>
+                    <div class="add-to-box">
+                        <?php echo $this->getChildHtml('addto') ?>
+                    </div>
+                    <?php endif; ?>
+
+                    <div class="clearer"></div>
+                    <div class="socialsplugins_wrapper">
+
+
+                        <div class="facebook">
+
+                            <script>(function(d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0];
+                                if (d.getElementById(id)) return;
+                                js = d.createElement(s); js.id = id;
+                                js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+                                fjs.parentNode.insertBefore(js, fjs);
+                            }(document, 'script', 'facebook-jssdk'));</script>
+                            <div class="fb-like" data-send="false" data-layout="button_count" data-width="94" data-show-faces="false" data-font="arial"></div>
+                        </div>
+                        <div class="twitter_button">
+                            <a rel="nofollow" href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="tonytemplates"></a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+                        </div>
+                        <div class="pinit_button">
+                            <script type="text/javascript" src="http://assets.pinterest.com/js/pinit.js"></script>
+                            &nbsp;&nbsp;<a href="http://pinterest.com/pin/create/button/" class="pin-it-button" count-layout="Horizontal">
+                            <img src="//assets.pinterest.com/images/PinExt.png" alt="Pin it" /></a>
+                        </div>
+
+                        <div class="clear"></div>
+                    </div>
+
+
+
+
+                </div>
+                    </div>
+                     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dresscode_product_custom_block')->toHtml() ?>
+                 </div>
+
+
+
+                <?php echo $this->getChildHtml('other');?>
+
+                <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+                <?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+                <?php endif;?>
+
+            </div>
+
+            <div class="clearer"></div>
+
+
+
+
+
+
+
+            <?php if ($_product->isSaleable() && $this->hasOptions()):?>
+            <?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+            <?php endif;?>
+        </form>
+        <?php echo $this->getChildHtml('info_tabs') ?>
+        <script type="text/javascript">
+            //<![CDATA[
+
+            <?php if($config['ajax_buttons']){?>
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+                    if (url) {
+                        form.action = url;
+                    }
+                    var e = null;
+                    // Start of our new ajax code
+                    if (!url) {
+                        url = jQuery('#product_addtocart_form').attr('action');
+                    }
+                    //url = url.replace("checkout/cart","ajax/index"); // New Code
+                    var data = jQuery('#product_addtocart_form').serialize();
+                    data += '&isAjax=1';
+                    jQuery('.ajax_loader').show();
+                    try {
+                        jQuery.ajax( {
+                            url : url,
+                            dataType : 'json',
+                            type : 'post',
+                            data : data,
+                            success : function(data) {
+
+
+
+                                /*FLY TO CART BEGIN*/
+
+                                jQuery("#zoom1 img").clone().prependTo(".add-to-cart").css({'position' : 'absolute'}).addClass('fly');
+
+                                var productX 		= jQuery(".fly").offset().left;
+                                var productY 		= jQuery(".fly").offset().top;
+
+                                var basketX 		= jQuery(".shopping_cart").offset().left;
+                                var basketY 		= jQuery(".shopping_cart").offset().top;
+
+
+                                var gotoX 			= basketX - productX;
+                                var gotoY 			= basketY - productY;
+
+
+                                var newImageWidth 	= jQuery("#image img").width() / 5;
+                                var newImageHeight	= jQuery("#image img").height() / 5;
+
+
+
+
+                                jQuery(".fly")
+                                        .animate({opacity: 0.4}, 100 )
+                                        .animate({opacity: 0.1, marginLeft: gotoX, marginTop: gotoY, width: newImageWidth, height: newImageHeight}, 1200, function() {
+                                            jQuery(this).remove();
+
+                                        });
+
+                                jQuery('body,html').animate({
+                                    scrollTop: 0
+                                }, 1200);
+
+                                jQuery('.shopping_cart a.open').trigger('click');
+
+
+                                /*END FLY*/
+                                jQuery('.ajax_loader').hide();
+                                if(data.status == 'ERROR'){
+                                    alert(data.message);
+                                }else{
+                                    if(jQuery('.shopping_cart')){
+                                        jQuery('.shopping_cart').replaceWith(data.sidebar);
+                                    }
+                                    if(jQuery('.nav_block_dropdown')){
+                                        jQuery('.nav_block_dropdown').html(data.toplink);
+                                    }
+                                }
+
+
+                            }
+                        });
+                    } catch (e) {
+                    }
+                    // End of our new ajax code
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+                }
+            }.bind(productAddToCartForm);
+            <?php } else { ?>
+            var productAddToCartForm = new VarienForm('product_addtocart_form');
+            productAddToCartForm.submit = function(button, url) {
+                if (this.validator.validate()) {
+                    var form = this.form;
+                    var oldUrl = form.action;
+
+                    if (url) {
+                        form.action = url;
+                    }
+                    var e = null;
+                    try {
+                        this.form.submit();
+                    } catch (e) {
+                    }
+                    this.form.action = oldUrl;
+                    if (e) {
+                        throw e;
+                    }
+
+                    if (button && button != 'undefined') {
+                        button.disabled = true;
+                    }
+                }
+            }.bind(productAddToCartForm);
+            <?php } ?>
+
+
+            productAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+            //]]>
+        </script>
+    </div>
+
+    <div class="product-collateral">
+        <?php echo $this->getChildHtml('upsell_products') ?>
+        <?php echo $this->getChildHtml('product_additional_data') ?>
+    </div>
+</div>

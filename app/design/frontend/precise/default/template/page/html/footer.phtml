@@ -1,0 +1,68 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if (Mage::getBlockSingleton('cms/page')->getPage()->getIdentifier() == "home" or Mage::app()->getFrontController()->getRequest()->getRouteName() == "checkout") : ?>
+	<div class="site-container <?php echo Mage::getStoreConfig('ib_theme_design/general/store_layout'); echo " "; echo Mage::getStoreConfig("ib_theme_design/general/store_footer"); ?>">
+		<div class="container newsletter-bottom-block <?php echo Mage::getStoreConfig("ib_theme_design/general/store_footer");?>">
+			<div class="row">
+				<div class="span12">
+					<div class="image pull-left"></div>
+					<div class="title pull-left">
+						<h4><?php echo $this->__('Newsletter Signup') ?></h4>
+						<p><?php echo $this->__('Sign up for our newsletter to be always up to date.') ?></p>
+					</div>
+					<div class="form pull-left">
+						<form action="<?php echo Mage::helper('core/url')->getHomeUrl(); ?>newsletter/subscriber/new/" method="post" id="newsletter-validate-detail">
+							<input type="text" name="email" id="newsletter" placeholder="<?php echo $this->__('Enter your email address..') ?>" title="Sign up for our newsletter" class="input-text required-entry validate-email">
+							<button type="submit" title="Subscribe" class="button btn <?php if (Mage::getStoreConfig("ib_theme_design/general/store_footer") == "dark") {echo "btn-info";} else {echo "btn-primary";} ?>"><span><span><?php echo $this->__('Subscribe') ?></span></span></button>
+						</form>
+						<script type="text/javascript">
+					    //<![CDATA[
+					        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+					    //]]>
+					    </script>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php endif ?>
+<footer class="site-container <?php echo Mage::getStoreConfig('ib_theme_design/general/store_layout'); echo " "; echo Mage::getStoreConfig("ib_theme_design/general/store_footer"); ?>">
+	<div class="container <?php echo Mage::getStoreConfig("ib_theme_design/general/store_footer"); ?>">
+		<div class="row">
+		    <div class="span12">
+		    	<div class="row">
+		    		<?php echo $this->getChildHtml() ?>
+		    	</div>
+		        <?php //echo $this->getChildHtml('footer_contacts'); ?>
+		    </div>
+		</div>
+	</div>
+</footer>
+<div class="container footer-second">
+	<div class="row">
+		<div class="span3">
+			<?php echo $this->getCopyright() ?>
+		</div>
+		<address class="span3 img adress">
+			<?php if ($address = Mage::getStoreConfig('general/store_information/address')): ?>
+		    <?php echo $address ?>
+		    <?php endif ?>
+		</address>
+		<div class="span3 img phone">
+			<?php if ($phones = Mage::getStoreConfig('general/store_information/phone')): ?>
+		    <div>
+		        <?php echo implode("<br>", explode(',', $phones)) ?>
+		    </div>
+		    <?php endif ?>
+		</div>
+		<?php echo $this->getChildHtml('footer_payments'); ?>
+	</div>
+</div>

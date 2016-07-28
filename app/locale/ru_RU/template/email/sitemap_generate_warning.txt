@@ -1,0 +1,3 @@
+Sitemap generate warnings: 
+
+Карта сайта выдавать предупреждения:

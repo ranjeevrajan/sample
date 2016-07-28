@@ -1,0 +1,39 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if( $this->getCollection() && $this->count()): ?>
+<div class="box-account box-reviews row">
+    <div class="box-head span9">
+        <h3><?php echo $this->__('My Recent Reviews') ?>
+            <a href="<?php echo $this->getAllReviewsUrl() ?>" class="btn-link"><?php echo $this->__('View All Reviews') ?></a>
+        </h3>
+    </div>
+    <div id="my_recent_reviews" class="span9">
+    <?php $iterator = 0 ?>
+    <?php foreach ($this->getCollection() as $_review): ?>
+        <div class="item">
+            <span class="number pull-left"><?php echo ++$iterator ?>.</span>
+            <div class="details">
+                <a href="<?php echo $this->getReviewUrl($_review->getReviewId()) ?>" class="btn-link pull-left"><?php echo $this->htmlEscape($_review->getName()) ?></a>
+                <?php if($_review->getSum()): ?>
+                    <div class="ratings pull-left">
+                        <div class="rating-box">
+                            <div class="rating" style="width:<?php echo ( $_review->getSum() / $_review->getCount() ) ?>%;"></div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    <?php endforeach; ?>
+    </div>
+    <script type="text/javascript">decorateList('my_recent_reviews');</script>
+</div>
+<?php endif; ?>

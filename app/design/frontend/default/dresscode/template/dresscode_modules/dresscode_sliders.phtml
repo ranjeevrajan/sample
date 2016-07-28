@@ -1,0 +1,27 @@
+
+<div>
+   <div class="clearfix tabs">
+		<div><a id="bestsellers_activate"><?php echo $this->__('BESTSELLERS') ?></a><span>/</span></div>
+		<div><a id="specials_activate"><?php echo $this->__('ON SALE') ?></a><span>/</span></div>
+		<div><a id="newproducts_activate"><?php echo $this->__('NEW PRODUCTS') ?></a></div>
+	</div>
+	
+</div>
+
+<div>
+    <div class="list_carousel responsive">
+      <div class="clear"></div>
+    </div>
+</div>
+
+
+<div class="sixteen columns alpha all_slider_wrapper">
+	<?php echo $this->getChildHtml('dresscode_bestsellers') ?>
+	<?php echo $this->getChildHtml('dresscode_specials') ?>
+	<?php echo $this->getChildHtml('dresscode_newproducts') ?>
+</div>
+
+
+
+
+

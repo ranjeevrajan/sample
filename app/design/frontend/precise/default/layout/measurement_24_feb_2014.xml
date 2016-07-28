@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+		<reference name="head">
+			
+		</reference>
+		<reference name="before_body_end">
+			<block type="measurement/measurement" name="body_measurement_trigger" template="measurement/trigger.phtml" before="-"/>
+		</reference>
+    </default>
+    <measurement_index_index>
+		<!--<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>-->
+		
+        <reference name="content">
+            <block type="measurement/measurement" name="measurement" template="measurement/measurement.phtml" />
+        </reference>
+    </measurement_index_index>
+		
+	<checkout_cart_index>	
+		<reference name="checkout.cart.methods.onepage">
+			<action method="setTemplate">
+				<template>measurement/checkout/onepage/link.phtml</template>
+			</action>
+		</reference>
+		
+		<!--<reference name="checkout.cart.top_methods">
+			<block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="measurement/checkout/onepage/link.phtml"/>
+		</reference>
+		
+		<reference name="checkout.cart.top_methods">
+			<block type="core/text_list" name="checkout.cart.methods" as="methods">
+				<block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="measurement/checkout/onepage/paymentafter_link.phtml"/>
+				<block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+			</block>
+		</reference>-->
+		
+	</checkout_cart_index>
+	
+	<measurement_index_measurement>
+		<reference name="head">
+			
+        </reference>
+		
+		<remove name="head" />
+		
+		<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+		
+		<reference name="content">
+            <block type="measurement/measurement" name="measurement_content" template="measurement/measurement.phtml">
+				<block type="measurement/measurement" name="measurement_initial_content" template="measurement/initial/content.phtml" />
+				<block type="measurement/measurement" name="measurement_bodyshape_content" template="measurement/initial/bodyshapecontent.phtml" />
+				<block type="measurement/measurement" name="measurement_last_content" template="measurement/cart/lastslide.phtml" />
+			</block>
+        </reference>
+		
+		<reference name="before_body_end">
+			<remove name="body_measurement_trigger" />
+		</reference>
+	</measurement_index_measurement>
+
+	<customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="measurement"><name>body_measurement</name><path>measurement/index/bodymeasurement</path><label>Body Measurement</label></action>
+        </reference>
+    </customer_account>
+	
+	<measurement_index_bodymeasurement translate="label">
+        <label>Customer My Account Body Measurement</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="measurement/account_measurement" name="measurement_content" template="measurement/measurement.phtml">
+					<block type="measurement/account_measurement" name="measurement_initial_content" template="measurement/initial/content.phtml" />
+					<block type="measurement/measurement" name="measurement_bodyshape_content" template="measurement/initial/bodyshapecontent.phtml" />
+					<block type="measurement/account_measurement" name="measurement_last_content" template="measurement/account/lastslide.phtml" />
+			</block>
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml"/>
+        </reference>
+		<reference name="before_body_end">
+			<remove name="body_measurement_trigger" />
+			<block type="core/template" name="body_measurement_trigger2" template="measurement/account/trigger.phtml" before="-"/>
+		</reference>
+    </measurement_index_bodymeasurement>
+	
+	<sales_email_bodymeasurement_items>
+		<block type="measurement/measurement" name="items" template="measurement/email/measurementitems.phtml">
+        </block>
+	</sales_email_bodymeasurement_items>
+	
+</layout> 

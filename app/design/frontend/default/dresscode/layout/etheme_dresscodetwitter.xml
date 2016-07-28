@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+	    <reference name="head">
+            <action method="addCss"><stylesheet>css/twitter_feeds.css</stylesheet></action>
+            <action method="addJs"><script>etheme/dresscode/jquery-1.6.2.min.js</script></action>
+            <action method="addJs"><script>etheme/dresscode/jquery.jcarousel.min.js</script></action>
+            <action method="addJs"><script>etheme/dresscode/twitter-feeds.js</script></action>
+        </reference>
+    </default>
+</layout>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+
+    <meetlive_adminhtml_meetlive_index>
+        <reference name="content">
+            <block type="meetlive/adminhtml_meetlive" name="meetlive" />
+        </reference>
+    </meetlive_adminhtml_meetlive_index>
+</layout>

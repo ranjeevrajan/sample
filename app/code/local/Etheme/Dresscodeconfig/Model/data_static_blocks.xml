@@ -1,0 +1,214 @@
+<?xml version="1.0"?>
+<dresscode>
+     <blocks>
+           <block>
+                <title>Dresscode Phone</title>
+                <identifier>dresscode_header_phone</identifier>
+                <content>
+                    <![CDATA[<div class="phone">1 (234) 5678900 </div>]]>
+                </content>
+                <is_active>1</is_active>
+           </block>
+
+            <block>
+                  <title>Dresscode Content Contact Info</title>
+                  <identifier>dresscode_content_contact_info</identifier>
+                  <content>
+                      <![CDATA[
+                            <div class="four columns omega" id="contact">
+                                      <h3>CONTACT INFO</h3>
+                                      <p><strong>Contact phone:</strong><br>
+                                        321321321,  321321321</p>
+                                      <p><strong>CELL phone:</strong><br>
+                                        123123123,  123123123</p>
+                                      <p><strong>E-mail addresses:</strong><br>
+                                        <a href="mailto:sales@mydomain.com">sales@mydomain.com</a><br>
+                                        <a href="mailto:info@mydomain.com">info@mydomain.com</a></p>
+                                      <p><strong>SKYPE:</strong><br>
+                                        test.shop, shop.test</p>
+                            </div>
+                        ]]>
+                  </content>
+                  <is_active>1</is_active>
+             </block>
+
+            <block>
+                  <title>Dresscode Footer Socials</title>
+                  <identifier>dresscode_footer_socials</identifier>
+                  <content>
+                      <![CDATA[<div id="social_icons">
+				  <div class="wrapper">
+					  <a class="icon_p" href="http://www.ethemeuk.com/" title="Follow Ethemeuk at Facebook" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_p.png}}" alt="">
+					  </a>
+					  <a class="icon_in" href="http://www.ethemeuk.com/" title="Follow Ethemeuk at Facebook" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_in.png}}" alt="">
+					  </a>
+					  <a class="icon_social4" href="http://www.ethemeuk.com/" title="Follow Ethemeuk at Facebook" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_social4.png}}" alt="">
+					  </a>
+					  <a class="icon_social3" href="http://www.ethemeuk.com/" title="Follow Ethemeuk at Twitter" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_social3.png}}" alt="">
+					  </a>
+					  <a class="icon_social2" href="http://www.ethemeuk.com/" title="Follow Ethemeuk at YouTube" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_social2.png}}" alt="">
+					  </a>
+					  <a class="icon_social1" href="http://www.ethemeuk.com/" title="Find Ethemeuk at Google" target="_blank">
+						  <img src="{{skin url=images/dresscode_images/icon_social1.png}}" alt="">
+					  </a>
+				 </div>
+				</div>]]>
+                  </content>
+                  <is_active>1</is_active>
+            </block>
+
+            <block>
+                  <title>Dresscode Footer Copyright</title>
+                  <identifier>dresscode_footer_copyright</identifier>
+                  <content>
+                      <![CDATA[<div id="copyright"> &copy; 2013 DRESSCODE.
+				  All Rights Reserved. Designed by <a target="_blank" href="http://www.ethemeuk.com/">ethemeuk.com</a><br>
+				</div>]]>
+                  </content>
+                  <is_active>1</is_active>
+             </block>
+
+
+            <block>
+                  <title>Dresscode Links under slider</title>
+                  <identifier>dresscode_links_under_slider_home</identifier>
+                  <content>
+                      <![CDATA[<ul>
+                    <li><a href="{{store direct_url="dresscode_customer_services"}}">ORIGINAL PRODUCTS</a></li>
+                    <li><a href="{{store direct_url="dresscode_customer_services"}}">FREE SHIPPING </a></li>
+                    <li><a href="{{store direct_url="dresscode_customer_services"}}">CASH ON DELIVERY </a></li>
+                    <li><a href="{{store direct_url="dresscode_customer_services"}}">30-DAY RETURNS</a></li>
+                </ul>]]>
+                  </content>
+                  <is_active>1</is_active>
+             </block>
+
+
+
+
+            <block>
+                   <title>Dresscode Footer links</title>
+                   <identifier>dresscode_footer_links</identifier>
+                   <content>
+                   <![CDATA[
+                   <div class="four columns">
+					<h3>INFORMATION</h3>
+					<nav>
+					  <ul>
+						<li><a href="{{store direct_url="dresscode_about"}}">About</a></li>
+						<li><a href="{{store direct_url="dresscode_delivery"}}"> Delivery </a></li>
+						<li><a href="{{store direct_url="dresscode_privacy_policy"}}"> Privacy Policy </a></li>
+						<li><a href="{{store direct_url="dresscode_terms_conditions"}}">Terms &amp; Conditions </a></li>
+					  </ul>
+					</nav>
+				  </div>
+				  <div class="four columns">
+					<h3>CUSTOMER SERVICE</h3>
+					<nav>
+					  <ul>
+						<li><a href="{{store direct_url="contacts"}}">Contact Us</a></li>
+						<li><a href="{{store direct_url="dresscode_customer_services"}}"> Returns</a></li>
+						<li><a href="{{store direct_url="catalog/seo_sitemap/category"}}"> Site Map</a></li>
+					  </ul>
+					</nav>
+				  </div>
+				  <div class="four columns">
+					<h3>MY ACCOUNT</h3>
+					<nav>
+					  <ul>
+						<li><a href="{{store direct_url="customer/account"}}">My Account</a></li>
+						<li><a href="{{store direct_url="sales/guest/form"}}"> Order History</a></li>
+						<li><a href="{{store direct_url="wishlist"}}"> Wish List</a></li>
+						<li><a href="{{store direct_url="dresscode_newsletter"}}"> Newsletter</a></li>
+					  </ul>
+					</nav>
+				  </div>]]>
+                          </content>
+                          <is_active>1</is_active>
+         </block>
+
+
+         <block>
+             <title>Dresscode Product Custom Block</title>
+             <identifier>dresscode_product_custom_block</identifier>
+             <content>
+                 <![CDATA[
+                    <div class="dresscode_product_custom_block">
+                             <div class="dresscode_product_custom_block_title">PRODUCT CUSTOM BLOCK</div>
+                             <div class="dresscode_product_custom_block_subtitle">
+                                 You can add your content here, like promotions or some additional info
+                             </div>
+                             <div class="custom_block_items">
+                                 <div class="custom_block_item custom_block_item_1">
+                                     <table><tr><td>Special offer: 1+1=3 Get a gift!</td></tr></table>
+                                 </div>
+
+                                 <div class="custom_block_item custom_block_item_2">
+                                     <table><tr><td>free Reward Card Worth $10, $50, $100.</td></tr></table>
+                                 </div>
+                                 <div class="custom_block_item custom_block_item_3">
+                                     <table><tr><td>Join to our Club</td></tr></table>
+                                 </div>
+                                 <div class="custom_block_item custom_block_item_4">
+                                     <table><tr><td>free shipping</td></tr></table>
+                                 </div>
+                             </div>
+
+                    </div>
+				]]>
+             </content>
+             <is_active>1</is_active>
+         </block>
+
+
+
+
+         <block>
+             <title>Dresscode Footer Payment Services</title>
+             <identifier>dresscode_footer_payment_services</identifier>
+             <content>
+                 <![CDATA[<div id="payment_services">
+				  <div class="wrapper">
+					  <span class="icon_footer_discover"><img src="{{skin url=images/dresscode_images/icon_footer_discover.png}}" alt=""></span>
+					  <span class="icon_footer_blue"><img src="{{skin url=images/dresscode_images/icon_footer_blue.png}}" alt=""></span>
+					  <span class="icon_footer_mastercard"><img src="{{skin url=images/dresscode_images/icon_footer_mastercard.png}}" alt=""></span>
+					  <span class="icon_footer_visa"><img src="{{skin url=images/dresscode_images/icon_footer_visa.png}}" alt=""></span>
+					  <span class="icon_footer_paypall"><img src="{{skin url=images/dresscode_images/icon_footer_paypall.png}}" alt=""></span>
+				 </div>
+				</div>]]>
+             </content>
+             <is_active>1</is_active>
+         </block>
+
+
+         <block>
+             <title>Menu Custom Title</title>
+             <identifier>dresscode_menu_custom_block</identifier>
+             <content>
+                 <![CDATA[
+                 <h1 class="custom_menu_title">Lorem ipsum dolor</h1>
+                 <p class="clearfix">
+
+                        <p class="custom_menu_img"><img src="{{skin url=images/dresscode_images/category_img.jpg}}" alt=""></p>
+                        <p class="custom_menu_text" style="margin-right:30px">This is a HTML block; you can create it via admin panel. There are many blocks like this on site. They are created especially to set to everybody’s preferences. If you have any questions please make a request via our <a href="{{store direct_url="contacts"}}">contact form</a></p>
+
+                        <p class="custom_menu_img" ><img src="{{skin url=images/dresscode_images/category_img.jpg}}" alt=""></p>
+                        <p class="custom_menu_text">This is a HTML block; you can create it via admin panel. There are many blocks like this on site. They are created especially to set to everybody’s preferences. If you have any questions please make a request via our <a href="{{store direct_url="contacts"}}">contact form</a></p>
+
+                </p>
+                 ]]>
+             </content>
+             <is_active>1</is_active>
+         </block>
+
+
+
+    </blocks>
+
+</dresscode>
+

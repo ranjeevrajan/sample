@@ -1,0 +1,23 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if ($block_html = $this->getChildHtml('cms_default_header')): ?>
+<div class="header-eight-box">
+    <ul id="header-eight">
+        <li><?php echo $block_html ?></li>
+    </ul>
+</div>
+<?php else : ?>
+<div class="header-eight-box">
+    <ul id="header-eight">
+        <li></li>
+    </ul>
+</div>
+<?php endif ?>

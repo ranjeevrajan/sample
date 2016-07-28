@@ -1,0 +1,43 @@
+
+
+<div id="slider_top">
+
+      
+    <ul class="rslides" id="carousel1">
+
+        <?php
+        $slides = $this->getDataSlides();
+        foreach($slides as $slide)
+        {
+
+        ?>
+            
+
+             <li>
+              <div class="overlap_widget_wrapper">
+                <div class="left_image">
+                  <div class="placeholder"><a href="<?php echo $slide['link'];?>"><img src="<?php echo Mage::getBaseUrl('media') . $slide['image'];?>" alt="" /></a></div>
+                </div>
+                <div class="right_image">
+                  <div class="placeholder"><a href="<?php echo $slide['link_1'];?>"><img src="<?php echo Mage::getBaseUrl('media') . $slide['image1'];?>" alt="" /></a></div>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </li>
+
+
+        <?php } ?>
+
+
+
+
+      </ul>
+
+    </div>
+
+
+        <div class="sixteen columns">
+            <div id="slogan">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('dresscode_links_under_slider_home')->toHtml() ?>
+            </div>
+      </div>

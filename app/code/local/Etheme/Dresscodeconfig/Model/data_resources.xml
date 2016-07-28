@@ -1,0 +1,130 @@
+<?xml version="1.0"?>
+<dresscode>
+    <resources>
+        <resource>
+            <title>Dresscode Home page</title>
+            <identifier>dresscode_home</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[<p style="display:none">&nbsp;</p>]]></content>
+            <sort_order>1</sort_order>
+            <is_active>1</is_active>
+        </resource>
+
+        <resource>
+            <title>About us</title>
+            <identifier>dresscode_about</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[
+            <div class="page-head">
+                <div class="page-title">
+                    <h1>About Us</h1>
+                </div>
+            </div>
+            <div class="col3-set">
+					<div class="col-1">
+						<p class="about_us_img">&nbsp;</p>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec semper, pede.</p>
+						<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus porta.</p>
+					</div>
+					<div class="col-2">
+						<p style="margin-top:-5px"><strong style="color: #c04900;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit.</strong></p>
+						<p>Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</p>
+						<p>Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus. Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi. Vestibulum sapien dolor, aliquet nec, porta ac, malesuada a, libero. Praesent feugiat purus eget est. Nulla facilisi. Vestibulum tincidunt sapien eu velit. Mauris purus. Maecenas eget mauris eu orci accumsan feugiat. Pellentesque eget velit. Nunc tincidunt.</p>
+					</div>
+					<div class="col-3">
+						<p style="margin-top:5px">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper</p>
+						<p><strong style="color: #c04900;">Maecenas ullamcorper, odio vel tempus egestas, dui orci faucibus orci, sit amet aliquet lectus dolor et quam. Pellentesque consequat luctus purus.</strong></p>
+						<p>Nunc et risus. Etiam a nibh. Phasellus dignissim metus eget nisi.</p>
+						<p>To all of you, from all of us at Magento Demo Store - Thank you and Happy eCommerce!</p>
+						<p style="line-height: 1.5em;margin-top:24px"><strong style="font: italic 2em Arial, Helvetica, sans-serif">John Doe</strong><br />Some important guy</p>
+					</div>
+			</div>
+                ]]></content>
+            <sort_order>2</sort_order>
+            <is_active>1</is_active>
+        </resource>
+
+
+        <resource>
+            <title>Delivery</title>
+            <identifier>dresscode_delivery</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                ]]></content>
+            <sort_order>3</sort_order>
+            <is_active>1</is_active>
+        </resource>
+
+
+        <resource>
+            <title>Privacy Policy</title>
+            <identifier>dresscode_privacy_policy</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                ]]></content>
+            <sort_order>4</sort_order>
+            <is_active>1</is_active>
+        </resource>
+
+        <resource>
+            <title>Newsletter</title>
+            <identifier>dresscode_newsletter</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                ]]></content>
+            <sort_order>5</sort_order>
+            <is_active>1</is_active>
+        </resource>
+
+
+        <resource>
+            <title>Customer Service</title>
+            <identifier>dresscode_customer_services</identifier>
+            <root_template>two_columns_left</root_template>
+            <content><![CDATA[
+                <div class="page-head">
+                    <div class="page-title">
+                        <h1>Customer Service</h1>
+                    </div>
+                </div>
+
+                <ul class="disc">
+                    <li><a href="#answer1">Shipping &amp; Delivery</a></li>
+                    <li><a href="#answer2">Privacy &amp; Security</a></li>
+                    <li><a href="#answer3">Returns &amp; Replacements</a></li>
+                    <li><a href="#answer4">Ordering</a></li>
+                    <li><a href="#answer5">Payment, Pricing &amp; Promotions</a></li>
+                    <li><a href="#answer6">Viewing Orders</a></li>
+                    <li><a href="#answer7">Updating Account Information</a></li>
+                </ul>
+                <dl>
+                    <dt id="answer1">Shipping &amp; Delivery</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin sceleris- que malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer2">Privacy &amp; Security</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Susaugue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et<br /> netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer3">Returns &amp; Replacements</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Susaugue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et <br /> netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer4">Ordering</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non pendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer5">Payment, Pricing &amp; Promotions</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non pendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin scelerisque augue. Nam ullamcorper. Phasellus id massa. Pellentesque nisl. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer6">Viewing Orders</dt>
+                    <dd style="margin-bottom:18px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin sceler- isque malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                    <dt id="answer7">Updating Account Information</dt>
+                    <dd style="margin-bottom:56px;margin-top: 4px;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi luctus. Duis lobortis. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta nec, tempus vitae, iaculis semper, pede. Cras vel libero id lectus rhoncus porta. Suspendisse convallis felis ac enim. Vivamus tortor nisl, lobortis in, faucibus et, tempus at, dui. Nunc risus. Proin sceler- isque malesuada fames ac turpis egestas. Nunc augue. Aenean sed justo non leo vehicula laoreet. Praesent ipsum libero, auctor ac, tempus nec, tempor nec, justo.</dd>
+                </dl>
+                ]]></content>
+            <sort_order>6</sort_order>
+            <is_active>1</is_active>
+        </resource>
+		<resource>
+            <title>Terms &amp; Conditions</title>
+            <identifier>dresscode_terms_conditions</identifier>
+            <root_template>one_column</root_template>
+            <content><![CDATA[<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                ]]></content>
+            <sort_order>7</sort_order>
+            <is_active>1</is_active>
+        </resource>
+    </resources>
+</dresscode>

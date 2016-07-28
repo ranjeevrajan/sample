@@ -1,0 +1,77 @@
+<?php
+/**
+ * Magento Customization
+ * @Author : Abdullah
+ *
+ */
+?>
+
+<div class="measurement-panel">
+	<?php 
+		$measurements = $this->getMeasurement(); 
+		$body_measurement = $this->getQuoteMeasurement();
+	?>
+	<?php if( count($measurements)>0 ): ?>
+		<div>
+			<ul class="slider123">
+				<li class="type">
+					<?php echo $this->getChildHtml('measurement_initial_content') ?>
+				</li>
+				<?php foreach( $measurements as $measurement ) : ?>
+					<li class="type">
+						<div class="measurement-left">
+							<h2><?php echo $measurement->getData('frontend_label') ?></h2>
+							<ol class="description">
+								<li>Wrap the tape around your neck where your shirt collar would be.</li>
+								<li>Imagine this is your actual shirt collar and adjust to your desired size.</li>
+                            </ol>
+							<div class="measurements_error inner_error">
+								<img width="15" height="15" src="<?php echo $this->getSkinUrl('images/measurement/error.png') ?>">
+								<span><?php echo $this->__('Please fill in the required fields.') ?></span>
+							</div>
+							<form name="form_<?php echo $measurement->getData('attribute_code'); ?>">
+								<?php switch($measurement->getData('frontend_input')):
+										case 'select': ?>
+											<label><?php echo $measurement->getData('frontend_label'); ?> : </label>
+											<select name="<?php echo $measurement->getData('attribute_code'); ?>" id="<?php echo $measurement->getData('attribute_code'); ?>">
+												<?php foreach( $measurement->getSource()->getAllOptions(false) as $option ): ?>
+													<option value="<?php echo $option['value'] ?>" <?php if($body_measurement[$measurement->getData('attribute_code')]==$option['value']){echo 'selected';} ?> ><?php echo $option['label'] ?></option>
+												<?php endforeach; ?>
+											</select>
+										<?php break; 
+										case 'text': ?>
+											<label><?php echo $measurement->getData('frontend_label'); ?> : </label>
+											<input type="text" value="<?php echo $body_measurement[$measurement->getData('attribute_code')]; ?>" name="<?php echo $measurement->getData('attribute_code'); ?>" id="<?php echo $measurement->getData('attribute_code'); ?>" />
+								<?php endswitch; ?>
+							</form>
+						</div>
+						<div class="measurement-right">
+							<img width="390" height="200" class="measurement-tip-image" src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'measurement/shirt-neck.png'; ?>" alt="<?php echo $measurement->getData('frontend_label'); ?>" title="<?php echo $measurement->getData('frontend_label'); ?>" />
+						</div>
+					</li>
+				<?php endforeach; ?>
+				
+				<li>
+					<div style="width:50%;margin:0 auto;margin-top:20px;">
+						<input type="button" class="button" value="<< Prev" id="prev_slide_clone" style="padding:5px;float:left;"/>
+						<button onclick="window.location='<?php echo $this->getUrl('checkout/onepage') ?>';" style="float:left;margin-left:20px" type="button" title="<?php echo $this->__('Proceed to Checkout') ?>" class="button btn-proceed-checkout btn-checkout"><span><span><?php echo $this->__('Proceed to Checkout') ?></span></span></button>
+					</div>
+				</li>
+				
+			</ul>
+		</div>
+		
+		<div class="button-set" style="margin-top:20px;">
+			<button class="prev-button" id="prev_slide" >
+				<span>Previous</span>
+			</button>
+			
+			<button class="next-button" id="next_slide" >
+				<span>Next</span>
+				<img src="<?php echo $this->getSkinUrl('images/measurement/next_loader.gif') ?>" style="display:none;" id="ajax_loader" alt="loader" title="loader" />
+			</button>
+		</div>
+	<?php else: ?>
+		<div>No body measurement type is available.</div>
+	<?php endif; ?>
+</div>

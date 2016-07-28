@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head><!--@subject  {{var store.getFrontendName()}}: Invoice # {{var invoice.increment_id}} for Order # {{var order.increment_id}} @--><!--@vars
+{"store url=\"\"":"Store Url",
+"var logo_url":"Email Logo Image Url",
+"var logo_alt":"Email Logo Image Alt",
+"htmlescape var=$billing.getName()":"Guest Customer Name",
+"var store.getFrontendName()":"Store Name",
+"var invoice.increment_id":"Invoice Id",
+"var order.increment_id":"Order Id",
+"var order.billing_address.format('html')":"Billing Address",
+"var payment_html":"Payment Details",
+"var order.shipping_address.format('html')":"Shipping Address",
+"var order.shipping_description":"Shipping Description",
+"layout handle=\"sales_email_order_invoice_items\" invoice=$invoice order=$order":"Invoice Items Grid",
+"var comment":"Invoice Comment"}
+@--><!--@styles
+body,td { color:#2f2f2f; font:11px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+@--></head>
+<body style="margin: 0pt; padding: 0pt; background: rgb(246, 246, 246) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12px;">
+<div style="margin: 0pt; padding: 0pt; background: rgb(246, 246, 246) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 12px;">
+<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%">
+<tbody><tr>
+    <td style="padding: 20px 0pt;" align="center" valign="top">
+        <!-- [ header starts here] -->
+        <table style="border: 1px solid rgb(224, 224, 224);" bgcolor="#ffffff" border="0" cellpadding="10" cellspacing="0" width="650">
+            <tbody><tr>
+                <td valign="top"><a href="%7B%7Bstore%20url=" }=""><img src="%7B%7Bvar%20logo_url%7D%7D" alt="{{var logo_alt}}" style="margin-bottom: 10px;" border="0"></a></td>
+            </tr>
+        <!-- [ middle starts here] -->
+            <tr>
+                <td valign="top">
+                    <h1 style="margin: 0pt 0pt 11px; font-size: 22px; font-weight: normal; line-height: 22px;">Salut, {{htmlescape var=$billing.getName()}}</h1>
+                    <p style="margin: 0pt; font-size: 12px; line-height: 16px;">
+Merci pour votre commande sur {{var store.getFrontendName()}}. Si vous
+avez des questions à propos de votre commande, veuillez nous contacter <br>sur <a href="mailto:%7B%7Bconfig%20path=%27trans_email/ident_support/email%27%7D%7D" style="color: rgb(30, 126, 200);">{{config path='trans_email/ident_support/email'}}</a> ou nous appeler <br>sur le <span class="nobr">{{config path='general/store_information/phone'}}</span> Lundi - Vendredi, 8h - 17h (heure USA).
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h2 style="margin: 0pt; font-size: 18px; font-weight: normal;">Votre Facture #{{var invoice.increment_id}} pour la Commande #{{var order.increment_id}}</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" cellpadding="0" cellspacing="0" width="650">
+                        <thead>
+                        <tr>
+                            <th style="padding: 5px 9px 6px; font-size: 13px; line-height: 1em;" align="left" bgcolor="#eaeaea" width="325">Informations de Facturation:</th>
+                            <th width="10"></th>
+                            <th style="padding: 5px 9px 6px; font-size: 13px; line-height: 1em;" align="left" bgcolor="#eaeaea" width="325">Methode de Paiement:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="border-left: 1px solid rgb(234, 234, 234); border-right: 1px solid rgb(234, 234, 234); border-bottom: 1px solid rgb(234, 234, 234); padding: 7px 9px 9px; font-size: 12px;" valign="top">
+                                {{var order.billing_address.format('html')}}
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="border-left: 1px solid rgb(234, 234, 234); border-right: 1px solid rgb(234, 234, 234); border-bottom: 1px solid rgb(234, 234, 234); padding: 7px 9px 9px; font-size: 12px;" valign="top">
+                                {{var payment_html}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    {{depend order.getIsNotVirtual()}}
+                    <table border="0" cellpadding="0" cellspacing="0" width="650">
+                        <thead>
+                        <tr>
+                            <th style="padding: 5px 9px 6px; font-size: 13px; line-height: 1em;" align="left" bgcolor="#eaeaea" width="650">Informations de Livraison:</th>
+                            <th width="10"></th>
+                            <th style="padding: 5px 9px 6px; font-size: 13px; line-height: 1em;" align="left" bgcolor="#eaeaea" width="650">Methode de Livraison:</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td style="border-left: 1px solid rgb(234, 234, 234); border-right: 1px solid rgb(234, 234, 234); border-bottom: 1px solid rgb(234, 234, 234); padding: 7px 9px 9px; font-size: 12px;" valign="top">
+                                {{var order.shipping_address.format('html')}}
+                                &nbsp;
+                            </td>
+                            <td>&nbsp;</td>
+                            <td style="border-left: 1px solid rgb(234, 234, 234); border-right: 1px solid rgb(234, 234, 234); border-bottom: 1px solid rgb(234, 234, 234); padding: 7px 9px 9px; font-size: 12px;" valign="top">
+                                {{var order.shipping_description}}
+                                &nbsp;
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    {{/depend}}
+                    {{layout handle="sales_email_order_invoice_items" invoice=$invoice order=$order}}
+                    <p style="margin: 0pt 0pt 10px; font-size: 12px;">{{var comment}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td style="background: rgb(234, 234, 234) none repeat scroll 0% 50%; -moz-background-clip: initial; -moz-background-origin: initial; -moz-background-inline-policy: initial; text-align: center;" align="center" bgcolor="#eaeaea"><center><p style="margin: 0pt; font-size: 12px;">Merci encore, <strong>{{var store.getFrontendName()}}</strong></p></center></td>
+            </tr>
+        </tbody></table>
+    </td>
+</tr>
+</tbody></table>
+</div>
+</body></html>

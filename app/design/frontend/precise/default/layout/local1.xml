@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Local layout modifications for Benissimo Magento theme
+ *
+ * @category	design
+ * @package	 benissimo_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license	 http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+-->
+<layout version="0.1">
+	
+	<!-- All Pages **********************************************************-->
+	<default>
+		<!-- Setting up page default root template to 2columns-left *********-->
+		<!--
+		<reference name="root">
+			<action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+		</reference>
+		-->
+
+
+		<!-- Removing and rearranging blocks ********************************-->
+		<remove name="left.permanent.callout"/>
+		<remove name="paypal.partner.right.logo"/>
+		<remove name="right.permanent.callout"/>
+		<remove name="store_switcher"/>
+
+
+		<!-- Adding theme specific javascript ******************************-->
+		<reference name="root">
+			<reference name="head">
+                <action method="addItem"><type>skin_js</type><name>js/jquery.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.cookie.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/html5.js</name><params/><if>lt IE 9</if></action>
+				<action method="addItem"><type>skin_js</type><name>js/selectivizr-min.js</name><params/><if><![CDATA[(gte IE 6)&(lte IE 8)]]></if></action>
+				<action method="addItem"><type>skin_js</type><name>js/jquery-ui.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.elevateZoom-2.5.5.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.formstyler.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.minicolors.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.touchSwipe.min.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/jquery.carouFredSel-6.2.0-packed.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.scrollTo-min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.imagesloaded.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/jquery.masonry.min.js</name></action>
+				<action method="addItem"><type>skin_js</type><name>js/script.js</name></action>
+			</reference>
+            <reference name="head">
+                <action method="removeItem"><type>skin_css</type><file>css/styles.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/buttons/social-icons.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/buttons/animation.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/buttons/social-icons-ie7.css</file><params/><if>IE 7</if></action>
+                <action method="addItem"><type>skin_css</type><file>css/bootstrap.min.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/buttons/itembridge-icon-set.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/styles.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/media.css</file></action>
+                <action method="addItem"><type>skin_css</type><file>css/print.css</file></action>
+				
+				
+				
+				<action method="addItem"><type>skin_css</type><name>css/measurement/measurement.css</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/jquery.bxslider.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/measurement.js</name><params/></action>
+				<action method="addItem"><type>skin_css</type><name>css/measurement/measurement_tape.css</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/jquery-ui.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/jquery.numeric.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/measurement_initial.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/jwplayer.js</name><params/></action>
+				<action method="addItem"><type>skin_js</type><name>js/measurement/fancybox/jquery.fancybox-1.3.4_patch.js</name></action>
+				<action method="addItem"><type>skin_css</type><name>js/measurement/fancybox/jquery.fancybox-1.3.4.css</name></action>
+            </reference>
+		</reference>
+
+		<!-- Theme customization support ************************************-->
+		<reference name="root">
+			<reference name="after_body_start">
+				<block type="core/template" name="custom_design_css" template="page/html/custom_css.phtml" />
+			</reference>
+		</reference>
+
+
+		<!-- Moving cart to the header **************************************-->
+		<reference name="left"><action method="unsetChild"><name>cart_sidebar</name></action></reference>
+		<reference name="right"><action method="unsetChild"><name>cart_sidebar</name></action></reference>
+		<reference name="header">
+			<block type="checkout/cart_sidebar" name="cart_sidebar" template="checkout/cart/sidebar.phtml" before="-">
+				<action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+				<action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+				<action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+				<block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+					<label>Shopping Cart Sidebar Extra Actions</label>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Moving currency switcher to the header *************************-->
+		<reference name="header">
+			<block type="directory/currency" name="header_currency" template="directory/currency.phtml"/>
+		</reference>
+		<remove name="currency"/>
+		<remove name="right_currency"/>
+
+
+		<!-- Call Us - predefined CMS block inside of the header ************-->
+		<reference name="header">
+			<block type="core/template" name="header_call_us" template="page/html/header/call_us.phtml">
+				<block type="cms/block" name="cms_header_call_us">
+					<action method="setBlockId"><block_id>header_call_us</block_id></action>
+				</block>
+			</block>
+            <block type="core/template" name="header_top_menu_block" template="page/html/header/top_menu_block.phtml">
+				<block type="cms/block" name="cms_header_top_menu_block">
+					<action method="setBlockId"><block_id>header_top_menu_block</block_id></action>
+				</block>
+			</block>
+			<block type="core/template" name="home_header" template="page/html/header/home_header.phtml">
+				<block type="cms/block" name="cms_home_header">
+					<action method="setBlockId"><block_id>home_header</block_id></action>
+				</block>
+			</block>
+			<block type="core/template" name="catalog_header" template="page/html/header/catalog_header.phtml">
+				<block type="cms/block" name="cms_catalog_header">
+					<action method="setBlockId"><block_id>catalog_header</block_id></action>
+				</block>
+			</block>
+			<block type="core/template" name="customer_header" template="page/html/header/customer_header.phtml">
+				<block type="cms/block" name="cms_customer_header">
+					<action method="setBlockId"><block_id>customer_header</block_id></action>
+				</block>
+			</block>
+			<block type="core/template" name="default_header" template="page/html/header/default_header.phtml">
+				<block type="cms/block" name="cms_default_header">
+					<action method="setBlockId"><block_id>default_header</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Moving CMS footer links below footer links *********************-->
+		<reference name="footer">
+			<action method="unsetChild"><name>cms_footer_links</name></action>
+			<action method="insert"><blockName>cms_footer_links</blockName><siblingName>footer_links</siblingName><after>1</after></action>
+		</reference>
+
+
+		<!-- Replacing footer links template ********************************-->
+		<reference name="footer">
+			<reference name="footer_links">
+				<action method="setTemplate"><template>page/html/footer/links.phtml</template></action>
+			</reference>
+		</reference>
+
+
+		<!-- Contacts - predefined CMS block inside of the footer ***********-->
+		<reference name="footer">
+			<block type="core/template" name="footer_contacts" template="page/html/footer/contacts.phtml">
+				<block type="cms/block" name="cms_footer_contacts">
+					<action method="setBlockId"><block_id>footer_contacts</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Social block - predefined CMS block inside of the footer *******-->
+		<reference name="footer">
+			<block type="core/template" name="footer_social" after="cms_footer_links" template="page/html/footer/social.phtml">
+				<block type="cms/block" name="cms_footer_social">
+					<action method="setBlockId"><block_id>footer_social</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+		<!-- Payments block - predefined CMS block inside of the footer *******-->
+		<reference name="footer">
+			<block type="core/template" name="footer_payments" template="page/html/footer/payments.phtml">
+				<block type="cms/block" name="cms_footer_payments">
+					<action method="setBlockId"><block_id>footer_payments</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Column Products - predefined CMS left column block *************-->
+		<reference name="left">
+			<block type="core/template" name="column_products" template="page/html/column/products.phtml">
+				<block type="cms/block" name="cms_column_products">
+					<action method="setBlockId"><block_id>column_products</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Moving newsletter to the right column **************************-->
+		<reference name="left"><action method="unsetChild"><name>left.newsletter</name></action></reference>
+		<reference name="right">
+			<action method="insert"><blockName>left.newsletter</blockName><siblingName></siblingName><after>1</after></action>
+		</reference>
+
+
+		<!-- Column Banners - predefined CMS right column block *************-->
+		<reference name="right">
+			<block type="core/template" name="column_banners" template="page/html/column/banners.phtml">
+				<block type="cms/block" name="cms_column_banners">
+					<action method="setBlockId"><block_id>column_banners</block_id></action>
+				</block>
+			</block>
+		</reference>
+
+
+		<!-- Moving tags to the right column ********************************-->
+		<reference name="left"><action method="unsetChild"><name>tags_popular</name></action></reference>
+		<reference name="right">
+			<action method="insert"><blockName>tags_popular</blockName><siblingName></siblingName><after>1</after></action>
+		</reference>
+
+
+		<!-- Moving breadcrumbs from the root block into content block ******-->
+		<reference name="root">
+			<action method="unsetChild"><name>breadcrumbs</name></action>
+		</reference>
+		<reference name="content">
+			<action method="insert"><blockName>breadcrumbs</blockName><siblingName></siblingName><after>0</after></action>
+		</reference>
+	</default>
+
+
+
+	<!-- Checkout Page ***************************************************** -->>
+	<checkout_onepage_index>
+		<reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+        	<block type="page/html_wrapper" name="checkout.progress.wrapper" translate="label">
+                <label>Checkout Progress Wrapper</label>
+                <action method="setElementId"><value>checkout-progress-wrapper</value></action>
+                <action method="setElementClass"><value>span3</value></action>
+                <block type="checkout/onepage_progress" name="checkout.progress" before="-" template="checkout/onepage/progress.phtml"/>
+            </block>
+        </reference>
+	</checkout_onepage_index>
+
+
+	<!-- Category Page ******************************************************-->
+	<catalog_category_default>
+		<!-- Moving catalog navigation to the very top of the left column ***-->
+		<reference name="left">
+			<action method="unsetChild"><name>catalog.leftnav</name></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><siblingName></siblingName><after>0</after></action>
+		</reference>
+
+
+		<!-- Displaying category image in the bottom of the header **********-->
+		<reference name="header">
+			<reference name="top.container">
+				<block type="catalog/category_view" name="category.image" template="catalog/category/image.phtml"/>
+			</reference>
+		</reference>
+	</catalog_category_default>
+
+
+	<!-- Category Page with Layered Navigation ******************************-->
+	<catalog_category_layered>
+		<!-- Moving catalog navigation to the very top of the left column ***-->
+		<reference name="left">
+			<action method="unsetChild"><name>catalog.leftnav</name></action>
+			<action method="insert"><blockName>catalog.leftnav</blockName><siblingName></siblingName><after>0</after></action>
+		</reference>
+
+
+		<!-- Displaying category image in the bottom of the header **********-->
+		<reference name="header">
+			<reference name="top.container">
+				<block type="catalog/category_view" name="category.image" template="catalog/category/image.phtml"/>
+			</reference>
+		</reference>
+	</catalog_category_layered>
+
+
+	<!-- Catalog Search Results Page ****************************************-->
+	<catalogsearch_result_index>
+		<!-- Moving catalog navigation to the very top of the left column ***-->
+		<reference name="left">
+			<action method="unsetChild"><name>catalogsearch.leftnav</name></action>
+			<action method="insert"><blockName>catalogsearch.leftnav</blockName><siblingName></siblingName><after>0</after></action>
+		</reference>
+	</catalogsearch_result_index>
+
+
+	<!-- Catalog Product View Page ******************************************-->
+	<catalog_product_view>
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>
+		<reference name="content">
+			<reference name="product.info">
+                            <block type="catalog/product_list_related" name="catalog.product.related" before="-" template="catalog/product/list/related.phtml"/>
+				<!-- Defining product tabs list *****************************-->
+				<block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs" template="catalog/product/view/tabs.phtml" >
+					<action method="addTab" translate="title" module="catalog"><alias>description</alias><title>Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+					<action method="addTab" translate="title" module="catalog"><alias>attributes</alias><title>Additional Information</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>
+					<action method="addTab" translate="title" module="review"><alias>reviews</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>
+					<action method="addTab" translate="title" module="tag"><alias>tags</alias><title>Tags</title><block>tag/product_list</block><template>tag/list.phtml</template></action>
+				</block>
+
+				<!-- Inserting review form **********************************-->
+				<reference name="reviews">
+					<block type="review/form" name="product.review.form" as="review_form">
+						<block type="page/html_wrapper" name="product.review.form.fields.before" as="form_fields_before" translate="label">
+							<label>Review Form Fields Before</label>
+							<action method="setMayBeInvisible"><value>1</value></action>
+						</block>
+					</block>
+				</reference>
+
+				<!-- Removing tags duplicated block *************************-->
+				<reference name="product.info.additional">
+					<action method="unsetChild"><name>product_tag_list</name></action>
+				</reference>
+
+				<!-- Product Social - predefined CMS block for social networks -->
+				<block type="core/template" name="product_social" template="catalog/product/view/social.phtml">
+					<block type="cms/block" name="cms_product_social">
+						<action method="setBlockId"><block_id>product_social</block_id></action>
+					</block>
+				</block>
+			</reference>
+                        <block name="product.info.upsell">
+                            <action method="setColumnCount"><columns>20</columns></action>
+                            <action method="setItemLimit"><type>upsell</type><limit>20</limit></action>
+                        </block>
+		</reference>
+	</catalog_product_view>
+
+
+	<!-- Customer Account Page **********************************************-->
+	<customer_account>
+		<!-- Removing cart from the sidebar *********************************-->
+		<reference name="left"><action method="unsetChild"><name>cart_sidebar</name></action></reference>
+		<reference name="right"><action method="unsetChild"><name>cart_sidebar</name></action></reference>
+	</customer_account>
+
+
+	<!-- Contact Us Page ****************************************************-->
+	<contacts_index_index>
+		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+		</reference>
+	</contacts_index_index>
+
+
+	<!-- Not Found Page *****************************************************-->
+	<cms_index_noroute>
+
+		<reference name="content">
+			<remove name="breadcrumbs"/>
+		</reference>
+
+		<reference name="footer">
+			
+		</reference>
+	</cms_index_noroute>
+
+
+	<!-- Contacts Page *****************************************************-->
+	<contacts_index_index>
+ 		<reference name="root">
+			<action method="setTemplate"><template>page/1column.phtml</template></action>
+	  	</reference>
+
+  		<reference name="content">
+  			<block type="core/template" name="contact_map" template="contacts/map.phtml">
+				<block type="cms/block" name="cms_contact_map">
+					<action method="setBlockId"><block_id>contact_map</block_id></action>
+				</block>
+			</block>
+  		</reference>
+ 	</contacts_index_index>
+ 	
+</layout>

@@ -1,0 +1,40 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="row">
+    <div class="span12">
+        <h1 class="page-title"><?php echo Mage::helper('contacts')->__('Contact Us') ?></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="span12 contact-form">
+        <div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+        <h2 class="legend"><?php echo Mage::helper('contacts')->__('Quick Contact') ?></h2>
+        <form action="<?php echo $this->getFormAction(); ?>" id="contactForm" method="post">
+            <label for="name" class="required"><?php echo Mage::helper('contacts')->__('Name') ?> <span class="required">*</span></label>
+            <input name="name" id="name" title="<?php echo Mage::helper('contacts')->__('Name') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserName()) ?>" class="input-text required-entry" type="text" />
+            <label for="email" class="required"><?php echo Mage::helper('contacts')->__('Email') ?> <span class="required">*</span></label>
+        
+            <input name="email" id="email" title="<?php echo Mage::helper('contacts')->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('contacts')->getUserEmail()) ?>" class="input-text required-entry validate-email" type="text" />
+            <label for="telephone"><?php echo Mage::helper('contacts')->__('Telephone') ?></label>
+            <input name="telephone" id="telephone" title="<?php echo Mage::helper('contacts')->__('Telephone') ?>" value="" class="input-text" type="text" />
+            <label for="comment" class="required"><?php echo Mage::helper('contacts')->__('Comment') ?> <span class="required">*</span></label>
+            <textarea name="comment" id="comment" title="<?php echo Mage::helper('contacts')->__('Comment') ?>" class="required-entry input-text" cols="5" rows="3"></textarea>
+            <input type="text" name="hideit" id="hideit" value="" style="display:none !important;" />
+            <button type="submit" title="<?php echo Mage::helper('contacts')->__('Submit') ?>" class="button btn btn-primary"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+            <div class="required-field pull-right"><?php echo Mage::helper('contacts')->__('* Required Fields') ?></div>
+        </form>
+    </div>
+	<?php echo $this->getChildHtml('contact_map'); ?></div>
+<script type="text/javascript">
+//<![CDATA[
+    var contactForm = new VarienForm('contactForm', true);
+//]]>
+</script>

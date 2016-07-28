@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cloud Image Zoom - Magento Extension
+ *
+ * @package     CloudZoom
+ * @category    EcommerceTeam
+ * @copyright   Copyright 2012 EcommerceTeam Inc. (http://www.ecommerce-team.com)
+ * @version:    1.1.4
+ */
+-->
+<config>
+    <modules>
+        <EcommerceTeam_CloudZoom>
+            <version>1.1.4</version>
+        </EcommerceTeam_CloudZoom>
+    </modules>
+    <global>
+        <models>
+            <ecommerceteam_cloudzoom>
+                <class>EcommerceTeam_CloudZoom_Model</class>
+            </ecommerceteam_cloudzoom>
+        </models>
+        <blocks>
+            <ecommerceteam_cloudzoom>
+                <class>EcommerceTeam_CloudZoom_Block</class>
+            </ecommerceteam_cloudzoom>
+        </blocks>
+        <helpers>
+            <ecommerceteam_cloudzoom>
+                <class>EcommerceTeam_CloudZoom_Helper</class>
+            </ecommerceteam_cloudzoom>
+        </helpers>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <ecommerceteam_cloudzoom module="ecommerceteam_cloudzoom">
+                    <file>ecommerceteam-cloudzoom.xml</file>
+                </ecommerceteam_cloudzoom>
+            </updates>
+        </layout>
+    </frontend>
+    <default>
+        <catalog>
+            <cloudzoom>
+                <enabled>1</enabled>
+                <position>inside</position>
+                <show_title>0</show_title>
+                <title_opacity>50</title_opacity>
+                <lens_opacity>50</lens_opacity>
+                <tint_opacity>50</tint_opacity>
+                <big_image_width>625</big_image_width>
+                <big_image_height>794</big_image_height>
+            </cloudzoom>
+        </catalog>
+    </default>
+</config>

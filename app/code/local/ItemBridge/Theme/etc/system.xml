@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!--
+ * @category    ItemBridge
+ * @package     ItemBridge_Theme
+ * @copyright   Copyright (c) 2013 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+-->
+<config>
+    <tabs>
+        <itembridge translate="label" module="ibtheme">
+            <label>ItemBridge</label>
+            <sort_order>150</sort_order>
+        </itembridge>
+    </tabs>
+
+    <sections>
+        <ib_theme_design translate="label" module="ibtheme">
+            <label>Design</label>
+            <tab>itembridge</tab>
+            <sort_order>100</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <sort_order>100</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <expanded>1</expanded>
+                    <fields>
+                        <store_color translate="label">
+                            <label>Store Color</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_color</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_color>
+                        <store_pattern>
+                            <label>Store Pattern</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_pattern</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_pattern>
+                        <store_layout>
+                            <label>Store Layout</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_layout</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_layout>
+                        <store_footer>
+                            <label>Store Footer</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_footer</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_footer>
+                        <store_productGrid>
+                            <label>Store Product Grid</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_productGrid</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_productGrid>
+                        <store_OptionsPanel>
+                            <label>Store Options Panel</label>
+                            <frontend_model>ibtheme/adminhtml_system_config_OptionsPanel</frontend_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </store_OptionsPanel>
+                    </fields>
+                </general>
+            </groups>
+        </ib_theme_design>
+    </sections>
+</config>

@@ -1,0 +1,20 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="product-options-bottom span8 product-options-two">
+    <hr>
+    <div class="row">
+        <?php $_product = $this->getProduct() ?>
+        <div class="display-none">
+        <?php echo $this->getPriceHtml($_product) ?>
+        </div>
+        <?php echo $this->getChildHtml('', true, true);?>
+    </div>
+</div>

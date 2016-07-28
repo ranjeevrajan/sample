@@ -1,0 +1,83 @@
+<?php
+/**
+ * Template Tag
+ *
+ * @category   TemplateTag
+ * @package    TemplateTag_Stripe
+ * @copyright  Copyright (c) 2013 Template Tag Ltd. (https://www.templatetag.com)
+ * @license    https://www.templatetag.com/legal/end-user-licence-agreement/ (Template Tag EULA)
+ * @author     Leon Smith <leon@templatetag.com>
+ */
+?>
+<?php
+/** @var $this TemplateTag_Stripe_Block_Payment */
+$_code = $this->getMethodCode();
+?>
+<ul id="payment_form_<?php echo $_code ?>" style="display:none">
+    <input type="hidden" id="<?php echo $_code; ?>_token" name="payment[stripe_token]" value="" />
+    <li>
+        <label for="<?php echo $_code ?>_cc_owner"><?php echo $this->__('Name on Card') ?> <em class="required">*</em></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_owner" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" value="" autocomplete="off" />
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_number"><?php echo $this->__('Credit Card Number') ?> <em class="required">*</em></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_number" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text required-entry validate-stripe-cc" value="" autocomplete="off" size="20" />
+        </div>
+    </li>
+    <li id="<?php echo $_code ?>_cc_type_cvv_div">
+        <label for="<?php echo $_code ?>_cc_cvc"><?php echo $this->__('Card Verification Number') ?> <em class="required">*</em></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text required-entry validate-stripe-cvc" id="<?php echo $_code ?>_cc_cvc" value="" />
+            </div>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_expiration_month"><?php echo $this->__('Expiration Date') ?> <em class="required">*</em></label>
+        <div class="input-box">
+            <select id="<?php echo $_code ?>_cc_expiration_month" class="required-entry month" style="width:140px;">
+                <?php foreach ($this->getExpiryMonths() as $value): ?>
+                <option value="<?php echo $value[0]; ?>">
+                    <?php echo $value[1]; ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+            <select id="<?php echo $_code ?>_cc_expiration_year" class="required-entry year validate-stripe-expiration" style="width:103px;">
+                <?php foreach ($this->getExpiryYears() as $value): ?>
+                <option value="<?php echo $value[0]; ?>">
+                    <?php echo $value[1]; ?>
+                </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </li>
+</ul>
+<script type="text/javascript">
+//<![CDATA[
+    Validation.addAllThese([
+        ['validate-stripe-cc', '<?php echo $this->jsQuoteEscape($this->__('Please enter a valid credit card number.')); ?>', function(v, elm) {
+            return Stripe.validateCardNumber(v);
+        }],
+        ['validate-stripe-cvc', '<?php echo $this->jsQuoteEscape($this->__('Please enter a valid CVC number')); ?>', function(v, elm) {
+            return Stripe.validateCVC(v);
+        }],
+        ['validate-stripe-expiration', '<?php echo $this->jsQuoteEscape($this->__('Invalid expiration date')); ?>', function(v, elm) {
+            return Stripe.validateExpiry($('<?php echo $_code ?>_cc_expiration_month').value, v);
+        }]
+    ]);
+//]]>
+</script>
+<script type="text/javascript">
+//<![CDATA[
+    Element.getElementsBySelector($('payment_form_<?php echo $_code ?>'), 'input', 'select').each(function(el) {
+        el.value = TemplateTag.Stripe.Card[el.id] || "";
+        el.observe('change', function(elem) {
+            var elem = Event.element(event);
+            TemplateTag.Stripe.Card[elem.id] = elem.value;
+        });
+    });
+//]]>
+</script>

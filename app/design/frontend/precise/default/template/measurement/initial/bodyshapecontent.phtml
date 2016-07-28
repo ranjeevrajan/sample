@@ -1,0 +1,61 @@
+
+<?php 
+    $entityType = Mage::getSingleton('eav/config')->getEntityType('customer'); 
+    $body_measurement = $this->getQuoteMeasurement();
+?>
+
+<?php $attribute = $this->getData('shape'); ?>
+<?php if($attribute->getId()): ?>
+	<div class="initial-measurement-panel">
+            <div class="measurement-left">
+                    <h2><?php echo $this->__("%s", $attribute->getStoreLabel()); ?></h2>
+                    <?php 
+                            $meta_info = $this->getAttributeMetaInformation($attribute->getId()); 
+                    ?>
+                    <div>
+                        <?php echo $this->__("%s", $meta_info->getStoreDescriptionLabel()); ?>
+                    </div>
+            </div>
+            <div class="measurement-right">
+                    <div class="measurements_error">
+                            <img width="15" height="15" src="<?php echo $this->getSkinUrl('images/measurement/error.png') ?>">
+                            <span><?php echo $this->__('Please fill in the required fields.') ?></span>
+                    </div>
+                    <form name="form_bodyshape_measurement">
+                            <div class="body-shape-measurement">
+                                    <?php if($attribute): ?>
+                                            <?php
+                                                    $attr_options = array();
+                                                    foreach($attribute->getSource()->getAllOptions() as $key=>$option)
+                                                    {
+                                                            if($option['value'])
+                                                            {
+                                                                    $attr_options[$key]['label'] = $option['label'];
+                                                                    $attr_options[$key]['value'] = $option['value'];
+                                                            }
+                                                    }
+                                            ?>
+
+                                            <table>
+                                                    <tr>
+                                                            <td><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'bodymeasurement/bodyshape/'.$meta_info->getData('shape_type_1') ?>" alt="<?php $meta_info->getData('shape_type_1') ?>" title="<?php $meta_info->getData('shape_type_1') ?>"/></td>
+                                                            <td><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'bodymeasurement/bodyshape/'.$meta_info->getData('shape_type_2') ?>" alt="<?php $meta_info->getData('shape_type_1') ?>" title="<?php $meta_info->getData('shape_type_2') ?>"/></td>
+                                                            <td><img src="<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'bodymeasurement/bodyshape/'.$meta_info->getData('shape_type_3') ?>" alt="<?php $meta_info->getData('shape_type_1') ?>" title="<?php $meta_info->getData('shape_type_3') ?>"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><label><?php echo $attr_options[1]['label'] ?></label></td>
+                                                            <td><label><?php echo $attr_options[2]['label'] ?></label></td>
+                                                            <td><label><?php echo $attr_options[3]['label'] ?></label></td>
+                                                    </tr>
+                                                    <tr>
+                                                            <td><input type="radio" name="<?php echo $attribute->getData('attribute_code') ?>" value="<?php echo $attr_options[1]['value'] ?>" checked="checked" />	</td>
+                                                            <td><input type="radio" name="<?php echo $attribute->getData('attribute_code') ?>" value="<?php echo $attr_options[2]['value'] ?>" <?php if($body_measurement[$attribute->getData('attribute_code')]==$attr_options[2]['value']){echo 'checked="checked"';} ?> /> </td>
+                                                            <td><input type="radio" name="<?php echo $attribute->getData('attribute_code') ?>" value="<?php echo $attr_options[3]['value'] ?>" <?php if($body_measurement[$attribute->getData('attribute_code')]==$attr_options[3]['value']){echo 'checked="checked"';} ?> /> </td>
+                                                    </tr>
+                                            </table>
+                                    <?php endif; ?>
+                            </div>
+                    </form>
+            </div>
+	</div>
+<?php endif; ?>

@@ -1,0 +1,47 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+/**
+ * Column products list template
+ *
+ * @see Mage_Catalog_Block_Product_List and ItemBridge_Theme_Block_Product_List_Featured
+ */
+?>
+<?php
+    $_productCollection = $this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
+    $ibtheme = $this->helper('ibtheme');
+?>
+<?php if ( ! $_productCollection->count()): ?>
+<p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
+<?php else: ?>
+<div class="sidebar-list-products">
+    <ul>
+    <?php foreach ($_productCollection as $_product): ?>
+        <li class="item product <?php echo $ibtheme->getProductClasses($_product) ?>">
+            <div class="img-box">
+                <div class="img">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->keepFrame(true)->resize(100); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" /></a>
+                </div>
+            </div>
+            <div class="content">
+                <a href="<?php echo $_product->getProductUrl() ?>" class="title"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a>
+                <?php if ($_product->getRatingSummary())
+                    echo $this->getReviewsSummaryHtml($_product, 'short'); ?>
+                <?php echo $this->getPriceHtml($_product, true) ?>
+            </div>
+            <div class="clearfix"></div>
+        </li>
+    <?php endforeach ?>
+    </ul>
+</div>
+<script type="text/javascript">decorateGeneric($$('ul.column-products-list > li'), ['odd', 'even', 'first', 'last'])</script>
+<?php endif ?>

@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Pixel
+ * @package    Pixel_Measurement
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Pixel_Measurement>
+            <version>0.2.0</version>
+        </Pixel_Measurement>
+    </modules>
+    <frontend>
+        <routers>
+            <measurement>
+                <use>standard</use>
+                <args>
+                    <module>Pixel_Measurement</module>
+                    <frontName>measurement</frontName>
+                </args>
+            </measurement>
+        </routers>
+        <layout>
+            <updates>
+                <measurement>
+                    <file>measurement.xml</file>
+                </measurement>
+            </updates>
+        </layout>
+		
+		<events>
+			<!-- Hooks into order save event -->
+			<checkout_type_onepage_save_order_after>
+				<observers>
+					<measurement_order_success>
+						<type>singleton</type>
+						<class>measurement/observer</class>
+						<method>hookToOrderSaveEvent</method>
+					</measurement_order_success>
+				</observers>
+			</checkout_type_onepage_save_order_after>
+			<!-- Hooks into order save event -->
+		</events>
+
+    <translate>
+        <modules>
+            <Pixel_Measurement>
+                <files>
+                    <default>Pixel_Measurement.csv</default>
+                </files>
+            </Pixel_Measurement>
+        </modules>
+    </translate>
+
+		
+    </frontend>
+    <admin>
+        <routers>
+			<measurement>
+				<use>admin</use>
+				<args>
+					<module>Pixel_Measurement</module>
+					<frontName>measurement</frontName>
+				</args>
+			</measurement>
+        </routers>
+    </admin>
+    <!--<adminhtml>
+		<menu>
+			<measurement module="measurement">
+				<title>Measurement</title>
+				<sort_order>71</sort_order>               
+				<children>
+					<items module="measurement">
+						<title>Manage Items</title>
+						<sort_order>0</sort_order>
+						<action>measurement/adminhtml_measurement</action>
+					</items>
+				</children>
+			</measurement>
+		</menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Pixel_Measurement>
+							<title>Measurement Module</title>
+							<sort_order>10</sort_order>
+						</Pixel_Measurement>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<measurement>
+					<file>measurement.xml</file>
+				</measurement>
+			</updates>
+		</layout>
+    </adminhtml>   -->
+    <global>
+        <models>
+            <measurement>
+                <class>Pixel_Measurement_Model</class>
+                <resourceModel>measurement_mysql4</resourceModel>
+            </measurement>
+            <measurement_mysql4>
+                <class>Pixel_Measurement_Model_Mysql4</class>
+                <entities>
+                    <measurement>
+                        <table>measurement</table>
+                    </measurement>
+                </entities>
+            </measurement_mysql4>
+        </models>
+        <resources>
+            <measurement_setup>
+                <setup>
+                    <module>Pixel_Measurement</module>
+					<class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </measurement_setup>
+            <measurement_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </measurement_write>
+            <measurement_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </measurement_read>
+        </resources>
+        <blocks>
+            <measurement>
+                <class>Pixel_Measurement_Block</class>
+            </measurement>
+        </blocks>
+        <helpers>
+            <measurement>
+                <class>Pixel_Measurement_Helper</class>
+            </measurement>
+        </helpers>
+		
+		<fieldsets>
+            <sales_convert_quote>
+                <body_measurement>
+                    <to_order>*</to_order>
+                </body_measurement>
+            </sales_convert_quote>
+			
+			<sales_convert_order>
+                <body_measurement>
+                    <to_quote>*</to_quote>
+                </body_measurement>
+			</sales_convert_order>
+        </fieldsets>
+		
+		<events>			
+			<!-- Hooks into shipping method save event -->
+			<checkout_controller_onepage_save_shipping_method>
+				<observers>
+					<measurement_shipping_save>
+						<type>model</type>
+						<class>measurement/observer</class>
+						<method>hookToShippingMethodSaveEvent</method>
+					</measurement_shipping_save>
+				</observers>
+			</checkout_controller_onepage_save_shipping_method>
+			<!-- Hooks into shipping method save event -->
+			
+			<!-- Hooks into order save event -->
+			<checkout_type_onepage_save_order_after>
+				<observers>
+					<measurement_order_success>
+						<type>singleton</type>
+						<class>measurement/observer</class>
+						<method>hookToOrderSaveEvent</method>
+					</measurement_order_success>
+				</observers>
+			</checkout_type_onepage_save_order_after>
+			<!-- Hooks into order save event -->
+			
+		</events>
+		
+		<!-- checkout_controller_onepage_save_shipping_method -->
+		
+    </global>
+</config>

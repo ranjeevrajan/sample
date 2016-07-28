@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Template Tag
+ *
+ * @category   TemplateTag
+ * @package    TemplateTag_Stripe
+ * @copyright  Copyright (c) 2013 Template Tag Ltd. (https://www.templatetag.com)
+ * @license    https://www.templatetag.com/legal/end-user-licence-agreement/ (Template Tag EULA)
+ * @author     Leon Smith <leon@templatetag.com>
+ */
+-->
+<config>
+    <modules>
+        <TemplateTag_Stripe>
+            <version>2.1.0.0</version>
+        </TemplateTag_Stripe>
+    </modules>
+    <global>
+        <models>
+            <stripe>
+                <class>TemplateTag_Stripe_Model</class>
+            </stripe>
+        </models>
+        <blocks>
+            <stripe>
+                <class>TemplateTag_Stripe_Block</class>
+            </stripe>
+        </blocks>
+        <helpers>
+            <stripe>
+                <class>TemplateTag_Stripe_Helper</class>
+            </stripe>
+        </helpers>
+        <resources>
+            <stripe_setup>
+                <setup>
+                    <module>TemplateTag_Stripe</module>
+                    <class>TemplateTag_Stripe_Model_Resource_Setup</class>
+                </setup>
+            </stripe_setup>
+        </resources>
+        <fieldsets>
+            <sales_convert_quote_payment>
+                <stripe_token>
+                    <to_order_payment>*</to_order_payment>
+                </stripe_token>
+                <stripe_test>
+                    <to_order_payment>*</to_order_payment>
+                </stripe_test>
+            </sales_convert_quote_payment>
+        </fieldsets>
+        <events>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <stripe_frontend>
+                        <class>stripe/observer</class>
+                        <method>addJsToFrontendCheckout</method>
+                    </stripe_frontend>
+                    <stripe_admin>
+                        <class>stripe/observer</class>
+                        <method>addJsToAdminCheckout</method>
+                    </stripe_admin>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
+    </global>
+    <default>
+        <payment>
+            <stripe>
+                <active>0</active>
+                <test>1</test>
+                <title>Credit Card - Stripe</title>
+                <order_status>processing</order_status>
+                <test_publishable_key>pk_test_xxxxx</test_publishable_key>
+                <publishable_key>pk_live_xxxxx</publishable_key>
+                <allowspecific>0</allowspecific>
+                <model>stripe/payment</model>
+                <payment_action>authorize_capture</payment_action>
+            </stripe>
+        </payment>
+    </default>
+</config>

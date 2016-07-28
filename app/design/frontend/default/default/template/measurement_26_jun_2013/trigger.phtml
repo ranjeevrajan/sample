@@ -1,0 +1,128 @@
+<?php
+/**
+ * Magento Customization
+ * @Author : Abdullah
+ *
+ */
+?>
+
+<script type="text/javascript">
+	jQuery('.btn-proceed-checkout').click(function(){
+		jQuery('.btn-proceed-checkout').attr('disabled','disabled');
+		jQuery.fancybox.showActivity();
+		jQuery.ajax({
+			type	: "POST",
+			cache	: false,
+			url		: "<?php echo $this->getUrl('measurement/index/measurement') ?>",
+			//data	: $(this).serializeArray(),
+			success : function(data) {
+				
+				jQuery.fancybox({
+					hideOnOverlayClick: false,
+					centerOnScroll:true,
+					enableEscapeButton:false,
+					padding:0,
+					showCloseButton:false,
+					content:data,
+				});
+				
+				var slider = jQuery('ul.slider123').bxSlider({
+					infiniteLoop: false,
+					controls: false,
+					pager: false,
+					touchEnabled: false,
+				});
+				
+				if( slider ){
+				
+					jQuery('#prev_slide_clone').live('click',function(){
+						slider.goToPrevSlide();
+						jQuery('#prev_slide').show();
+						jQuery('#next_slide').show();
+					});
+					
+					jQuery('#prev_slide').live('click',function(){
+						slider.goToPrevSlide();
+					});
+					
+					jQuery('#next_slide').live('click',function(){					
+						var currentslider = slider.getCurrentSlide();
+						var currentslider_form = jQuery('ul.slider123 li.type').eq(currentslider).find('form');
+						if( currentslider_form ){
+							var form_data = currentslider_form.serialize();
+							
+							//if(currentslider_form.attr('name')=='form_initial_measurement'){
+								var valdation_result = validate_form(currentslider_form);
+							//}
+							
+							if( valdation_result ){
+								//Sending ajax call to the save the attribute value into sales quote
+								jQuery('#next_slide').attr('disabled','disabled');
+								jQuery('#ajax_loader').show();
+								jQuery.ajax({
+									type	: "POST",
+									cache	: false,
+									dataType : 'json',
+									url		: "<?php echo $this->getUrl('measurement/index/saveintoquote') ?>",
+									data	: form_data,
+									success : function(result){
+										jQuery('#ajax_loader').hide();
+										if(result.status == 'SUCCESS'){
+											slider.goToNextSlide();
+											
+											slider_count = (slider.getSlideCount()-1);
+											if( slider_count==slider.getCurrentSlide() ){
+												jQuery('#prev_slide').hide();
+												jQuery('#next_slide').hide();
+											}
+										}
+										else{
+											alert(result.message);
+										}
+										jQuery('#next_slide').removeAttr('disabled');
+										jQuery.fancybox.resize();
+									},
+									failure : function(){
+										jQuery('#next_slide').removeAttr('disabled');
+									}
+								});
+							} //validation result
+							
+						}
+						
+					});
+				}
+				
+				jQuery('.btn-proceed-checkout').removeAttr('disabled');
+				
+			},
+			failure: function(){jQuery('.btn-proceed-checkout').removeAttr('disabled');}
+		});
+		return false;
+	});
+
+	function validate_form(form)
+	{
+		var form = jQuery(form);
+		var values = form.serializeArray();
+		var count = 0;
+
+		for (index = 0; index < values.length; ++index) {
+			if(!values[index].value){
+				
+				count++;
+			}
+		}
+		if(count>0){
+			jQuery('.measurements_error').css({'visibility':'visible'});
+			return false;
+		}
+		else{
+			jQuery('.measurements_error').css({'visibility':'hidden'});
+			return true;
+		}
+	}
+	
+</script>
+
+

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+<title>Untitled Document</title>
+</head>
+<body>
+<table>
+    <thead>
+        <tr>
+            <th>Оплата не удалось. </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <p>
+                    <b>причина</b><br />
+                    {{var reason}}
+                </p>
+                <p>
+                    <b>Тип оформленного заказа</b><br />
+                    {{var checkoutType}}
+                </p>
+                <p>
+                    <b>Заказчик: </b><br />
+                    <a href="mailto:{{var customerEmail}}">{{var customer}}</a> &lt;{{var customerEmail}}&gt;
+                </p>
+                <p>
+                    <b>Предметы</b><br />
+                    {{var items}}
+                </p>
+                <p>
+                    <b>Всего: </b><br />
+                    {{var total}}
+                </p>
+                <p>
+                    <b>Адрес для выставления счета:</b><br />
+                    {{var billingAddress.format('html')}}
+                </p>
+                <p>
+                    <b>Адрес доставки: </b><br />
+                    {{var shippingAddress.format('html')}}
+                </p>
+                <p>
+                    <b>Способ доставки: </b><br />
+                    {{var shippingMethod}}
+                </p>
+                <p>
+                    <b>Способ оплаты: </b><br />
+                    {{var paymentMethod}}
+                </p>
+                <p>
+                    <b>Дата и время: </b><br />
+                    {{var dateAndTime}}
+                </p>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

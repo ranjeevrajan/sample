@@ -1,0 +1,20 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<h1 class="page-title"><?php echo $this->__('All Tags') ?></h1>
+<?php if( sizeof($this->getTags()) > 0 ): ?>
+    <ul class="tags-list tags unstyled">
+        <?php foreach ($this->getTags() as $_tag): ?>
+            <a href="<?php echo $_tag->getTaggedProductsUrl() ?>" style="font-size:<?php echo $_tag->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_tag->getName()) ?></a>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no tags available.') ?></p>
+<?php endif; ?>

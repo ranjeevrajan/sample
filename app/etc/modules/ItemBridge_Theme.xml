@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+ * @category    ItemBridge
+ * @package     ItemBridge_Theme
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+-->
+<config>
+    <modules>
+        <ItemBridge_Theme>
+            <active>true</active>
+            <codePool>local</codePool>
+        </ItemBridge_Theme>
+    </modules>
+    <global>
+       <blocks>
+          <page>
+              <rewrite>
+                  <html_topmenu>ItemBridge_Theme_Block_Page_Html_Topmenu</html_topmenu>
+              </rewrite>
+          </page>
+       </blocks>
+    </global>
+</config>

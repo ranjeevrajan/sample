@@ -1,0 +1,27 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if (count($this->getStores()) > 1): ?>
+<li class="dropdown block-languages">
+    <a href="#" class="block-title" data-toggle="dropdown"><?php echo $this->htmlEscape(Mage::app()->getStore()->getCode()) ?><span class="arrow"></span></a>
+    <ul class="dropdown-menu language">
+    <?php foreach ($this->getStores() as $_lang): ?>
+        <li>
+			<?php if (strcasecmp($this->htmlEscape($_lang->getName()), "DEFAULT") == 0) { ?>
+				<a href="<?php echo $_lang->getCurrentUrl() ?>">EN</a>
+			<?php } else { ?>
+				<a href="<?php echo $_lang->getCurrentUrl() ?>"><?php echo $this->htmlEscape($_lang->getName()) ?></a>
+			<?php } ?>
+
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</li>
+<?php endif; ?>

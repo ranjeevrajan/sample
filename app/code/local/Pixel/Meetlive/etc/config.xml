@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @category   Pixel
+* @package    Pixel_Meetlive
+* @author     ModuleCreator
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Pixel_Meetlive>
+            <version>0.1.0</version>
+        </Pixel_Meetlive>
+    </modules>
+    <frontend>
+        <routers>
+            <meetlive>
+                <use>standard</use>
+                <args>
+                    <module>Pixel_Meetlive</module>
+                    <frontName>meetlive</frontName>
+                </args>
+            </meetlive>
+        </routers>
+        <layout>
+            <updates>
+                <meetlive>
+                    <file>meetlive.xml</file>
+                </meetlive>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+            <meetlive>
+                <use>admin</use>
+                <args>
+                    <module>Pixel_Meetlive</module>
+                    <frontName>meetlive</frontName>
+                </args>
+            </meetlive>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <meetlive module="meetlive">
+                <title>Meetlive</title>
+                <sort_order>71</sort_order>               
+                <children>
+                    <items module="meetlive">
+                        <title>Manage Items</title>
+                        <sort_order>0</sort_order>
+                        <action>meetlive/adminhtml_meetlive</action>
+                    </items>
+                </children>
+            </meetlive>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <Pixel_Meetlive>
+                            <title>Meetlive Module</title>
+                            <sort_order>10</sort_order>
+                        </Pixel_Meetlive>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <meetlive>
+                    <file>meetlive.xml</file>
+                </meetlive>
+            </updates>
+        </layout>
+    </adminhtml>
+	
+    <stores>
+        <admin>
+            <design>
+                <package>
+                    <name>default</name>
+                </package>
+                <theme>
+                    <default>meetlive</default>
+                </theme>
+            </design>
+        </admin>
+    </stores>
+	
+    <global>
+        <models>
+            <meetlive>
+                <class>Pixel_Meetlive_Model</class>
+                <resourceModel>meetlive_mysql4</resourceModel>
+            </meetlive>
+            <meetlive_mysql4>
+                <class>Pixel_Meetlive_Model_Mysql4</class>
+                <entities>
+                    <meetlive>
+                        <table>meetlive</table>
+                    </meetlive>
+                </entities>
+            </meetlive_mysql4>
+        </models>
+        <resources>
+            <meetlive_setup>
+                <setup>
+                    <module>Pixel_Meetlive</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </meetlive_setup>
+            <meetlive_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </meetlive_write>
+            <meetlive_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </meetlive_read>
+        </resources>
+        <blocks>
+            <meetlive>
+                <class>Pixel_Meetlive_Block</class>
+            </meetlive>
+        </blocks>
+        <helpers>
+            <meetlive>
+                <class>Pixel_Meetlive_Helper</class>
+            </meetlive>
+        </helpers>
+        <template>
+            <email>
+                <meetlive_email_template module="meetlive">
+                    <label>Meetlive Module</label>
+                    <file>meetlive_email.html</file>
+                    <type>html</type>
+                </meetlive_email_template>                
+            </email>
+        </template>
+    </global>
+</config>

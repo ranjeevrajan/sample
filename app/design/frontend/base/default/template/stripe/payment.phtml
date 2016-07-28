@@ -1,0 +1,87 @@
+<?php
+/**
+ * Template Tag
+ *
+ * @category   TemplateTag
+ * @package    TemplateTag_Stripe
+ * @copyright  Copyright (c) 2013 Template Tag Ltd. (https://www.templatetag.com)
+ * @license    https://www.templatetag.com/legal/end-user-licence-agreement/ (Template Tag EULA)
+ * @author     Leon Smith <leon@templatetag.com>
+ */
+?>
+<?php
+/** @var $this TemplateTag_Stripe_Block_Payment */
+$_code = $this->getMethodCode();
+?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <input type="hidden" id="<?php echo $_code; ?>_token" name="payment[stripe_token]" value="" />
+    <li>
+        <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_owner" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" value="" autocomplete="off" />
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_number" class="required"><em>*</em><?php echo $this->__('Credit Card Number') ?></label>
+        <div class="input-box">
+            <input type="text" id="<?php echo $_code ?>_cc_number" title="<?php echo $this->__('Credit Card Number') ?>" class="input-text required-entry validate-stripe-cc" value="" autocomplete="off" size="20" />
+        </div>
+    </li>
+    <li id="<?php echo $_code ?>_cc_type_cvv_div">
+        <label for="<?php echo $_code ?>_cc_cid" class="required"><em>*</em><?php echo $this->__('Card Verification Number') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <input type="text" title="<?php echo $this->__('Card Verification Number') ?>" class="input-text required-entry validate-stripe-cvc" id="<?php echo $_code ?>_cc_cvc" value="" />
+            </div>
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_expiration_month" class="required"><em>*</em><?php echo $this->__('Expiration Date') ?></label>
+        <div class="input-box">
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_cc_expiration_month" class="required-entry month">
+                    <?php foreach ($this->getExpiryMonths() as $value): ?>
+                        <option value="<?php echo $value[0]; ?>">
+                            <?php echo $value[1]; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <div class="v-fix">
+                <select id="<?php echo $_code ?>_cc_expiration_year" class="required-entry year validate-stripe-expiration">
+                    <?php foreach ($this->getExpiryYears() as $value): ?>
+                        <option value="<?php echo $value[0]; ?>">
+                            <?php echo $value[1]; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        </div>
+    </li>
+</ul>
+<script type="text/javascript">
+//<![CDATA[
+    Validation.addAllThese([
+        ['validate-stripe-cc', '<?php echo $this->jsQuoteEscape($this->__('Please enter a valid credit card number.')); ?>', function(v, elm) {
+            return Stripe.validateCardNumber(v);
+        }],
+        ['validate-stripe-cvc', '<?php echo $this->jsQuoteEscape($this->__('Please enter a valid CVC number')); ?>', function(v, elm) {
+            return Stripe.validateCVC(v);
+        }],
+        ['validate-stripe-expiration', '<?php echo $this->jsQuoteEscape($this->__('Invalid expiration date')); ?>', function(v, elm) {
+            return Stripe.validateExpiry($('<?php echo $_code ?>_cc_expiration_month').value, v);
+        }]
+    ]);
+//]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    Element.getElementsBySelector($('payment_form_<?php echo $_code ?>'), 'input', 'select').each(function(el) {
+        el.value = TemplateTag.Stripe.Card[el.id] || "";
+        el.observe('change', function(elem) {
+            var elem = Event.element(event);
+            TemplateTag.Stripe.Card[elem.id] = elem.value;
+        });
+    });
+    //]]>
+</script>

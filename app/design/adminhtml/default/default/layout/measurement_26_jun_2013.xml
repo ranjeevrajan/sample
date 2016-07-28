@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <measurement_adminhtml_measurement_index>
+        <reference name="content">
+            <block type="measurement/adminhtml_measurement" name="measurement" />
+        </reference>
+    </measurement_adminhtml_measurement_index>
+</layout>

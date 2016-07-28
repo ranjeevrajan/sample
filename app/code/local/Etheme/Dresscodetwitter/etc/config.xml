@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Etheme_Dresscodetwitter>
+            <version>0.0.1</version>
+        </Etheme_Dresscodetwitter>
+    </modules>
+	<frontend>
+        <layout>
+            <updates>
+                <dresscodetwitter>
+                    <file>etheme_dresscodetwitter.xml</file>
+                </dresscodetwitter>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <helpers>
+            <dresscodetwitter>
+                <class>Etheme_Dresscodetwitter_Helper</class>
+            </dresscodetwitter>
+        </helpers>
+        <blocks>
+             <dresscodetwitter>
+                <class>Etheme_Dresscodetwitter_Block</class>
+             </dresscodetwitter>
+        </blocks>
+        <models>
+             <dresscodetwitter>
+                <class>Etheme_Dresscodetwitter_Model</class>
+             </dresscodetwitter>
+        </models>
+    </global>
+</config>

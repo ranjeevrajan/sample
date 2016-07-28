@@ -1,0 +1,71 @@
+
+<?php
+	$entityType = Mage::getSingleton('eav/config')->getEntityType('customer'); 
+	$body_measurement = $this->getQuoteMeasurement();
+?>
+
+<div class="initial-measurement-panel">
+	<div class="measurement-left">
+		<h2><?php echo $this->__('Setup your measurement profile') ?></h2>
+		<p><?php echo $this->__('Get started by filling in your height, weight, and age.') ?></p>
+	</div>
+	<div class="measurement-right">
+		<div class="measurements_error">
+			<img width="15" height="15" src="<?php echo $this->getSkinUrl('images/measurement/error.png') ?>">
+			<span><?php echo $this->__('Please fill in the required fields.') ?></span>
+		</div>
+		<form name="form_initial_measurement">
+			<ul class="initial-measurements-type">
+				<?php $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'height_feet'); ?>
+				<?php if($attribute->getId()): ?>
+					<li>
+						<em>*</em><label for="<?php echo $attribute->getData('attribute_code') ?>"><?php echo $this->__("%s", $attribute->getStoreLabel()); ?></label>
+						<div class="options">
+							<select tabindex="-1" id="<?php echo $attribute->getData('attribute_code') ?>" name="<?php echo $attribute->getData('attribute_code') ?>">
+								<?php foreach($attribute->getSource()->getAllOptions() as $option): ?>
+									<option value="<?php echo $option['value'] ?>" <?php if($body_measurement[$attribute->getData('attribute_code')]==$option['value']){echo 'selected=selected';} ?> ><?php echo $option['label'] ?></option>
+								<?php endforeach; ?>
+							</select>
+							<span class="tip"><?php echo $this->__('Ft') ?></span>
+							
+							<?php $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'height_inch'); ?>
+							<?php if($attribute->getId()): ?>
+								<select tabindex="-1" id="<?php echo $attribute->getData('attribute_code') ?>" name="<?php echo $attribute->getData('attribute_code') ?>">
+									<?php foreach($attribute->getSource()->getAllOptions() as $option): ?>
+										<option value="<?php echo $option['value'] ?>" <?php if($body_measurement[$attribute->getData('attribute_code')]==$option['value']){echo 'selected=selected';} ?> ><?php echo $option['label'] ?></option>
+									<?php endforeach; ?>
+								</select>
+							<?php endif; ?>
+							<span class="tip"><?php echo $this->__('in') ?></span>
+						</div>
+						<div class="clear"></div>
+					</li>
+				<?php endif; ?>
+				
+				<?php $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'body_weight'); ?>
+				<?php if($attribute->getId()): ?>
+					<li>
+						<em>*</em><label for="<?php echo $attribute->getData('attribute_code') ?>"><?php echo $this->__("%s", $attribute->getStoreLabel()); ?></label>
+						<div class="options">
+							<input type="text" tabindex="-1" class="autonumeric input-text" name="<?php echo $attribute->getData('attribute_code') ?>" value="<?php echo $body_measurement[$attribute->getData('attribute_code')] ?>" maxlength="4" id="<?php echo $attribute->getData('attribute_code') ?>"> 
+							<span class="tip"><?php echo $this->__('Kg') ?></span>
+						</div>
+						<div class="clear"></div>
+					</li>
+				<?php endif; ?>		
+				
+				<?php $attribute = Mage::getModel('customer/attribute')->loadByCode($entityType, 'age'); ?>
+				<?php if($attribute->getId()): ?>
+					<li>
+						<em>*</em><label for="<?php echo $attribute->getData('attribute_code') ?>"><?php echo $this->__("%s", $attribute->getStoreLabel()); ?></label>
+						<div class="options">
+							<input type="text" tabindex="-1" class="autonumeric input-text" name="<?php echo $attribute->getData('attribute_code') ?>" value="<?php echo $body_measurement[$attribute->getData('attribute_code')] ?>" maxlength="4" id="<?php echo $attribute->getData('attribute_code') ?>"> 
+							<span class="tip"><?php echo $this->__('Yr') ?></span>
+						</div>
+						<div class="clear"></div>
+					</li>
+				<?php endif; ?>
+			</ul>
+		</form>
+	</div>
+</div>

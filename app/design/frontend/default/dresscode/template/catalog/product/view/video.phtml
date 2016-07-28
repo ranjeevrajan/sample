@@ -1,0 +1,12 @@
+<?php $_video = $this->getProduct()->getVideobox(); ?>
+<?php if ($_video){ ?>
+
+        <?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_video, 'video') ?>
+
+<?php } else { ?>
+    <script type="text/javascript">
+        jQuery(function(){
+            jQuery('#product_tabs_notes').remove();
+        })
+    </script>
+<?php } ?>

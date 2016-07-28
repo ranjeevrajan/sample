@@ -1,0 +1,20 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<h1 class="page-title"><?php echo $this->__('Popular Search Terms') ?></h1>
+<?php if( sizeof($this->getTerms()) > 0 ): ?>
+    <div class="tags-list tags">
+        <?php foreach ($this->getTerms() as $_term): ?>
+            <a href="<?php echo $this->getSearchUrl($_term) ?>" style="font-size:<?php echo $_term->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_term->getName()) ?></a>
+        <?php endforeach; ?>
+    </div>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no search terms available.'); ?></p>
+<?php endif; ?>

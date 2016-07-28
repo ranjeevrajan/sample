@@ -1,0 +1,14 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+
+<?php if($this->getWishlist()->getItemsCount()): ?>
+    <button type="submit" name="save_and_share" title="<?php echo $this->__('Share Wishlist') ?>" class="button btn-share btn btn-primary"><span><span><?php echo $this->__('Share Wishlist') ?></span></span></button>
+<?php endif;?>

@@ -1,0 +1,52 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+    $_product = $this->getProduct();
+    $_helper = $this->helper('catalog/output');
+?>
+<?php if ($_product->getImage() != 'no_selection' && $_product->getImage()): ?>
+<div class="product-image product-image-zoom">
+    <?php
+        $main_image_url = $this->helper('catalog/image')->init($_product, 'image');
+        $main_image_zoom_url = $this->helper('catalog/image')->init($_product, 'image');
+        $_img = '<img src="'.$main_image_url.'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        $_helper->productAttribute($_product, $_img, 'image');
+    ?>
+    <a href="<?php echo $main_image_url ?>" class="jqzoom" rel='gal1' title="">
+        <img id="main-product-image" src="<?php echo $main_image_url->keepFrame(true)->resize(1100, 1100) ?>" alt="<?php echo $this->htmlEscape($this->getImageLabel()) ?>" title="<?php echo $this->htmlEscape($this->getImageLabel()) ?>" data-zoom-image="<?php echo $main_image_url ?>" /><div class="product-label">label</div>
+    </a>
+</div>
+<?/*<p class="zoom-notice" id="track_hint"><?php echo $this->__('Double click on above image to view full picture') ?></p>*/?>
+<?/*<div class="zoom">
+    <img id="zoom_out" src="<?php echo $this->getSkinUrl('images/slider_btn_zoom_out.gif') ?>" alt="<?php echo $this->__('Zoom Out') ?>" title="<?php echo $this->__('Zoom Out') ?>" class="btn-zoom-out" />
+    <div id="track">
+        <div id="handle"></div>
+    </div>
+    <img id="zoom_in" src="<?php echo $this->getSkinUrl('images/slider_btn_zoom_in.gif') ?>" alt="<?php echo $this->__('Zoom In') ?>" title="<?php echo $this->__('Zoom In') ?>" class="btn-zoom-in" />
+</div>*/?>
+<?php else: ?>
+<div class="product-image">
+    <?php
+        $_img = '<img src="'.$this->helper('catalog/image')->init($_product, 'image')->keepFrame(false)->resize(312, 312).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';
+        echo $_helper->productAttribute($_product, $_img, 'image');
+    ?>
+</div>
+<?php endif; ?>
+<?php if (count($this->getGalleryImages()) > 1): ?>
+<div id="product-images" class="more-views">
+    <?php foreach ($this->getGalleryImages() as $_image): ?>
+        <a href='#' data-image="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame(true)->resize(312, 312); ?>" data-zoom-image="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame(true)->resize(1000, 1000); ?>"><img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->keepFrame(true)->resize(95, 95); ?>" alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" ></a>
+    <?php endforeach; ?>
+    <!-- #thumblist -->
+</div>
+<div class="carousel-prev product-prev">Prev</div>
+<div class="carousel-next product-next">Prev</div>
+<?php endif; ?>

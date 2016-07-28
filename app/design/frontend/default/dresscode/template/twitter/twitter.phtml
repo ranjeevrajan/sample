@@ -1,0 +1,28 @@
+<!-- twitter feeds slider -->
+<?php
+$twitts=$this->getTwitts();
+
+?>
+<div class="box-twitter">
+
+    <?php
+    if((count($twitts) > 0) ) { ?>
+
+        <ul id="mycarousel" class="jcarousel jcarousel-skin-tango">
+                <?php foreach (array_slice($twitts,0,4) as $twitt): ?>
+                <li>
+                    <div class="twitter-marker">
+                        <p><a target="_blank" href="https://twitter.com/#!/<?=$twitt['user']['screen_name']?>"><?=$twitt['text']?></a></p>
+                        <span><?=$twitt['created_at']?></span>
+                    </div>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        <?php }  else { 
+		 	echo 'No twitts for this account!';
+     	} ?>
+
+</div>
+
+<!-- twitter feeds slider -->
+

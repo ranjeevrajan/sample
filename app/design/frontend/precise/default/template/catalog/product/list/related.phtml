@@ -1,0 +1,107 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if($this->getItems()->getSize()): ?>
+<?php $ibtheme = $this->helper('ibtheme') ?>
+<div class="block block-related span3 pull-right relate-product-sidebar">
+    <div class="title">
+        <?php echo $this->__('Related Products') ?>
+        <div class="relate-product-sidebar-pager pull-right carousel-pager one"></div>
+    </div>
+    <p><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+    <div class="list mini-products-list" id="block-related">
+            <div class="block">
+                <div class="sidebar-list-products">
+                    <ul>
+                        <?php
+                        if ($this->getItems()->count() > 3) {
+                            $count = floor($this->getItems()->count() / 3);
+                        } else {
+                            $count = 1;
+                        }
+                        ?>
+            <?php $i = -1; foreach($this->getItems() as $_item): ?>
+                <?php $i++; ?>
+                <?php
+                if ($i == $count or $i == $count*2 or $i == $count*3+1) {
+                    echo "</ul></div></div>\n<div class='block'><div class='sidebar-list-products'><ul>";
+                }
+                ?>
+                <li class="item">
+                    <div class="img-box">
+                        <div class="img">
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->keepFrame(true)->resize(95, 95) ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+                        </div>
+                    </div>
+                    <div class="content">
+                        <a href="<?php echo $_item->getProductUrl() ?>" class="title"><?php echo $this->htmlEscape($_item->getName()) ?></a>
+                        <?php if ($_item->getRatingSummary())
+                            echo $this->getReviewsSummaryHtml($_item, 'short'); ?>
+                        <?php echo $this->getPriceHtml($_item, true, '-related') ?>
+                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                            <a href="<?php echo $this->getAddToWishlistUrl($_item) ?>" class="link-wishlist wishlist-link"><?php echo $this->__('Add to Wishlist') ?></a>
+                        <?php endif ?>
+                         <?php if(!$_item->isComposite() && $_item->isSaleable()): ?>
+                            <?php if (!$_item->getRequiredOptions()): ?>
+                            <span class="releted-checkbox pull-right">
+                                <input type="checkbox" class="checkbox related-checkbox" id="related-checkbox<?php echo $_item->getId() ?>" name="related_products[]" value="<?php echo $_item->getId() ?>" />
+                            </span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            <?php endforeach ?>
+                </ul>
+            </div>
+        </div>
+            </div>
+        <script type="text/javascript">decorateList('block-related', 'none-recursive')</script>
+    </div>
+    <script type="text/javascript">
+    //<![CDATA[
+    setTimeout(function(){
+        $$('span.related-checkbox').each(function(elem){
+            Event.observe(elem, 'click', addRelatedToProduct)
+        });
+    }, 10);
+
+    var relatedProductsCheckFlag = false;
+    function selectAllRelated(txt){
+        if (relatedProductsCheckFlag == false) {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = true;
+            });
+            relatedProductsCheckFlag = true;
+            txt.innerHTML="<?php echo $this->__('unselect all') ?>";
+        } else {
+            $$('.related-checkbox').each(function(elem){
+                elem.checked = false;
+            });
+            relatedProductsCheckFlag = false;
+            txt.innerHTML="<?php echo $this->__('select all') ?>";
+        }
+        addRelatedToProduct();
+    }
+
+    function addRelatedToProduct(){
+        var checkboxes = $$('.related-checkbox');
+        var values = [];
+        for(var i=0;i<checkboxes.length;i++){
+            if(checkboxes[i].checked) values.push(checkboxes[i].value);
+        }
+        if($('related-products-field')){
+            $('related-products-field').value = values.join(',');
+        }
+    }
+    //]]>
+    </script>
+</div>
+<?php endif ?>

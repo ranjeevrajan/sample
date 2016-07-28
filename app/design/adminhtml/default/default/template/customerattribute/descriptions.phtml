@@ -1,0 +1,33 @@
+<?php
+/**
+ * @author Abdullah
+ */
+?>
+
+
+<table cellspacing="0" class="form-list" style="width:100%">
+    <tbody>
+        <tr>
+            <td class="label" style="width:20% !important"><label for="descriptions">Description</label></td>
+            <td class="value" style="width:80%">
+                <div style="width: 73%">
+                    <ul class="messages">
+                        <li class="notice-msg">
+                            <ul>
+                                <li><?php echo Mage::helper('catalog')->__('If you do not specify an option value for a store then the default value will be used.') ?></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <?php $_descriptions = $this->getDescriptionLabelValues() ?>
+                <?php foreach ($this->getStores() as $_store): ?>
+                    <div style="width:35%; display: inline-block;margin-bottom: 15px;margin-right: 20px">
+                        <textarea cols="15" rows="2" class="textarea <?php if($_store->getId()==0): ?> required-option<?php endif; ?>" name="description[<?php echo $_store->getId() ?>]"><?php echo $_descriptions[$_store->getId()] ?></textarea>
+                        <div style="text-align: center;font-weight: bold">[<?php echo $_store->getName() ?>]</div>
+                    </div>
+                <?php endforeach; ?>
+            </td>
+        </tr>
+    </tbody>
+</table>

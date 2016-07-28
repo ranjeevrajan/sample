@@ -1,0 +1,266 @@
+<?php
+/**
+ * Magento Customization
+ * @Author : Abdullah
+ *
+ */
+?>
+
+<?php
+	$height_feet_attr = Mage::getSingleton('eav/config')->getAttribute('customer','height_feet');
+	$height_feet_attr_options = $height_feet_attr->getSource()->getAlloptions();
+	
+	$height_inch_attr = Mage::getSingleton('eav/config')->getAttribute('customer','height_inch');
+	$height_inch_attr_options = $height_inch_attr->getSource()->getAlloptions();
+	
+	//Upper bound rules
+$rules = array(
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>55,'chest'=>34,'jacket_length'=>27.5,'sleeve_inseem'=>16,'outseam'=>36.75,'trousers_inseem'=>27,'rise'=>9.75),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>61,'chest'=>36,'jacket_length'=>27.5,'sleeve_inseem'=>16,'outseam'=>37,'trousers_inseem'=>27,'rise'=>10),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>68,'chest'=>38,'jacket_length'=>28,'sleeve_inseem'=>16,'outseam'=>37,'trousers_inseem'=>26.75,'rise'=>10.25),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>75,'chest'=>40,'jacket_length'=>28,'sleeve_inseem'=>15.5,'outseam'=>37.25,'trousers_inseem'=>26.75,'rise'=>10.5),								
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>82,'chest'=>42,'jacket_length'=>28.25,'sleeve_inseem'=>15.5,'outseam'=>37.5,'trousers_inseem'=>26.75,'rise'=>10.75),
+		
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>68,'chest'=>38,'jacket_length'=>28.5,'sleeve_inseem'=>16.5,'outseam'=>37,'trousers_inseem'=>27,'rise'=>10),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>75,'chest'=>40,'jacket_length'=>28.5,'sleeve_inseem'=>16.5,'outseam'=>38,'trousers_inseem'=>27.5,'rise'=>10.5),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>82,'chest'=>42,'jacket_length'=>29,'sleeve_inseem'=>16.25,'outseam'=>38.5,'trousers_inseem'=>27.5,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>91,'chest'=>44,'jacket_length'=>29,'sleeve_inseem'=>16.25,'outseam'=>39,'trousers_inseem'=>27.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>98,'chest'=>46,'jacket_length'=>29.5,'sleeve_inseem'=>16,'outseam'=>39,'trousers_inseem'=>27,'rise'=>12),
+		
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>70,'chest'=>38,'jacket_length'=>29.5,'sleeve_inseem'=>17,'outseam'=>40,'trousers_inseem'=>29,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>77,'chest'=>40,'jacket_length'=>29.5,'sleeve_inseem'=>17,'outseam'=>40,'trousers_inseem'=>29,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>84,'chest'=>42,'jacket_length'=>30,'sleeve_inseem'=>17,'outseam'=>40.5,'trousers_inseem'=>29,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>93,'chest'=>44,'jacket_length'=>30,'sleeve_inseem'=>17,'outseam'=>40.5,'trousers_inseem'=>28.5,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>100,'chest'=>46,'jacket_length'=>30.5,'sleeve_inseem'=>16.75,'outseam'=>40.5,'trousers_inseem'=>28.5,'rise'=>12),
+		
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>73,'chest'=>38,'jacket_length'=>30.5,'sleeve_inseem'=>17,'outseam'=>41,'trousers_inseem'=>29.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>80,'chest'=>40,'jacket_length'=>30.5,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>86,'chest'=>42,'jacket_length'=>31,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>95,'chest'=>44,'jacket_length'=>31,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>102,'chest'=>46,'jacket_length'=>31.5,'sleeve_inseem'=>17.25,'outseam'=>41,'trousers_inseem'=>28.5,'rise'=>12.5),
+		
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>74,'chest'=>38,'jacket_length'=>31.5,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30.5,'rise'=>11.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>82,'chest'=>40,'jacket_length'=>31.5,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30.5,'rise'=>11.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>89,'chest'=>42,'jacket_length'=>32,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>96,'chest'=>44,'jacket_length'=>32,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>105,'chest'=>46,'jacket_length'=>32.5,'sleeve_inseem'=>18,'outseam'=>42.5,'trousers_inseem'=>30,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>111,'chest'=>48,'jacket_length'=>32.75,'sleeve_inseem'=>17.75,'outseam'=>42.5,'trousers_inseem'=>30,'rise'=>12.5),
+		
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>75,'chest'=>38,'jacket_length'=>32.5,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>83,'chest'=>40,'jacket_length'=>32.5,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>90,'chest'=>42,'jacket_length'=>33,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>98,'chest'=>44,'jacket_length'=>33,'sleeve_inseem'=>19,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>107,'chest'=>46,'jacket_length'=>33.5,'sleeve_inseem'=>19,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>112,'chest'=>48,'jacket_length'=>33.5,'sleeve_inseem'=>18.5,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>77,'chest'=>38,'jacket_length'=>33.5,'sleeve_inseem'=>19.5,'outseam'=>44,'trousers_inseem'=>32.5,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>84,'chest'=>40,'jacket_length'=>33.5,'sleeve_inseem'=>19.5,'outseam'=>45,'trousers_inseem'=>32.5,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>93,'chest'=>42,'jacket_length'=>33.5,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>100,'chest'=>44,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>107,'chest'=>46,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>114,'chest'=>48,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32.5,'rise'=>13.5)
+		
+		);
+	
+?>
+
+<script type="text/javascript">
+	var height_feet_json = <?php echo json_encode($height_feet_attr_options); ?>;
+	var height_inch_json = <?php echo json_encode($height_inch_attr_options); ?>;
+	var height_feet_val='';
+	var height_inch_val='';
+	var body_weight_val='';
+	var upperbound_rules = <?php echo json_encode($rules); ?>;
+	
+	(jQuery)(function(){
+				var slider = jQuery('ul.slider123').bxSlider({
+					infiniteLoop: false,
+					controls: false,
+					pager: false,
+					touchEnabled: false,
+					useCss: false
+				});
+				
+				if( slider ){
+				
+					jQuery('#prev_slide_clone').live('click',function(){
+						slider.goToPrevSlide();
+						jQuery('#prev_slide').show();
+						jQuery('#next_slide').show();
+					});
+					
+					jQuery('#prev_slide').live('click',function(){
+						slider.goToPrevSlide();
+					});
+					
+					jQuery('#next_slide').live('click',function(){					
+						var currentslider = slider.getCurrentSlide();
+						var currentslider_form = jQuery('ul.slider123 li.type').eq(currentslider).find('form');
+						if( currentslider_form ){
+							var form_data = currentslider_form.serialize();
+							
+							//if(currentslider_form.attr('name')=='form_initial_measurement'){
+								var valdation_result = validate_form(currentslider_form,slider.getCurrentSlide());
+							//}
+							
+							if( valdation_result ){
+								//Sending ajax call to the save the attribute value into sales quote
+								jQuery('#next_slide').attr('disabled','disabled');
+								jQuery('#ajax_loader').show();
+								jQuery.ajax({
+									type	: "POST",
+									cache	: false,
+									dataType : 'json',
+									url		: "<?php echo $this->getUrl('measurement/index/saveintocustomer') ?>",
+									data	: form_data,
+									success : function(result){
+										jQuery('#ajax_loader').hide();
+										if(result.status == 'SUCCESS'){
+											slider.goToNextSlide();
+											
+											slider_count = (slider.getSlideCount()-1);
+											if( slider_count==slider.getCurrentSlide() ){
+												jQuery('#prev_slide').hide();
+												jQuery('#next_slide').hide();
+											}
+										}
+										else{
+											alert(result.message);
+										}
+										jQuery('#next_slide').removeAttr('disabled');
+										jQuery.fancybox.resize();
+									},
+									failure : function(){
+										jQuery('#next_slide').removeAttr('disabled');
+									}
+								});
+							} //validation result
+							
+						}
+						
+					});
+				}
+				
+		var checkout_url = '<?php echo $this->getUrl('checkout'); ?>';
+		jQuery('.top-link-checkout').attr('href',checkout_url);		
+			
+		return;
+	});
+
+	function validate_form(form,current_slider)
+	{
+		var form = jQuery(form);
+		var values = form.serializeArray();
+		var count = 0;
+		
+		for (index = 0; index < values.length;++index) {
+			if(values[index].name=='height_feet')
+			{
+				height_feet_val = getAttributeOptionLabel(height_feet_json,values[index].value);
+			}
+			
+			if(values[index].name=='height_inch')
+			{
+				height_inch_val = getAttributeOptionLabel(height_inch_json,values[index].value);
+			}
+			
+			if(values[index].name=='body_weight')
+			{
+				body_weight_val = values[index].value;
+			}
+			
+			if(!values[index].value){
+				count++;
+			}
+		}
+		
+		if(count>0){
+			form.prev('.measurements_error').children('span').html('Please fill in the required fields.');
+			form.prev('.measurements_error').css({'visibility':'visible'});
+			return false;
+		}
+		else{
+			if(current_slider>0){
+				upperbound_check = checkUpperBound(form);
+				if(upperbound_check){
+					if( form.prev('.measurements_error').hasClass('errorin') ){
+						form.prev('.measurements_error').removeClass('errorin')
+						form.prev('.measurements_error').css({'visibility':'hidden'});
+						return true;
+					}
+					form.prev('.measurements_error').addClass('errorin');
+					form.prev('.measurements_error').children('span').html('Value enetered may not be valid. Kindly check it again otherwise goto next.It should be nearby '+upperbound_check);
+					form.prev('.measurements_error').css({'visibility':'visible'});
+					return false;
+				}
+			}
+			form.prev('.measurements_error').css({'visibility':'hidden'});
+			return true;
+		}
+	}
+	
+	function checkUpperBound(form)
+	{
+		/*alert(height_feet_val);
+		alert(height_inch_val);
+		alert(body_weight_val);*/
+		var txt_elmn = form.find("input[type=text]");
+		var txt_name = txt_elmn.attr('name');
+		var upperbound_val = '';
+		/*alert(txt_elmn.val());
+		alert(txt_name);
+		console.log(upperbound_rules);*/
+		for (j = 0; j < upperbound_rules.length; ++j) {
+			if( height_feet_val<=upperbound_rules[j].height_feet && height_inch_val<=upperbound_rules[j].height_inch && body_weight_val<=upperbound_rules[j].body_weight ){
+				switch( txt_name )
+				{
+					case 'chest':
+						upperbound_val = upperbound_rules[j].chest;	
+						break;
+					case 'jacket_length':
+						upperbound_val = upperbound_rules[j].jacket_length;	
+						break;
+					case 'outseam':
+						upperbound_val = upperbound_rules[j].outseam;	
+						break;
+					case 'rise':
+						upperbound_val = upperbound_rules[j].rise;	
+						break;
+					case 'sleeve_inseem':
+						upperbound_val = upperbound_rules[j].sleeve_inseem;	
+						break;
+					case 'trousers_inseem':
+						upperbound_val = upperbound_rules[j].trousers_inseem;	
+						break;
+					default:
+						upperbound_val = '';	
+						break;
+				}
+				//alert(upperbound_val);
+				//alert(txt_elmn.val());
+				if(txt_elmn.val()==upperbound_val){
+					return false;
+				}else{
+					return upperbound_val;
+				}
+				//alert(upperbound_val);
+			}
+		}
+		
+	}
+	
+	function getAttributeOptionLabel(json_configs,val)
+	{
+		for (i = 0; i < json_configs.length; ++i) {
+			if(json_configs[i].value==val){
+				return json_configs[i].label;
+			}
+		}
+		return '';
+	}
+	
+	
+	
+</script>
+
+

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Template Tag
+ *
+ * @category   TemplateTag
+ * @package    TemplateTag_Stripe
+ * @copyright  Copyright (c) 2013 Template Tag Ltd. (https://www.templatetag.com)
+ * @license    https://www.templatetag.com/legal/end-user-licence-agreement/ (Template Tag EULA)
+ * @author     Leon Smith <leon@templatetag.com>
+ */
+-->
+<widgets>
+    <stripe_poweredby type="stripe/poweredby" module="stripe" translate="name description">
+        <name>Powered by Stripe</name>
+        <description type="desc">Adds a Powered by Stripe button</description>
+        <parameters>
+            <style translate="label">
+                <label>Button Style</label>
+                <visible>1</visible>
+                <required>1</required>
+                <type>select</type>
+                <source_model>stripe/system_config_source_poweredby_styles</source_model>
+            </style>
+        </parameters>
+    </stripe_poweredby>
+</widgets>

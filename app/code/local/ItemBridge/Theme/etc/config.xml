@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+ * @category    ItemBridge
+ * @package     ItemBridge_Theme
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+-->
+<config>
+    <modules>
+        <ItemBridge_Theme>
+            <version>0.1</version>
+        </ItemBridge_Theme>
+    </modules>
+
+    <global>
+        <blocks>
+            <ibtheme>
+                <class>ItemBridge_Theme_Block</class>
+            </ibtheme>
+        </blocks>
+
+        <helpers>
+            <ibtheme>
+                <class>ItemBridge_Theme_Helper</class>
+            </ibtheme>
+        </helpers>
+    </global>
+    
+    <default>
+        <ib_theme_design>
+            <general>
+                <store_color>#fdf651</store_color>
+                <store_pattern>bg.png</store_pattern>
+                <store_layout>standart</store_layout>
+                <store_footer>white</store_footer>
+                <store_productGrid>type1</store_productGrid>
+                <store_OptionsPanel>no</store_OptionsPanel>
+            </general>
+        </ib_theme_design>
+    </default>
+    
+    <adminhtml>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <ib_theme_design>
+                                            <title>ItemBridge Design</title>
+                                        </ib_theme_design>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+</config>

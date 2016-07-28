@@ -1,0 +1,26 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="row">
+    <div class="span12">
+        <h1 class="page-title"><?php echo $this->__('Shopping Cart is Empty') ?></h1>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <div class="cart-empty">
+		    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+		    <?php echo $this->getChildHtml('checkout_cart_empty_widget'); ?>
+		    <p><?php echo $this->__('You have no items in your shopping cart.') ?><br>
+		    <?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
+		    <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
+		</div>
+    </div>
+</div>

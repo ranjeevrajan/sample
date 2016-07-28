@@ -1,0 +1,351 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+$config = Mage::getStoreConfig('dresscodeconfig/dresscodeconfig_mainfront');
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<title><?php echo $this->getTitle() ?></title>
+
+<!-- Mobile Specific Metas
+  ================================================== -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+
+
+<link rel="shortcut icon" href="<?php echo $this->getSkinUrl('images/dresscode_images/favicon.ico') ?>">
+<link rel="apple-touch-icon" href="<?php echo $this->getSkinUrl('images/dresscode_images/apple-touch-icon.png') ?>">
+<link rel="apple-touch-icon" sizes="72x72" href="<?php echo $this->getSkinUrl('images/dresscode_images/apple-touch-icon-72x72.png') ?>">
+<link rel="apple-touch-icon" sizes="114x114" href="<?php echo $this->getSkinUrl('images/dresscode_images/apple-touch-icon-114x114.png') ?>">
+<link href='http://fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $config['font']); ?>:200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+
+
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+
+<style type="text/css">
+
+    /*google font*/
+    <?php if ( !empty($config['font']) ) : ?>
+        .cart .page-title h1,
+        #footer h3,
+        #footer_higher h3,
+        .products-list h2.product-name,
+        #slogan,
+        .tabs a,
+        .phone,
+        .block .block-title strong,
+        .cart .discount h2,
+        .cart .shipping h2,
+        .cart .totals tfoot td strong,
+        .sub-title,
+        .product-collateral h2,
+        .page-title h1,
+        button.btn-checkout,
+        button.btn-checkout span,
+        button.btn-checkout span span,
+        .cart .discount .buttons-set button.button,
+        .cart .discount .buttons-set button.button span span,
+        .cart .shipping .buttons-set button.button,
+        .cart .shipping .buttons-set button.button span span,
+        .product-view .product-shop .product-name h1,
+        .product-view .add-to-cart button.button,
+		.panel_title_mid,
+		.product-view .product-shop .price-box .price,
+		.product-view .product-shop .price-box .old-price .price,
+		.product-view .product-shop .price-box .special-price .price,
+		#shopping-cart-totals-table strong .price,
+        .cart-table button.btn-continue, .cart-table button.btn-empty, .cart-table button.btn-update,
+        #login-form .buttons-set button.button, #shipping-method-buttons-container button.button, #payment-buttons-container button.button,
+        button.button, .block-poll .actions button.button, .products-list .product-shop button.button, .product-view .add-to-cart button.button, button.btn-checkout,
+        product-view .product-shop .dresscode_product_custom_block_title,
+        .cms-index-index h1.custom_menu_title{
+            font-family: '<?php echo $config['font']; ?>', sans-serif;
+    }
+        <?php endif; ?>
+
+
+        /*font color*/
+    <?php if ( !empty($config['font_color']) ) : ?>
+        body,a, a:visited{color:<?php echo $config['font_color'] ?>}
+    <?php endif; ?>
+
+
+        /*theme color*/
+    <?php if ( !empty($config['color']) ) : ?>
+    #search input[type="submit"], #search_dresscode input[type="submit"],
+    #footer_button, .carousel-nav a:hover, ul.megamenu a:hover, ul.megamenu a.content-link.mm-item-link-hover,
+    #nav li.over a, #nav a:hover,
+    .es-nav span,
+    .block-poll .actions button.button{
+        background-color:<?php echo $config['color']; ?>
+    }
+
+
+    #nav ul, #nav div {
+        border-top: 3px solid <?php echo $config['color']; ?>
+    }
+
+    #shopping_cart_mini .button,
+    .newsletter_footer_submit button,
+    .products-list .product-shop button.button,
+    .cart-table button.btn-continue,
+    .cart-table button.btn-empty,
+    .cart-table button.btn-update,
+    .product-view .add-to-cart button.button,
+    .box-reviews .form-add button.button,
+
+
+    .cart .checkout-types button.btn-checkout,
+    #shipping-zip-form .buttons-set button.button,
+    #discount-coupon-form .discount-form .buttons-set button.button,
+    .totals .checkout-types button.btn-checkout,
+    #login-form .col2-set button.button{
+        background-color:<?php echo $config['color']; ?>
+    }
+
+    button.button,
+    .block-poll .actions button.button,
+    .products-list .product-shop button.button,
+    .product-view .add-to-cart button.button,
+    #login-form .buttons-set button.button,
+    #shipping-method-buttons-container button.button,
+    #payment-buttons-container button.button,
+    .block-poll .actions button.button,
+    .products-list .product-shop button.button,
+    .product-view .add-to-cart button.button,
+    button.btn-checkout,
+
+
+    .cart .checkout-types button.btn-checkout,
+    #shipping-zip-form .buttons-set button.button,
+    #discount-coupon-form .discount-form .buttons-set button.button,
+    .totals .checkout-types button.btn-checkout,
+    #login-form .col2-set button.button{
+        background: -moz-linear-gradient(center top , transparent, rgba(0, 0, 0, 0.2)) repeat scroll 0 0 <?php echo $config['color']; ?>;
+        background: -webkit-linear-gradient(center top , transparent, rgba(0, 0, 0, 0.2)) repeat scroll 0 0 <?php echo $config['color']; ?>;
+        background: -o-linear-gradient(center top , transparent, rgba(0, 0, 0, 0.2)) repeat scroll 0 0 <?php echo $config['color']; ?>;
+        background: -ms-linear-gradient(center top , transparent, rgba(0, 0, 0, 0.2)) repeat scroll 0 0 <?php echo $config['color']; ?>;
+        background: linear-gradient(center top , transparent, rgba(0, 0, 0, 0.2)) repeat scroll 0 0 <?php echo $config['color']; ?>;
+
+    }
+
+     .special-price .price,
+     #slogan li a:hover {
+        color: <?php echo $config['color']; ?>
+     }
+
+     <?php endif; ?>
+
+
+        /*content bg color*/
+    <?php if ( !empty($config['body_bg_color']) ) : ?>
+        body{background-color:<?php echo $config['body_bg_color']; ?>}
+    <?php endif; ?>
+
+    .cart-table button.btn-continue:hover,
+    .cart-table button.btn-empty:hover,
+    .cart-table button.btn-update:hover{
+        background-color: #999
+    }
+
+    button.button:hover,
+    .product-view .add-to-cart button.button:hover,
+    .block-poll .actions button.button:hover,
+    .products-list .product-shop button.button:hover,
+    .button.btn-checkout:hover,
+
+
+    .cart .checkout-types button.btn-checkout:hover,
+    #login-form .col2-set button.button:hover,
+    #shipping-zip-form .buttons-set button.button:hover,
+    #discount-coupon-form .discount-form .buttons-set button.button:hover,
+    .totals .checkout-types button.btn-checkout:hover{
+        background: <?php echo $config['color']; ?>
+    }
+
+</style>
+
+
+	<!--[if !IE]><!-->
+<style type="text/css">
+	
+	/* 
+	Max width before this PARTICULAR table gets nasty
+	This query will take effect for any screen smaller than 760px
+	and also iPads specifically.
+	*/
+	@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+		/* Force table to not be like tables anymore */
+
+        /* cart table, wishlist table */
+		table#wishlist-table table,
+		table#wishlist-table thead,
+		table#wishlist-table tbody,
+		table#wishlist-table th,
+		table#wishlist-table td,
+		table#wishlist-table tr,
+
+        table.cart-table table,
+        table.cart-table thead,
+        table.cart-table tbody,
+        table.cart-table th,
+        table.cart-table td,
+        table.cart-table tr,
+
+        table#my-orders-table table,
+        table#my-orders-table thead,
+        table#my-orders-table tbody,
+        table#my-orders-table th,
+        table#my-orders-table td,
+        table#my-orders-table tr{
+			border: 0 none;
+			display: block;
+			text-align: left !important;
+		}
+
+		/* Hide table headers (but not display: none;, for accessibility) */
+		.cart-table thead tr,
+        #wishlist-table thead tr,
+        #my-orders-table thead tr{
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+        .cart-table td,
+        #wishlist-table td,
+        #my-orders-table td{
+			/* Behave  like a "row" */
+			border: none;
+			position: relative;
+			padding-left: 50%;
+		}
+		.cart-table td:before,
+        #wishlist-table td:before,
+        #my-orders-table td:before{
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 45%;
+			padding-right: 10px;
+			white-space: nowrap;
+		}
+
+		.cart-table tbody td.a-center,
+        #wishlist-table tbody td.a-right,
+        #my-orders-table tbody td.a-right{text-align:left !important}
+		.cart-table tr.last td.last,
+        #wishlist-table tr.last td.last,
+        #my-orders-table tr.last td.last{ border-bottom: none !important; }
+		.cart-table td,
+        #wishlist-table td,
+        #my-orders-table td{padding: 5px 5px}
+
+		table#shopping-cart-table button.button {margin: 0 0 5px;width: 100%;}
+
+		.cart-table tfoot tr,
+        #wishlist-table tfoot tr,
+        #my-orders-table tfoot tr{ background:none !important; }
+
+		.cart-table tfoot td,
+        #wishlist-table tfoot td,
+        #my-orders-table tfoot td{padding:10px 0px 8px 0px }
+		.cart-table,
+        #wishlist-table,
+        #my-orders-table{border:none; }
+        .cart_item_edit{display:none;}
+        .cart_cells{background-color: #F5F5F5;padding-left: 10px}
+        .cart-table tfoot, #wishlist-table tfoot, #my-orders-table tfoot, #opc-review .buttons-set {
+            border:none
+        }
+        .cart-table .cart_item_label{display: inline;}
+
+        /* wishlist table */
+        #wishlist-table .cart-cell p{clear: both;text-align: left; padding-top: 5px}
+        #wishlist-table td.last{padding-top: 0}
+        #wishlist-table .price-box, .my-wishlist #wishlist-table td .add-to-cart-alt input{display: none;}
+
+        /* wishlist table */
+        #my-orders-table tfoot .subtotal,
+        #my-orders-table tfoot .shipping,
+        #my-orders-table tfoot .grand_total{clear: both;}
+
+        #my-orders-table tfoot .subtotal td.a-right,
+        #my-orders-table tfoot .shipping td.a-right,
+        #my-orders-table tfoot .grand_total td.a-right{float: left;margin-right: 20px}
+
+    }
+
+	</style>
+	<!--<![endif]-->
+
+
+
+
+<?php if($this->helper('dresscodeconfig')->detectMobileDevice()) : ?>
+
+
+<style type="text/css">
+    #back-top,
+    #back-top a,
+    #dresscode_stylepanel{
+        display:none !important;
+    }
+    #back-top, #dresscode_stylepanel{position: absolute; !important;z-index: 0;right: 0}
+    #back-top a{opacity: 0 !important}
+    .tags-list-devices{display:block;}
+    .tagcloud_flash{display:none;}
+</style>
+
+
+
+<?php endif; ?>
+
+

@@ -1,0 +1,29 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php $_product = $this->getProduct() ?>
+
+<?php if($_product->isSaleable()): ?>
+<script type="text/javascript">
+//<![CDATA[
+    var bundle = new Product.Bundle(<?php echo $this->getJsonConfig() ?>);
+//]]>
+</script>
+<?php endif; ?>
+<?php if ($_product->isAvailable()): ?>
+    <span class="availability"><?php echo $this->helper('catalog')->__('Availability:') ?> <span class="in-stock"><?php echo $this->helper('catalog')->__('In stock') ?></span></span>
+<?php else: ?>
+    <span class="availability"><?php echo $this->helper('catalog')->__('Availability:') ?> <span class="out-of-stock"><?php echo $this->helper('catalog')->__('Out of stock') ?></span></span>
+<?php endif; ?>
+<hr>
+<div class="price-box-bundle product-options-six">
+    <?php echo $this->getPriceHtml($_product) ?>
+</div>
+<?php echo $this->getChildHtml('bundle_prices') ?>

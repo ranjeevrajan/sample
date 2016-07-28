@@ -1,0 +1,439 @@
+<?php
+/**
+ * Magento Customization
+ * @Author : Abdullah
+ *
+ */
+?>
+
+
+<?php //if(Mage::helper('measurement')->isPopupshow()): ?>
+
+<?php
+	$height_feet_attr = Mage::getSingleton('eav/config')->getAttribute('customer','height_feet');
+	$height_feet_attr_options = $height_feet_attr->getSource()->getAlloptions();
+	
+	$height_inch_attr = Mage::getSingleton('eav/config')->getAttribute('customer','height_inch');
+	$height_inch_attr_options = $height_inch_attr->getSource()->getAlloptions();
+	
+	$previous_set_body_measurement_values = count($this->getQuoteMeasurement());
+	
+	//Upper bound rules
+$rules = array(
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>55,'chest'=>34,'jacket_length'=>27.5,'sleeve_inseem'=>16,'outseam'=>36.75,'trousers_inseem'=>27,'rise'=>9.75),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>61,'chest'=>36,'jacket_length'=>27.5,'sleeve_inseem'=>16,'outseam'=>37,'trousers_inseem'=>27,'rise'=>10),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>68,'chest'=>38,'jacket_length'=>28,'sleeve_inseem'=>16,'outseam'=>37,'trousers_inseem'=>26.75,'rise'=>10.25),
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>75,'chest'=>40,'jacket_length'=>28,'sleeve_inseem'=>15.5,'outseam'=>37.25,'trousers_inseem'=>26.75,'rise'=>10.5),								
+		array('height_feet'=>5,'height_inch'=>4,'body_weight'=>82,'chest'=>42,'jacket_length'=>28.25,'sleeve_inseem'=>15.5,'outseam'=>37.5,'trousers_inseem'=>26.75,'rise'=>10.75),
+		
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>68,'chest'=>38,'jacket_length'=>28.5,'sleeve_inseem'=>16.5,'outseam'=>37,'trousers_inseem'=>27,'rise'=>10),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>75,'chest'=>40,'jacket_length'=>28.5,'sleeve_inseem'=>16.5,'outseam'=>38,'trousers_inseem'=>27.5,'rise'=>10.5),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>82,'chest'=>42,'jacket_length'=>29,'sleeve_inseem'=>16.25,'outseam'=>38.5,'trousers_inseem'=>27.5,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>91,'chest'=>44,'jacket_length'=>29,'sleeve_inseem'=>16.25,'outseam'=>39,'trousers_inseem'=>27.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>6,'body_weight'=>98,'chest'=>46,'jacket_length'=>29.5,'sleeve_inseem'=>16,'outseam'=>39,'trousers_inseem'=>27,'rise'=>12),
+		
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>70,'chest'=>38,'jacket_length'=>29.5,'sleeve_inseem'=>17,'outseam'=>40,'trousers_inseem'=>29,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>77,'chest'=>40,'jacket_length'=>29.5,'sleeve_inseem'=>17,'outseam'=>40,'trousers_inseem'=>29,'rise'=>11),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>84,'chest'=>42,'jacket_length'=>30,'sleeve_inseem'=>17,'outseam'=>40.5,'trousers_inseem'=>29,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>93,'chest'=>44,'jacket_length'=>30,'sleeve_inseem'=>17,'outseam'=>40.5,'trousers_inseem'=>28.5,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>8,'body_weight'=>100,'chest'=>46,'jacket_length'=>30.5,'sleeve_inseem'=>16.75,'outseam'=>40.5,'trousers_inseem'=>28.5,'rise'=>12),
+		
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>73,'chest'=>38,'jacket_length'=>30.5,'sleeve_inseem'=>17,'outseam'=>41,'trousers_inseem'=>29.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>80,'chest'=>40,'jacket_length'=>30.5,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29.5,'rise'=>11.5),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>86,'chest'=>42,'jacket_length'=>31,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>95,'chest'=>44,'jacket_length'=>31,'sleeve_inseem'=>17.5,'outseam'=>41,'trousers_inseem'=>29,'rise'=>12),
+		array('height_feet'=>5,'height_inch'=>10,'body_weight'=>102,'chest'=>46,'jacket_length'=>31.5,'sleeve_inseem'=>17.25,'outseam'=>41,'trousers_inseem'=>28.5,'rise'=>12.5),
+		
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>74,'chest'=>38,'jacket_length'=>31.5,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30.5,'rise'=>11.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>82,'chest'=>40,'jacket_length'=>31.5,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30.5,'rise'=>11.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>89,'chest'=>42,'jacket_length'=>32,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>96,'chest'=>44,'jacket_length'=>32,'sleeve_inseem'=>18,'outseam'=>42,'trousers_inseem'=>30,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>105,'chest'=>46,'jacket_length'=>32.5,'sleeve_inseem'=>18,'outseam'=>42.5,'trousers_inseem'=>30,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>0,'body_weight'=>111,'chest'=>48,'jacket_length'=>32.75,'sleeve_inseem'=>17.75,'outseam'=>42.5,'trousers_inseem'=>30,'rise'=>12.5),
+		
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>75,'chest'=>38,'jacket_length'=>32.5,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>83,'chest'=>40,'jacket_length'=>32.5,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>90,'chest'=>42,'jacket_length'=>33,'sleeve_inseem'=>19,'outseam'=>43.5,'trousers_inseem'=>31.5,'rise'=>12),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>98,'chest'=>44,'jacket_length'=>33,'sleeve_inseem'=>19,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>107,'chest'=>46,'jacket_length'=>33.5,'sleeve_inseem'=>19,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>2,'body_weight'=>112,'chest'=>48,'jacket_length'=>33.5,'sleeve_inseem'=>18.5,'outseam'=>44,'trousers_inseem'=>31,'rise'=>13),
+		
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>77,'chest'=>38,'jacket_length'=>33.5,'sleeve_inseem'=>19.5,'outseam'=>44,'trousers_inseem'=>32.5,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>84,'chest'=>40,'jacket_length'=>33.5,'sleeve_inseem'=>19.5,'outseam'=>45,'trousers_inseem'=>32.5,'rise'=>12.5),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>93,'chest'=>42,'jacket_length'=>33.5,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>100,'chest'=>44,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>107,'chest'=>46,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32,'rise'=>13),
+		array('height_feet'=>6,'height_inch'=>4,'body_weight'=>114,'chest'=>48,'jacket_length'=>34,'sleeve_inseem'=>19.25,'outseam'=>45,'trousers_inseem'=>32.5,'rise'=>13.5)
+		
+		);
+	
+?>
+
+<script type="text/javascript">
+jQuery.noConflict();
+jQuery(document).ready(function() {
+	/////////////////
+	<?php if(Mage::getSingleton('checkout/cart')->getSummaryQty()<=0): ?>
+		jQuery('#top_checkout_link').removeClass('top-link-checkout');
+	<?php endif; ?>
+
+	var height_feet_json = <?php echo json_encode($height_feet_attr_options); ?>;
+	var height_inch_json = <?php echo json_encode($height_inch_attr_options); ?>;
+	var height_feet_val='';
+	var height_inch_val='';
+	var body_weight_val='';
+	var upperbound_rules = <?php echo json_encode($rules); ?>;
+	
+	jQuery('.btn-proceed-checkout,.top-link-checkout,.view-shopping-cart').on('click',function(event){
+		jQuery('.btn-proceed-checkout').attr('disabled','disabled');
+		if (jQuery('.top-link-checkout').data("disabled")) {
+			event.preventDefault();
+			return false;
+		}
+		jQuery('.top-link-checkout').data('disabled','disabled');
+		
+		
+		<?php
+			$measurement_mode = '';
+			if(Mage::app()->getFrontController()->getRequest()->getControllerName()=='onepage')
+			{
+				$measurement_mode = 'onepage';
+			}
+		?>
+		
+		var mode = '<?php echo $measurement_mode; ?>';
+		jQuery.fancybox.showActivity();
+		jQuery.ajax({
+			type	: "GET",
+			cache	: false,
+			dataType : 'json',
+			url		: "<?php echo $this->getUrl('measurement/index/measurement') ?>",
+			//data	: $(this).serializeArray(),
+			success : function(data) {
+				if(data.ispopupopen){		
+					jQuery.fancybox({
+						hideOnOverlayClick: false,
+						centerOnScroll:true,
+						enableEscapeButton:false,
+						padding:0,
+						showCloseButton:false,
+						content:data.html,
+						onComplete: function(){
+							///////////////////////
+							check_all_for_filled(data.count_save_measurement_in_quote);
+						},
+						onClosed: function(){
+							if(mode=='onepage'){
+								window.location = '<?php echo $this->getUrl('checkout/onepage') ?>';
+							}
+							if(slider){
+								slider.destroySlider();
+								jQuery('#next_slide').off( "click" );
+								jQuery('#prev_slide').off( "click" );
+								jQuery('#prev_slide_clone').off( "click" );
+							}
+						},
+					});				
+					
+					var slider = jQuery('ul.slider123').bxSlider({
+						infiniteLoop: false,
+						controls: false,
+						pager: false,
+						touchEnabled: false,
+						useCss: false
+					});
+					
+					jQuery.fancybox.resize();
+		
+					///////////////////////
+					check_all_for_filled('<?php echo $previous_set_body_measurement_values ?>');
+					
+					if( slider ){
+					
+						var jwplay = new Array();
+						var jwplay_instance = {};
+						jQuery('ul.slider123 li.sliderli').each(function(index){
+							this.lielmn = jQuery(this);
+							this.jwplay_class = this.lielmn.find('.videoplayclass');
+							jwplay_instance = {};
+							if(this.jwplay_class.length>0)
+							{
+								this.videoelement_id = this.jwplay_class.attr('id');
+								jwplay_instance = jwplayer(this.videoelement_id).setup({
+									file: this.jwplay_class.attr('videopath'),
+									height: 300,
+									width: 400,
+									image: '<?php echo $this->getSkinUrl('images/measurement/shirt-neck.png') ?>'
+								});
+								jwplay_instance.exists = 1;
+							}
+							else{
+								jwplay_instance.exists = 0;
+							}
+							jwplay.push(jwplay_instance);
+						});
+						
+						jQuery('#next_slide').on('click',function(){
+							var active_slide = jQuery('ul.slider123 li.type').eq(slider.getCurrentSlide());
+							var current_jwplay = jwplay[slider.getCurrentSlide()];
+							if(current_jwplay.exists==1){
+								
+								if(current_jwplay.getState()=='PLAYING' || current_jwplay.getState()=='BUFFERING')
+									current_jwplay.pause();
+							}
+						});
+						
+						jQuery('#prev_slide').on('click',function(){
+							var active_slide = jQuery('ul.slider123 li.type').eq(slider.getCurrentSlide());
+							var current_jwplay = jwplay[slider.getCurrentSlide()];
+							if(current_jwplay.exists==1){
+								
+								if(current_jwplay.getState()=='PLAYING' || current_jwplay.getState()=='BUFFERING')
+									current_jwplay.pause();
+							}
+						});
+						
+					
+						var width_progress_bar = ((slider.getCurrentSlide()+1)/slider.getSlideCount())*100;
+						jQuery('#progress_bar').css({width:width_progress_bar+'%'});
+						jQuery('#prev_slide_clone').on('click',function(){
+							slider.goToPrevSlide();
+							width_progress_bar = ((slider.getCurrentSlide()+1)/slider.getSlideCount())*100;
+							jQuery('#progress_bar').css({width:width_progress_bar+'%'});
+							jQuery('#prev_slide').show();
+							jQuery('#next_slide').show();
+							jQuery('#proceed_to_checkout').css({display:'inline'});
+						});
+						
+						jQuery('#prev_slide').on('click',function(){
+							slider.goToPrevSlide();
+							width_progress_bar = ((slider.getCurrentSlide()+1)/slider.getSlideCount())*100;
+							jQuery('#progress_bar').css({width:width_progress_bar+'%'});
+						});
+						
+						jQuery('#next_slide').on('click',function(){					
+							var currentslider = slider.getCurrentSlide();
+							var currentslider_form = jQuery('ul.slider123 li.type').eq(currentslider).find('form');
+							if( currentslider_form ){
+								var form_data = currentslider_form.serialize();
+								
+								//if(currentslider_form.attr('name')=='form_initial_measurement'){
+									var valdation_result = validate_form(currentslider_form,slider.getCurrentSlide());
+								//}
+								
+								if( valdation_result ){
+									//Sending ajax call to the save the attribute value into sales quote
+									jQuery('#next_slide').attr('disabled','disabled');
+									jQuery('#ajax_loader').show();
+									jQuery.ajax({
+										type	: "POST",
+										cache	: false,
+										dataType : 'json',
+										url		: "<?php echo $this->getUrl('measurement/index/saveintoquote') ?>",
+										data	: form_data,
+										success : function(result){
+											jQuery('#ajax_loader').hide();
+											if(result.status == 'SUCCESS'){
+												slider.goToNextSlide();
+												width_progress_bar = ((slider.getCurrentSlide()+1)/slider.getSlideCount())*100;
+												jQuery('#progress_bar').css({width:width_progress_bar+'%'});
+												
+												///////////////////////
+												check_all_for_filled(result.count_save_measurement_in_quote);
+												
+												slider_count = (slider.getSlideCount()-1);
+												if( slider_count==slider.getCurrentSlide() ){
+													jQuery('#prev_slide').hide();
+													jQuery('#next_slide').hide();
+													jQuery('#proceed_to_checkout').hide();
+												}
+											}
+											else{
+												alert(result.message);
+											}
+											jQuery('#next_slide').removeAttr('disabled');
+											//jQuery.fancybox.resize();
+										},
+										failure : function(){
+											jQuery('#next_slide').removeAttr('disabled');
+										}
+									});
+								} //validation result
+							}
+							
+						});
+					}
+					
+					jQuery('#prev_slide').on('click',function(){
+						jQuery.fancybox.resize();
+					});
+					jQuery('#next_slide').on('click',function(){
+						jQuery.fancybox.resize();
+					});
+					
+					jQuery('.btn-proceed-checkout').removeAttr('disabled');
+					jQuery('.top-link-checkout').removeData('disabled');
+				}
+				else{
+					jQuery.fancybox.hideActivity();
+					window.location = '<?php echo $this->getUrl('checkout'); ?>';
+				}
+			},
+			failure: function(){
+				jQuery('.btn-proceed-checkout').removeAttr('disabled');
+				jQuery('.top-link-checkout').removeData('disabled');
+			}
+		});
+		return false;
+	});
+
+	function validate_form(form,current_slider)
+	{
+		var form = jQuery(form);
+		var values = form.serializeArray();
+		var count = 0;
+		
+		for (index = 0; index < values.length;++index) {
+			if(values[index].name=='height_feet')
+			{
+				height_feet_val = getAttributeOptionLabel(height_feet_json,values[index].value);
+			}
+			
+			if(values[index].name=='height_inch')
+			{
+				height_inch_val = getAttributeOptionLabel(height_inch_json,values[index].value);
+			}
+			
+			if(values[index].name=='body_weight')
+			{
+				body_weight_val = values[index].value;
+			}
+			
+			if(!values[index].value){
+				count++;
+			}
+		}
+		
+		if(count>0){
+			form.prev('.measurements_error').children('span').html('<?php echo $this->__("Please fill in the required fields.") ?>');
+			//form.prev('.measurements_error').css({'visibility':'visible'});
+			form.prev('.measurements_error').css({'display':'block'});
+			return false;
+		}
+		else{
+			if(current_slider>5){    //this value need to be changed if body shape get increased.
+				upperbound_check = checkUpperBound(form);
+				if(upperbound_check){
+					if( form.prev('.measurements_error').hasClass('errorin') ){
+						form.prev('.measurements_error').removeClass('errorin')
+						//form.prev('.measurements_error').css({'visibility':'hidden'});
+						form.prev('.measurements_error').css({'display':'none'});
+						return true;
+					}
+					form.prev('.measurements_error').addClass('errorin');
+					form.prev('.measurements_error').children('span').html('<?php echo $this->__("Value enetered may not be valid. Kindly check it again otherwise goto next.It should be nearby") ?> '+upperbound_check);
+					//form.prev('.measurements_error').css({'visibility':'visible'});
+					form.prev('.measurements_error').css({'display':'block'});
+					return false;
+				}
+			}
+			//form.prev('.measurements_error').css({'visibility':'hidden'});
+			form.prev('.measurements_error').css({'display':'none'});
+			return true;
+		}
+	}
+	
+	function checkUpperBound(form)
+	{
+		/*alert(height_feet_val);
+		alert(height_inch_val);
+		alert(body_weight_val);*/
+		var txt_elmn = form.find("input[type=text]");
+		var txt_name = txt_elmn.attr('name');
+		var upperbound_val = '';
+		/*alert(txt_elmn.val());
+		alert(txt_name);
+		console.log(upperbound_rules);*/
+		for (j = 0; j < upperbound_rules.length; ++j) {
+			if( height_feet_val<=upperbound_rules[j].height_feet && height_inch_val<=upperbound_rules[j].height_inch && body_weight_val<=upperbound_rules[j].body_weight ){
+				switch( txt_name )
+				{
+					case 'chest':
+						upperbound_val = upperbound_rules[j].chest;	
+						break;
+					case 'jacket_length':
+						upperbound_val = upperbound_rules[j].jacket_length;	
+						break;
+					case 'outseam':
+						upperbound_val = upperbound_rules[j].outseam;	
+						break;
+					case 'rise':
+						upperbound_val = upperbound_rules[j].rise;	
+						break;
+					case 'sleeve_inseem':
+						upperbound_val = upperbound_rules[j].sleeve_inseem;	
+						break;
+					case 'trousers_inseem':
+						upperbound_val = upperbound_rules[j].trousers_inseem;	
+						break;
+					default:
+						upperbound_val = '';	
+						break;
+				}
+				
+				//alert(txt_elmn.val());
+				//alert(upperbound_val);
+				if(txt_elmn.val()==upperbound_val){
+					return false;
+				}else{
+					return upperbound_val;
+				}
+				//alert(upperbound_val);
+			}
+		}
+		
+	}
+	
+	function getAttributeOptionLabel(json_configs,val)
+	{
+		for (i = 0; i < json_configs.length; ++i) {
+			if(json_configs[i].value==val){
+				return json_configs[i].label;
+			}
+		}
+		return '';
+	}
+	
+	function check_all_for_filled(final_count)
+	{
+		var all_form = jQuery('ul.slider123 li.type').find('form');
+		var tot_count = 0;
+		var this_count = 0;
+		for(l=0;l<all_form.length;++l)
+		{
+			//this_form_data = all_form[l].serialize();
+			//console.log(this_form_data);
+			//var this_form = jQuery(this_form_data);
+			var this_form_values = jQuery(all_form[l]).serializeArray();
+			
+			for (m = 0; m < this_form_values.length;++m) {
+				//console.log(this_form_values[m]);
+				if(this_form_values[m].value){
+					this_count++;
+				}
+				tot_count++;
+			}
+		}
+		
+		if(tot_count==final_count){
+			jQuery('#fancybox-close').css({display:'inline'});
+			jQuery('#proceed_to_checkout').css({display:'inline'});
+		}else{
+			jQuery('#fancybox-close').css({display:'none'});
+			jQuery('#proceed_to_checkout').css({display:'none'});
+		}
+	}
+});	
+</script>
+
+<?php //endif; ?>

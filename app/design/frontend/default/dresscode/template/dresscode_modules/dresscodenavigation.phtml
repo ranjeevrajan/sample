@@ -1,0 +1,27 @@
+<?php $_menu = $this->renderCategoriesMenuHtml(0, 'level-top') ?>
+<?php if($_menu): ?>
+<nav  id="main_menu_outer"  >
+    <ul id="nav">
+
+        <li>
+            <a href="<?php echo $this->getUrl('') ?>" class="image-link">
+                <span><img src="<?php echo $this->getSkinUrl('images/dresscode_images/icon_home.png') ?>" alt=""></span>
+            </a>
+        </li>
+        
+        <?php
+            echo $_menu;
+            echo '
+            <li id="menu_custom_block" class="level0 parent level-top">
+                <a href="#" class="level-top">
+                    <span>'.Mage::getModel('cms/block')->load('dresscode_menu_custom_block')->getTitle().'</span>
+                </a>
+                <div class="menu_custom_block">'.$this->getLayout()->createBlock('cms/block')->setBlockId('dresscode_menu_custom_block')->toHtml().'</div>
+
+            </li>';
+
+        ?>
+    </ul>
+</nav>
+<?php endif ?>
+

@@ -1,0 +1,17 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="product-options span5 pull-right" id="product-options-wrapper">
+    <div class="row"><?php echo $this->getChildHtml('', true, true);?></div>
+    <?php if ($this->hasRequiredOptions()):?>
+        <p class="required-field pull-right"><?php echo $this->__('* Required Fields') ?></p>
+    <?php endif;?>
+</div>
+<script type="text/javascript">decorateGeneric($$('#product-options-wrapper dl'), ['last']);</script>

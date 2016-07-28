@@ -1,0 +1,40 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+
+/**
+ * Category left navigation
+ *
+ * @see Mage_Catalog_Block_Navigation
+ */
+?>
+<?php if (!Mage::registry('current_category')) return ?>
+<?php $_categories = $this->getCurrentChildCategories() ?>
+<?php $_count = is_array($_categories)?count($_categories):$_categories->count(); ?>
+<?php if($_count): ?>
+<div class="block block-layered-nav filter">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Browse By') ?></span></strong>
+    </div>
+    <span>&nbsp;</span>
+    <div class="block-content">
+        <div class="nested-header"><?php echo $this->__('Category') ?></div>
+        <ul id="narrow-by-list2" class="option">
+            <?php foreach ($_categories as $_category): ?>
+                <?php if($_category->getIsActive()): ?>
+                <li>
+                    <span class="arrow">&nbsp;</span><a href="<?php echo $this->getCategoryUrl($_category) ?>"<?php if ($this->isCategoryActive($_category)): ?> class="current"<?php endif; ?>><?php echo $this->htmlEscape($_category->getName()) ?> (<?php echo $_category->getProductCount() ?>)</a> 
+                </li>
+                <?php endif; ?>
+            <?php endforeach ?>
+        </ul>
+        <script type="text/javascript">decorateDataList('narrow-by-list2')</script>
+    </div>
+</div>
+<?php endif; ?>

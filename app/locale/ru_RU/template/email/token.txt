@@ -1,0 +1,3 @@
+Your authorization to {{htmlescape var=$applicationName}} has been changed to {{htmlescape var=$status}} by Admin team.
+
+Ваш разрешение на {{htmlescape var=$applicationName}} был изменен на {{htmlescape var=$status}} по команде администратора.

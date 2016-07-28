@@ -1,0 +1,37 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+/**
+ * Category image template
+ *
+ * @see Mage_Catalog_Block_Category_View
+ */
+?>
+<?php
+    $_category  = $this->getCurrentCategory();
+    $_image_url = $_category->getImageUrl();
+?>
+<?php if ($_image_url): ?>
+
+<div class="category-logo" style="background: url('<?php echo $_image_url ?>') no-repeat center center;">
+    <div class="cat-logo-top"><div class="ctlb-line"></div></div>
+    <div class="cat-title">
+        <div class="cat-title-cont"><?php echo $this->htmlEscape($_category->getName()) ?></div>
+    </div>
+    <a href="#" class="cat-logo-close"></a>
+    <div class="cat-logo-bottom"><div class="ctlb-line"></div></div>
+</div>
+<?php /*
+<div class="block category-image-block">
+    <h1><?php echo $this->htmlEscape($_category->getName()) ?></h1>
+    <img src="<?php echo $_image_url ?>" alt="<?php echo $this->htmlEscape($_category->getName()) ?>" title="<?php echo $this->htmlEscape($_category->getName()) ?>"/>
+</div>*/ ?>
+<?php endif ?>

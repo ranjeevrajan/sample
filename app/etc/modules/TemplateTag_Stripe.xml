@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Template Tag
+ *
+ * @category   TemplateTag
+ * @package    TemplateTag_Stripe
+ * @copyright  Copyright (c) 2013 Template Tag Ltd. (https://www.templatetag.com)
+ * @license    https://www.templatetag.com/legal/end-user-licence-agreement/ (Template Tag EULA)
+ * @author     Leon Smith <leon@templatetag.com>
+ */
+-->
+<config>
+    <modules>
+        <TemplateTag_Stripe>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Mage_Payment />
+                <Mage_Cms />
+            </depends>
+        </TemplateTag_Stripe>
+    </modules>
+</config>

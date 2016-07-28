@@ -1,0 +1,175 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<div class="navbar-static-top navbar">
+    <div class="container-box top-box">
+        <?php if ($this->getIsHomePage()): ?>
+        <span class="brand" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></span>
+        <?php else: ?>
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="brand"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>
+        <?php endif ?>
+        <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <div class="icon-container">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </div>
+            <div class="title-menu">Menu</div>
+        </a>
+        <?php echo $this->getChildHtml('header_top_menu_block') ?>
+        <ul class="nav pull-right nav-top-right">
+            <?php echo $this->getChildHtml('store_language') ?>
+            <?php echo $this->getChildHtml('header_currency') ?>
+            <?php echo $this->getChildHtml('cart_sidebar') ?>
+        </ul>
+    </div>
+</div>
+<div class="second-top-box">
+    <div class="container-box">
+        <span class="welcome-msg pull-left"><?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?></span>
+        <?php if ($block_html = $this->getChildHtml('topLinks')): ?>
+        <?php echo $block_html ?>
+        <?php endif ?>
+    </div>
+</div>
+<?php if ($this->getChildHtml('topMenu') !== "") : ?>
+<div class="container-box">
+    <div class="container main-menu">
+        <div class="navbar">
+            <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".navbar-main">
+                <div class="icon-container">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </div>
+                <div class="title-menu"><?php echo $this->__('Category') ?></div>
+            </a>
+            <?php echo $this->getChildHtml('topMenu') ?>
+            <?php echo $this->getChildHtml('topSearch') ?>
+        </div>
+    </div>
+</div>
+<?php endif ?>
+<div class="site-container">
+    <?php
+    if ($this->getIsHomePage()) {
+        echo $this->getChildHtml('home_header');
+    } else if (strpos($this->helper('core/url')->getCurrentUrl(), "sitemap")) {
+        echo $this->getChildHtml('customer_header');
+    } else if (Mage::app()->getFrontController()->getRequest()->getRouteName() == "catalog"){
+        echo $this->getChildHtml('catalog_header');
+    } else {
+        echo $this->getChildHtml('customer_header');
+    }
+    ?>
+</div>
+<?php if (Mage::getStoreConfig('ib_theme_design/general/store_OptionsPanel') == 'yes') : ?>
+<div id="options-panel">
+    <div class="options">
+        <div class="center layout">
+            <label>Layout</label><br><br>
+            <a href="#" class="standart active">standart</a>
+            <a href="#" class="boxed">boxed</a>
+            <a href="#" class="wide">wide</a>
+            <div class="clearfix"></div>
+            <hr>
+        </div>
+        <div class="left">
+            <label>Color</label>
+            <input class="minicolors" type="text" value="#fff84b" data-default-value="#fff84b"><br>
+            <br>
+            <div class="color-box">
+                <div class="color-scheme" style="background-color: #e1ff69;" data-color="#e1ff69"></div>
+                <div class="color-scheme" style="background-color: #93ff4b;" data-color="#93ff4b"></div>
+                <div class="color-scheme" style="background-color: #4bff5c;" data-color="#4bff5c"></div>
+                <div class="color-scheme" style="background-color: #4bffa8;" data-color="#4bffa8"></div>
+                <div class="color-scheme" style="background-color: #97feff;" data-color="#97feff"></div>
+                <div class="color-scheme" style="background-color: #4bffd7;" data-color="#4bffd7"></div>
+                <div class="color-scheme" style="background-color: #4bfff0;" data-color="#4bfff0"></div>
+                <div class="color-scheme" style="background-color: #4bdbff;" data-color="#4bdbff"></div>
+                <div class="color-scheme" style="background-color: #5eb5ff;" data-color="#5eb5ff"></div>
+                <div class="color-scheme" style="background-color: #a4b3ff;" data-color="#a4b3ff"></div>
+                <div class="color-scheme" style="background-color: #cd62ff;" data-color="#cd62ff"></div>
+                <div class="color-scheme" style="background-color: #ff67ab;" data-color="#ff67ab"></div>
+                <div class="color-scheme" style="background-color: #ff819f;" data-color="#ff819f"></div>
+                <div class="color-scheme" style="background-color: #ff97f6;" data-color="#ff97f6"></div>
+                <div class="color-scheme" style="background-color: #ffba69;" data-color="#ffba69"></div>
+                <div class="color-scheme" style="background-color: #ff865c;" data-color="#ff865c"></div>
+            </div>
+            <div class="clearfix"></div>
+            <a href="#" class="reset-theme-color">Default Color</a>
+            <div class="clearfix"></div>
+        </div>
+        <div class="right">
+            <label>Patterns</label>
+            <div class="clearfix"></div>
+            <div class="patterns-box" style="background: red;">
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/bgnoise_lg.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/bgnoise_lg.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/black_linen_v2.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/black_linen_v2.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/black_scales.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/black_scales.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/carbon_fibre_v2.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/carbon_fibre_v2.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/cardboard.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/cardboard.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/circles.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/circles.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/crissXcross.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/crissXcross.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/crosses.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/crosses.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/cubes.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/cubes.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/dark_brick_wall.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/dark_brick_wall.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/dark_circles.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/dark_circles.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/dark_leather.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/dark_leather.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/dark_mosaic.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/dark_mosaic.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/diagonal-noise.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/diagonal-noise.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/diamonds.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/diamonds.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/elastoplast.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/elastoplast.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/elegant_grid.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/elegant_grid.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/fancy_deboss.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/fancy_deboss.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/felt.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/felt.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/flowers.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/flowers.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/gold_scale.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/gold_scale.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/green_dust_scratch.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/green_dust_scratch.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/inflicted.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/inflicted.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/light_alu.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/light_alu.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/light_checkered_tiles.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/light_checkered_tiles.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/littleknobs.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/littleknobs.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/mirrored_squares.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/mirrored_squares.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/noise_pattern_with_crosslines.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/noise_pattern_with_crosslines.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/paven.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/paven.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/polaroid.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/polaroid.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/pool_table.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/pool_table.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/project_papper.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/project_papper.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/real_cf.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/real_cf.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/rip_jobs.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/rip_jobs.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/robots.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/robots.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/roughcloth.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/roughcloth.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/rubber_grip.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/rubber_grip.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/silver_scales.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/silver_scales.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/small_tiles.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/small_tiles.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/soft_circle_scales.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/soft_circle_scales.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/square_bg.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/square_bg.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/squares.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/squares.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/stucco.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/stucco.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/triangles.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/triangles.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/type.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/type.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/washi.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/washi.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/white_texture.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/white_texture.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/whitey.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/whitey.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/woven.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/woven.png') ?>"></div>
+                <div class="pattern-scheme" style="background: url('<?php echo $this->getSkinUrl('img/patterns/xv.png') ?>');" data-pattern="<?php echo $this->getSkinUrl('img/patterns/xv.png') ?>"></div>
+            </div>
+            <div class="clearfix"></div>
+            <a href="#" class="reset-theme-pattern">Default Pattern</a>
+        </div>
+    </div>
+    <div class="button">&nbsp;</div>
+</div>
+<?php endif; ?>

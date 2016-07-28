@@ -1,0 +1,52 @@
+<!--@subject Meetlive Form@-->
+<!--@vars
+{"var name":"Sender Name",
+"var email":"Sender Email",
+"var comment":"Comment"}
+@-->
+<!--@styles
+body,td { color:#2f2f2f; font:13px Verdana, Arial, Helvetica, sans-serif; }
+@-->
+
+<body style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px; margin:0; padding:0;">
+    <div style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:13px; margin:0; padding:0;">
+        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+            <tr>
+                <td align="center" valign="top" style="padding:20px 0 20px 0">
+                    <table bgcolor="#FFFFFF" cellspacing="0" cellpadding="10" border="0" width="500" style="border:1px solid #E0E0E0;">
+                        <tr>
+                            <td colspan="2" style="background-color: #E1E0E5; border-color:#e1e0e5; color: #000;">Nominations VESTORO</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold" width="25%">nom</td>
+                            <td>{{var name}}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold">E-mail</td>
+                            <td>{{var email}}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold">mobile</td>
+                            <td>{{var telephone}}</td>
+                        </tr>
+						<tr>
+                            <td style="font-weight: bold">Sélection des dates</td>
+                            <td>{{var day}}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold">Ville la plus proche</td>
+                            <td>{{var nearest_city}}</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: bold">Temps approprié</td>
+                            <td>{{var suitable_time}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Votre rendez-vous a été réservé avec VESTORO. Notre équipe vous répondra dans les 24 heures, sinon plus tôt.</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>

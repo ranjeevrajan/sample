@@ -1,0 +1,29 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+/**
+ * Currency switcher
+ *
+ * @see Mage_Directory_Block_Currency
+ */
+?>
+<?php if($this->getCurrencyCount()>1): ?>
+<li class="dropdown block-currency">
+    <a href="#" data-toggle="dropdown"><?php echo Mage::app()->getStore()->getCurrentCurrencyCode() ?><span class="arrow"></span></a>
+    <ul class="dropdown-menu links currency">
+    <?php foreach ($this->getCurrencies() as $_code => $_name): ?>
+        <li>
+            <a href="<?php echo $this->getSwitchCurrencyUrl($_code) ?>"><?php echo $_code /*$this->htmlEscape($_name) Mage::app()->getLocale()->currency($_code)->getSymbol()*/ ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+</li>
+<?php endif ?>

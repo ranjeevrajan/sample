@@ -1,0 +1,34 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+<div class="block block-wishlist">
+    <div class="block-title">
+        <strong><span><?php echo $this->getTitle(); ?></span></strong>
+    </div>
+    <div class="block-content wishlist-block">
+        <?php if ($this->hasWishlistItems()): ?>
+        <ul class="mini-products-list" id="wishlist-sidebar">
+         <?php foreach ($this->getWishlistItems() as $_item): ?>
+            <?php $product = $_item->getProduct(); ?>
+            <li class="item">
+                <a href="<?php echo $this->getItemRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the wishlist?') ?>');" class="btn-remove close"><?php echo $this->__('Remove This Item') ?></a>
+                <a href="<?php echo $this->getProductUrl($_item) ?>" class="title"><?php echo $this->escapeHtml($product->getName()) ?></a>
+            </li>
+        <?php endforeach; ?>
+        </ul>
+        <script type="text/javascript">decorateList('wishlist-sidebar');</script>
+        <a href="<?php echo $this->helper('wishlist')->getListUrl() ?>" class="btn btn-primary"><?php echo $this->__('Go to Wishlist') ?></a>
+        <?php else: ?>
+            <p class="empty"><?php echo $this->__('You have no items in your wishlist.') ?></p>
+        <?php endif ?>
+    </div>
+</div>
+<?php endif ?>

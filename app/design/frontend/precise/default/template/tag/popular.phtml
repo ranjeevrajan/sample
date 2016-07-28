@@ -1,0 +1,25 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="block block-tags">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Popular Tags'); ?></span></strong>
+    </div>
+    <div class="block-content">
+        <div class="tags-list tags">
+            <?php foreach ($this->getTags() as $_tag): ?>
+                <a href="<?php echo $_tag->getTaggedProductsUrl() ?>" style="font-size:<?php echo $_tag->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_tag->getName()) ?></a>
+            <?php endforeach; ?>
+        </div>
+        <div class="actions">
+            <a href="<?php echo $this->getUrl('tag/list') ?>" class="btn-link pull-right"><?php echo $this->__('View All Tags') ?></a>
+        </div>
+    </div>
+</div>

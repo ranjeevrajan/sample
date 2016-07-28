@@ -1,0 +1,68 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+function CategoryImg($category_id){
+	if (Mage::getModel('catalog/category')->load($category_id)->getImageUrl() !== false){
+		return Mage::getModel('catalog/category')->load($category_id)->getImageUrl();
+	} else {
+		$category = Mage::getModel('catalog/category')->load($category_id);
+		if (!$category->parent_id)
+			return false;
+		else{
+			return CategoryImg($category->parent_id);
+		}
+	}
+}
+function CategoryHeaderHtml($category_id){
+	if (Mage::getModel('catalog/category')->load($category_id)->getDescription() !== NULL) {
+		$description = explode('[category_header_html]', Mage::getModel('catalog/category')->load($category_id)->getDescription());
+		if ($description[1] !== NULL) {
+			return $description[1];
+		} else {
+			$category = Mage::getModel('catalog/category')->load($category_id);
+			if (!$category->parent_id)
+				return false;
+			else{
+				return CategoryHeaderHtml($category->parent_id);
+			}
+		}
+	} else {
+		$category = Mage::getModel('catalog/category')->load($category_id);
+		if (!$category->parent_id)
+			return false;
+		else{
+			return CategoryHeaderHtml($category->parent_id);
+		}
+	}
+}
+?>
+<div class="header-one-box">
+	<ul id="header-one">
+	<li>
+		<?php
+		if (Mage::registry('current_category')) {
+			$id = Mage::registry('current_category')->getId();
+		} else {
+			$id = Mage::registry('current_product')->getCategoryId();
+		}
+    	$description = CategoryHeaderHtml($id);
+    	$src = CategoryImg($id);
+		if($src == null){
+			$src="http://www.vestoro.com/media/catalog/category/top-banner_4.jpg";
+		}
+		?>
+	
+		<img src="<?php echo $src ?>">
+
+		<?php echo $description ?>
+	</li>
+</ul>
+</div>

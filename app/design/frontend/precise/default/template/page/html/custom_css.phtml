@@ -1,0 +1,73 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<style type="text/css">
+
+/* General */
+<?php
+$ibtheme = $this->helper('ibtheme');
+?>
+<?php
+$hex = Mage::getStoreConfig('ib_theme_design/general/store_color');
+$rgb = $ibtheme->hex2rgb($hex);
+$bg = Mage::getStoreConfig('ib_theme_design/general/store_pattern');
+$src = Mage::getBaseUrl('skin') . "frontend/precise/default/img/";
+print <<<HERE
+body.wide,
+body{background: url('{$src}patterns/{$bg}');}
+HERE;
+if ($hex !== "#fdf651") {
+	$hex_a_color = "#222222";
+	$hex_a = $hex;
+	print <<<HERE
+#header-third .nested-header-box .slider-header .right a.selected:hover,
+.carousel-pager.one a.selected:hover{
+background-color: #444444!important;
+}
+.search-button{
+background-color: rgba(0, 0, 0, .7);
+}
+.main-menu .navbar .nav, #header-two .title .slider-button, #header-one .title .slider-button, #header-third .title .slider-button, .header-four-box .image-box .main-img .title .slider-button, .header-seven-box .image-box .main-img .title .slider-button, .btn-ads span, .main-menu .navbar .btn-navbar, .read_more span{
+border-color: rgba(0, 0, 0, .3)!important;
+}
+.product-grid .product-caption .cart-button .compaire-link, .product-grid .product-caption .cart-button .wishlist-link{
+color: #222222;
+}
+.product-grid .product-caption .cart-button .wishlist-link{
+background: url('{$src}black-wishlist-icon.png') no-repeat left 50%;
+}
+.product-grid .product-caption .cart-button .compaire-link{
+background: url('{$src}black-compare-icon.png') no-repeat left 50%;
+}
+HERE;
+} else {
+	$hex_a_color = "#ffffff";
+	$hex_a = "#ad8020";
+}
+?>
+.main-menu .navbar, #options-panel .button, .product-grid .product-caption .inner, .header-two-next:hover, .header-two-box-next:hover ~ .header-two-next, .header-two-prev:hover, .header-two-box-prev:hover ~ .header-two-prev, .carousel-pager.one a:hover, .carousel-next:hover, .carousel-prev:hover, .product-grid .product-caption .price, .header-two-box .header-two-pager a.selected, .package .label, .services .small .icon, .carousel-grid.brands.services li .icon, .portfolio .image .hover, .container.newsletter-bottom-block .image, .baner-new-next:hover, .baner-new-prev:hover, #baner-new-pager > a.selected, #sidebar-baners-pager > a.selected, .header-third-box .header-third-pager a.selected, .header-third-prev:hover, .header-third-next:hover, .header-third-box-next:hover ~ .header-third-next, .header-third-box-prev:hover ~ .header-third-prev, #header-third .nested-header-box .slider-header .right a:hover, .btn-ads, .newsletter .info .item .label, .header-block.plan .image-label.mac, .price-package .label, .toolbar .view-mode a.list:hover, .toolbar .view-mode a.grid:hover, .pagination ul li a:hover, .about-us-page .about-us-page-slider .carousel-prev:hover, .about-us-page .about-us-page-slider .carousel-next:hover, .progress .bar, .team-list .item .static-hover .description, .portfolio .portfolio-one .carousel-prev:hover, .portfolio .portfolio-one .carousel-next:hover, .portfolio .item .carousel-pager a.selected, .portfolio .item .carousel-grid .carousel-prev:hover, .portfolio .item .carousel-grid .carousel-next:hover, .portfolio .page-title .left:hover, .portfolio .page-title .right:hover, .portfolio .page-title .remove:hover, .gallery-carousel .carousel-next:hover, .gallery-carousel .carousel-prev:hover, .services .large .icon, #options-panel .layout a.active, #options-panel .layout a:hover, .mpc_ls .mpc_ls_ui .mpc_ls_timer, .read_more, .mpc_ls_slides_thumbs.style01 .mpc_ls_thumb.active .mpc_ls_thumb_inside,  .mpc_ls_thumb:hover.active .mpc_ls_thumb_inside, .mpc_ls_image_thumb, .btn-ads span{
+background-color: <?php echo $hex ?>!important;
+}
+.carousel-pager.one a.selected:hover{background: #444444!important;}
+.sidebar-list-products li .content .title:hover, .filter .result li span, a, a:hover, a:focus,
+.navbar .nav li.dropdown.open .dropdown-menu.one a:hover, .navbar .nav .dropdown.open .dropdown-section a:hover{
+   color: <?php echo $hex_a ?>;
+}
+.navbar .nav li.dropdown.open a.btn-info, .btn-info{
+   background-color: <?php echo $hex_a ?>;
+   color: <?php echo $hex_a_color ?>;
+}
+.navbar .nav li.dropdown.open a.btn-info:hover, .btn-info:hover{
+   border-color: <?php echo $hex_a ?>;
+}
+.product-grid .product-caption .inner, .product-grid .product-caption .price, .portfolio .image .hover, .team-list .item .static-hover .description, .mpc_ls_slides_thumbs.style01 .mpc_ls_thumb.active .mpc_ls_thumb_inside, .mpc_ls_slides_thumbs.style01 .mpc_ls_thumb:hover.active .mpc_ls_thumb_inside{
+background-color: rgba(<?php echo $rgb[0]; ?>, <?php echo $rgb[1]; ?>, <?php echo $rgb[2]; ?>, 0.9)!important;
+}
+</style>

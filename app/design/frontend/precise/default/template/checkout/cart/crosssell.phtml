@@ -1,0 +1,63 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php
+/**
+ * Cart cross sell items template
+ *
+ * @see Mage_Checkout_Block_Cart_Crosssell
+ */
+?>
+<?php if($this->getItemCount()): ?>
+<?php $ibtheme = $this->helper('ibtheme') ?>
+
+<div class="row">
+    <div class="span12">
+        <div class="carousel-grid">
+            <div class="title-one"><span><?php echo $this->__('you may be interested in the following items:') ?></span><div class="carousel-pager one pull-right"></div></div>
+            <ul class="product-grid <?php if (Mage::getStoreConfig("ib_theme_design/general/store_productGrid") == 'type2') echo "two-vatiant" ?>">
+                <?php foreach ($this->getItems() as $_item): ?>
+                    <li class="item <?php echo $ibtheme->getProductClasses($_item) ?>">
+                        <article>
+                            <div class="border-top"></div>
+                            <div class="border-left"></div>
+                            <div class="border-right"></div>
+                            <div class="border-bottom"></div>
+                            <a href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->keepFrame(true)->resize(305, 305); ?>" alt="<?php echo $this->htmlEscape($_item->getName()) ?>"><div class="product-label">label</div></a>
+
+                            <div class="product-caption">
+                                <?php echo $this->getPriceHtml($_item, true) ?>
+                                <div class="inner">
+                                    <h3 class="title"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
+                                    <div class="cart-button">
+                                        <a href="<?php echo $this->getAddToCartUrl($_item) ?>" class="link-cart btn btn-primary"><?php echo $this->__('Add to Cart') ?></a>
+                                        <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                            <a href="<?php echo $this->getAddToWishlistUrl($_item) ?>" class="link-wishlist wishlist-link"><?php echo $this->__('Add to Wishlist') ?></a>
+                                        <?php endif; ?>
+                                        <?php if($_compareUrl=$this->getAddToCompareUrl($_item)): ?>
+                                            <a href="<?php echo $_compareUrl ?>" class="link-compare compaire-link"><?php echo $this->__('Add to Compare') ?></a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        <?php if (Mage::getStoreConfig("ib_theme_design/general/store_productGrid") == 'type2') : ?>
+                        <div class="product-bottom-title">
+                            <h3 class="title"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
+                        </div>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+                <script type="text/javascript">decorateList('crosssell-products-list', 'none-recursive')</script>
+            </ul>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

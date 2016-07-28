@@ -1,0 +1,197 @@
+<?php
+/**
+ * Magento Customization
+ * @Author : Abdullah
+ *
+ */
+?>
+<script type="text/javascript">jwplayer.key="ec6GXL8uEdSuKlp6NxB3B+lHCesVuHT42AeHrA==";</script>
+<div class="measurement-panel">
+	<?php 
+		$measurements = $this->getMeasurement(); 
+		$body_measurement = $this->getQuoteMeasurement();
+                $entityType = Mage::getSingleton('eav/config')->getEntityType('customer');
+                $excluded = array('age', 'body_weight', 'height_feet', 'height_inch');
+	?>
+	<?php if( count($measurements)>0 ): ?>
+		<div class="progrees-bar-outer">
+                    <div id="progress_bar"></div>
+		</div>
+		
+		<div>
+                    <ul class="slider123">
+                            <li class="type sliderli">
+                                    <?php echo $this->getChildHtml('measurement_initial_content') ?>
+                            </li>
+                            <?php 
+                            $bodyshape_entities = $this->getBodyShapeMeasurement();
+                            foreach($bodyshape_entities as $attr): ?>
+                                <?php if($attr->getId()): ?>
+                                    <li class="type sliderli">
+                                        <?php $this->getLayout()->getBlock('measurement_bodyshape_content')->setData('shape',$attr); ?>
+                                        <?php echo $this->getLayout()->getBlock('measurement_bodyshape_content')->toHtml() ?>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+                            <?php foreach( $measurements as $measurement ) : ?>
+                                <?php if(!in_array($measurement->getData('attribute_code'), $excluded)): ?>    
+                                    <li class="type sliderli">
+                                            <div class="measurement-left">
+                                                    <h2><?php echo $this->__("%s", $measurement->getStoreLabel()); ?></h2>
+                                                    <?php
+                                                            $meta_info = $this->getAttributeMetaInformation($measurement->getId()); 
+                                                            $meta_info_image = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'bodymeasurement/'.$meta_info->getData('image');
+                                                    ?>
+                                                    <div>
+                                                            <?php echo $this->__("%s", $meta_info->getStoreDescriptionLabel()); ?>
+                                                    </div>
+                                                    <div class="measurements_error inner_error">
+                                                            <img width="15" height="15" src="<?php echo $this->getSkinUrl('images/measurement/error.png') ?>">
+                                                            <span><?php echo $this->__('Please fill in the required fields.') ?></span>
+                                                    </div>
+                                                    <form name="form_<?php echo $measurement->getData('attribute_code'); ?>">
+                                                            <?php switch($measurement->getData('frontend_input')):
+                                                                            case 'select': ?>
+                                                                                    <label><?php echo $measurement->getData('frontend_label'); ?> : </label>
+                                                                                    <select tabindex="-1" name="<?php echo $measurement->getData('attribute_code'); ?>" id="<?php echo $measurement->getData('attribute_code'); ?>">
+                                                                                            <?php foreach( $measurement->getSource()->getAllOptions(false) as $option ): ?>
+                                                                                                    <option value="<?php echo $option['value'] ?>" <?php if($body_measurement[$measurement->getData('attribute_code')]==$option['value']){echo 'selected';} ?> ><?php echo $option['label'] ?></option>
+                                                                                            <?php endforeach; ?>
+                                                                                    </select>
+                                                                            <?php break; 
+                                                                            case 'text': ?>
+                                                                                    <div class='tape_widget'>
+                                                                                            <div class='tape_container'>
+                                                                                                    <div class='tape inches'>
+
+                                                                                                            <ul class='numbers'>
+                                                                                                                    <?php for($i=0;$i<=80;$i++): ?>
+                                                                                                                            <li><label><?php echo $i ?></label></li>
+                                                                                                                    <?php endfor; ?>
+                                                                                                            </ul>
+                                                                                                    </div>
+                                                                                            </div>
+                                                                                            <img class='needle' src="<?php echo $this->getSkinUrl('images/measurement/tm_marker.png') ?>" />
+                                                                                    </div>
+
+                                                                                    <div class="measurement-input-area">
+                                                                                            <input class="autonumeric input-text" type="text" tabindex="-1" maxlength="6" value="<?php if($body_measurement[$measurement->getData('attribute_code')]){echo $body_measurement[$measurement->getData('attribute_code')];}else{echo '1.75';} ?>" name="<?php echo $measurement->getData('attribute_code'); ?>" id="<?php echo $measurement->getData('attribute_code'); ?>" />
+                                                                                            <span>inch</span>
+                                                                                    </div>
+
+                                                            <?php endswitch; ?>
+                                                    </form>
+                                            </div>
+                                            <div class="measurement-right">
+                                                    <?php $file_extension = substr(strrchr($meta_info_image,'.'),1); ?>
+                                                    <?php if(in_array($file_extension,array('flv','mp4'))): ?>
+                                                            <div class="videoplayclass" id="videoelement_<?php echo $measurement->getData('attribute_code') ?>" videopath="<?php echo $meta_info_image; ?>">Loading the player...</div>
+                                                    <?php elseif(in_array($file_extension,array('jpeg','jpg','gif','png'))): ?>
+                                                            <img width="390" height="200" class="measurement-tip-image" src="<?php echo $meta_info_image; ?>" alt="<?php echo $measurement->getData('frontend_label'); ?>" title="<?php echo $measurement->getData('frontend_label'); ?>" />
+                                                    <?php endif; ?>
+                                            </div>
+                                    </li>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+
+
+                            <li class="sliderli">
+                                    <?php echo $this->getChildHtml('measurement_last_content'); ?>
+                            </li>
+
+                    </ul>
+		</div>
+		
+		<div class="button-set" style="margin-top:20px;text-align:center">
+			<button class="prev-button" id="prev_slide" tabindex="-1">
+				<span><?php echo $this->__('Previous') ?></span>
+			</button>
+			
+			<button class="next-button" id="next_slide" tabindex="-1">
+				<span><?php echo $this->__('Next') ?></span>
+				<img src="<?php echo $this->getSkinUrl('images/measurement/next_loader.gif') ?>" style="display:none;" id="ajax_loader" alt="loader" title="loader" />
+			</button>
+			
+			<button class="next-button" tabindex="-1" id="proceed_to_checkout" style="display:none;" onclick="window.location='<?php echo $this->getUrl('checkout/onepage') ?>';" >
+				<span><?php echo $this->__('Proceed to Checkout') ?></span>
+			</button>
+		</div>
+	<?php else: ?>
+		<div><?php echo $this->__('No body measurement type is available') ?>.</div>
+	<?php endif; ?>
+</div>
+
+
+<script type="text/javascript">
+	jQuery.noConflict();
+	jQuery(function() {
+	
+		jQuery('.measurement-panel form').on("keyup", function(e) {
+		  var code = e.keyCode || e.which; 
+		  if (code == 13) {               
+			e.preventDefault();
+			return false;
+		  }
+		});
+		
+		
+		// gather all inputs of selected types
+		var inputs = jQuery('.measurement-panel input, .measurement-panel textarea, .measurement-panel select, .measurement-panel button'), inputTo;
+
+		// bind on keydown
+		inputs.on('keydown', function(e) {
+
+			// if we pressed the tab
+			if (e.keyCode == 9 || e.which == 9) {
+				// prevent default tab action
+				e.preventDefault();
+				return false;
+				/*if (e.shiftKey) {
+					// get previous input based on the current input
+					inputTo = inputs.get(inputs.index(this) - 1);
+				} else {
+					// get next input based on the current input
+					inputTo = inputs.get(inputs.index(this) + 1);
+				}
+
+				// move focus to inputTo, otherwise focus first input
+				if (inputTo) {
+					inputTo.focus();
+				} else {
+					inputs[0].focus();
+				}*/
+			}
+		});
+	
+	
+		var left_val = 0;
+		jQuery('.tape').draggable({
+			axis:'x',
+			drag: function(event,ui){
+
+				if( ui.position.left>0 ){ //for lower bound
+					left_val = 0;
+				}
+				else if( ui.position.left<-6260 ){ //for upper bound
+					left_val = -6260;
+				}
+				else{
+					left_val = ui.position.left;
+				}
+				
+				var roundedValue = Math.abs( Math.round( ( left_val / 80 ) * 4 ) / 4 ),
+				inches = roundedValue + 1.75,
+				cm = ( roundedValue + 1.75 ) * 2;
+				
+				jQuery(this).closest('form').find("input[type=text]").val(inches);
+			}
+		});
+		
+		jQuery(".autonumeric").numeric({ decimal : ".",negative: false });
+		jQuery('.tape').setInitial();
+		jQuery('.inner_error img').click(function(){
+			jQuery('.inner_error').hide();
+		});
+	});
+</script>

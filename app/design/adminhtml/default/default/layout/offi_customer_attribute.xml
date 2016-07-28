@@ -1,0 +1,48 @@
+<?xml version="1.0" ?>
+<layout version="0.1.0">
+	<default>
+		<!--<reference name="head"> 
+			<action method="setCanLoadExtJs"><flag>1</flag></action> 
+			<action method="setCanLoadTinyMce"><flag>1</flag></action>
+			<action method="addJs"><script>mage/adminhtml/variables.js</script></action> 
+			<action method="addJs"><script>mage/adminhtml/wysiwyg/widget.js</script></action> 
+			<action method="addJs"><script>lib/flex.js</script></action> 
+			<action method="addJs"><script>lib/FABridge.js</script></action> 
+			<action method="addJs"><script>mage/adminhtml/flexuploader.js</script></action> 
+			<action method="addJs"><script>mage/adminhtml/browser.js</script></action> 
+			<action method="addJs"><script>prototype/window.js</script></action>
+			<action method="addJs"><script>prototype/prototype.js</script></action> 
+			<action method="addItem"><type>js_css</type><name>prototype/windows/themes/default.css</name></action> 
+		</reference>-->
+	</default>
+
+    <customerattribute_index>
+    	<!-- informations concernant le block content -->
+        <reference name="content">
+            <block type="customerattribute/index"  name="customerattribute"  as="customerattribute" template="customerattribute/index.phtml" />
+        </reference>
+    </customerattribute_index>
+    
+    
+    <customerattribute_category>
+        <reference name="content">
+            <block type="customerattribute/customerattributegrid"  name="customerattributegrid"  as="customerattributegrid" template="customerattribute/grid.phtml" />
+        </reference>
+    </customerattribute_category>
+    <customerattribute_customer>
+        <reference name="content">
+            <block type="customerattribute/customerattributegrid"  name="customerattributegrid"  as="customerattributegrid" template="customerattribute/grid.phtml" />
+        </reference>
+    </customerattribute_customer>
+    <customerattribute_address>
+        <reference name="content">
+            <block type="customerattribute/customerattributegrid"  name="customerattributegrid"  as="customerattributegrid" template="customerattribute/grid.phtml" />
+        </reference>
+    </customerattribute_address>
+    
+    <customerattribute_edit>
+        <reference name="content">
+            <block type="customerattribute/customerattributeedit"  name="customerattributeedit"  as="customerattributeedit" template="customerattribute/options.phtml" />
+        </reference>
+    </customerattribute_edit>
+</layout>

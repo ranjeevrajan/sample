@@ -1,0 +1,10 @@
+Please look at {{var product_name}}
+
+Here is message: 
+{{var message}}
+
+
+Пожалуйста, посмотрите на {{VAR product_name}} 
+
+Вот сообщение: 
+{{VAR message}}

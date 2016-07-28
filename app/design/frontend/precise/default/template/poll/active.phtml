@@ -1,0 +1,48 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if(isset($poll)) : ?>
+<script type="text/javascript">
+//<![CDATA[
+    function validatePollAnswerIsSelected()
+    {
+        var options = $$('input.poll_vote');
+        for( i in options ) {
+            if( options[i].checked == true ) {
+                return true;
+            }
+        }
+        return false;
+    }
+//]]>
+</script>
+<div class="block block-poll poll">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Community Poll') ?></span></strong>
+    </div>
+    <form id="pollForm" action="<?php echo $action ?>" method="post" onsubmit="return validatePollAnswerIsSelected();">
+        <div class="block-content">
+            <h6 class="block-subtitle"><?php echo $this->htmlEscape($poll->getPollTitle()); ?></h6>
+            <?php if( $poll_answers ): ?>
+            <ul id="poll-answers">
+                <?php foreach( $poll_answers as $answer ): ?>
+                <li>
+                    <label><input type="radio" name="vote" class="radio poll_vote" id="vote_<?php echo $answer->getId() ?>" value="<?php echo $answer->getAnswerId() ?>" />
+                    <span class="title"><?php echo $this->htmlEscape($answer->getAnswerTitle()) ?></label></span>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+            <script type="text/javascript">decorateList('poll-answers');</script>
+            <?php endif; ?>
+        </div>
+        <button type="submit" title="<?php echo $this->__('Vote') ?>" class="button btn btn-primary"><span><span><?php echo $this->__('Vote') ?></span></span></button>
+    </form>
+</div>
+<?php endif; ?>

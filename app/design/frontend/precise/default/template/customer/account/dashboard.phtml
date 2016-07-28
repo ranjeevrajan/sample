@@ -1,0 +1,31 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="dashboard row">
+    <div class="span9">
+        <h1 class="page-title"><?php echo $this->__('My Dashboard') ?></h1>
+    </div>
+    <div class="span9">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <?php echo $this->getChildHtml('hello') ?>
+        <?php echo $this->getChildHtml('top') ?>
+        <div class="box-account box-info">
+            <div class="box-head">
+                <h3><?php echo $this->__('Account Information') ?></h3>
+            </div>
+            <?php /* Extensions placeholder */ ?>
+            <?php echo $this->getChildHtml('customer.account.dashboard.extra') ?>
+            <?php echo $this->getChildHtml('info') ?>
+            <?php echo $this->getChildHtml('address') ?>
+        </div>
+        <?php echo $this->getChildHtml('info1') ?>
+        <?php echo $this->getChildHtml('info2') ?>
+    </div>
+</div>

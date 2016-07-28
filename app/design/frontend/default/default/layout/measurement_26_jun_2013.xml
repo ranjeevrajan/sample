@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <measurement_index_index>
+		<!--<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>-->
+	
+        <reference name="content">
+            <block type="measurement/measurement" name="measurement" template="measurement/measurement.phtml" />
+        </reference>
+    </measurement_index_index>
+		
+	<checkout_cart_index>
+		<reference name="head">
+			<action method="addItem"><type>skin_css</type><name>css/measurement/measurement.css</name><params/></action>
+			<action method="addItem"><type>skin_js</type><name>js/measurement/jquery.bxslider.js</name><params/></action>
+			<action method="addItem"><type>skin_js</type><name>js/measurement/measurement.js</name><params/></action>
+		</reference>
+				
+		<reference name="checkout.cart.methods.onepage">
+			<action method="setTemplate">
+				<template>measurement/checkout/onepage/link.phtml</template>
+			</action>
+		</reference>
+		
+		<!--<reference name="checkout.cart.top_methods">
+			<block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="measurement/checkout/onepage/link.phtml"/>
+		</reference>
+		
+		<reference name="checkout.cart.top_methods">
+			<block type="core/text_list" name="checkout.cart.methods" as="methods">
+				<block type="checkout/onepage_link" name="checkout.cart.methods.onepage" template="measurement/checkout/onepage/paymentafter_link.phtml"/>
+				<block type="checkout/multishipping_link" name="checkout.cart.methods.multishipping" template="checkout/multishipping/link.phtml"/>
+			</block>
+		</reference>-->
+		
+		<reference name="before_body_end">
+			<block type="core/template" name="body_measurement_trigger" template="measurement/trigger.phtml" before="-"/>
+		</reference>
+		
+	</checkout_cart_index>
+	
+	<measurement_index_measurement>
+		<reference name="head">
+			<!--<action method="addItem"><type>skin_js</type><name>js/ie6.js</name><params/></action>-->
+        </reference>
+		
+		<remove name="head" />
+		
+		<reference name="root">
+            <action method="setTemplate"><template>page/empty.phtml</template></action>
+        </reference>
+		
+		<reference name="content">
+            <block type="measurement/measurement" name="measurement_content" template="measurement/measurement.phtml">
+					<block type="measurement/measurement" name="measurement_initial_content" template="measurement/initial/content.phtml" />
+			</block>
+        </reference>
+	</measurement_index_measurement>
+
+	
+</layout> 

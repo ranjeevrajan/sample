@@ -1,0 +1,31 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<?php if(isset($poll)) : ?>
+<div class="block block-poll">
+    <div class="block-title">
+        <strong><span><?php echo $this->__('Community Poll') ?></span></strong>
+    </div>
+    <div class="block-content">
+        <p class="block-subtitle"><?php echo $this->htmlEscape($poll->getPollTitle()); ?></p>
+        <?php if( $poll_answers ): ?>
+        <ul id="poll-answers">
+            <?php foreach( $poll_answers as $answer ): ?>
+                <li>
+                    <span class="answer"><?php echo $this->htmlEscape($answer->getAnswerTitle()) ?>:</span>
+                    <span class="votes"><?php echo $answer->getVotesCount() ?> (<?php echo $answer->getPercent() ?>%)</span>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <script type="text/javascript">decorateList('poll-answers');</script>
+        <?php endif; ?>
+    </div>
+</div>
+<?php endif; ?>

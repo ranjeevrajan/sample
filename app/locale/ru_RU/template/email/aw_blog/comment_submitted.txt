@@ -1,0 +1,3 @@
+A new comment has been submitted and is awaiting approval. The comment can be found at: {{var data.url}} Comment Details: Name: {{var data.user}} E-mail: {{var data.email}} Comment: {{var data.comment}}
+
+Новый комментарий был представлен и ожидает утверждения. Комментарий можно найти по адресу: {{VAR data.url}} Комментарий Детали: имя: {{VAR data.user}} Адрес электронной почты: {{VAR data.email}} Комментарий: {{VAR data.comment}}

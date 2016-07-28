@@ -1,0 +1,39 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<div class="box-account box-tags row">
+    <div class="box-head span9">
+        <h3><?php echo $this->__('My Recent Tags') ?> <a href="<?php echo $this->getAllTagsUrl() ?>" class="btn-link"><?php echo $this->__('View All Tags') ?></a></h3>
+    </div>
+    <div id="my_recent_tags" class="span9">
+        <?php $iterator = 0; ?>
+        <?php foreach( $this->getCollection()->getItems() as $_item ): ?>
+            <div class="item">
+                <span class="number pull-left"><?php echo ++$iterator ?>.</span>
+                <div class="details">
+                    <a href="<?php echo $_item->getProductUrl() ?>" class="btn-link"><?php echo $this->htmlEscape($_item->getName()) ?></a>
+                    <div class="tags">
+                        <strong><?php echo $this->__('Tags:') ?></strong>
+                        <?php $_i = 0; ?>
+                        <?php foreach( $_item->getProductTags() as $_tag ): ?>
+                            <a href="<?php echo $_tag->getViewTagUrl() ?>"><?php echo $this->htmlEscape($_tag->getName()) ?></a><?php if(++$_i != sizeof($_item->getProductTags()->getItems())): ?>,<?php endif; ?><?php
+                            if (count($_item->getItems()) == 0) {
+                                echo ", ";
+                            }
+                            ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        <?php endforeach; ?>
+    </div>
+    <script type="text/javascript">decorateList('my_recent_tags', 'none-recursive');</script>
+</div>

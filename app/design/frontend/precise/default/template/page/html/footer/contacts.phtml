@@ -1,0 +1,29 @@
+<?php
+/**
+ * Precise Magento Theme
+ *
+ * @category    design
+ * @package     precise_default
+ * @copyright   Copyright (c) 2012 InfoStyle (http://infostyle.com.ua)
+ * @license     http://themeforest.net/licenses/regular_extended ThemeForest Regular & Extended License
+ */
+?>
+<address class="block footer-contacts-block">
+<?php if ($block_html = $this->getChildHtml('cms_footer_contacts')): echo $block_html; else: ?>
+
+    <?php if ($phones = Mage::getStoreConfig('general/store_information/phone')): ?>
+    <div>
+        <?php echo implode("<br>", explode(',', $phones)) ?>
+    </div>
+    <?php endif ?>
+
+    <div>
+        <a href="mailto:<?php echo Mage::getStoreConfig('trans_email/ident_sales/email') ?>"><?php echo Mage::getStoreConfig('trans_email/ident_sales/email') ?></a>
+    </div>
+
+    <?php if ($address = Mage::getStoreConfig('general/store_information/address')): ?>
+    <div><?php echo $address ?></div>
+    <?php endif ?>
+
+<?php endif ?>
+</address>
